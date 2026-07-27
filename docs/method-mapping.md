@@ -13,7 +13,7 @@ Elan8 Method concerns and recipes compared to familiar MBSE approaches. This is 
 
 ## Deliberate differences
 
-- Elan8 organizes work as **continuous concerns** and **vertical golden-thread slices** (scoped in Git/PR), not mandatory sequential layers.
+- Elan8 organizes work as **continuous concerns** and **vertical engineering increments** (scoped in Git/PR, not SysML process metadata), not mandatory sequential layers.
 - Logical architecture as a **parallel part tree is optional**; allocation from actions to parts is required.
 - Textual SysML v2 + Git are first-class; diagrams are views.
 - Method metadata stays light; process enforcement prefers PRs, CODEOWNERS, and CI.

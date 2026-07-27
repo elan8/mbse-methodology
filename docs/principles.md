@@ -20,11 +20,11 @@ Examples:
 - Which architecture option best satisfies the key constraints?
 - How will this requirement be verified?
 
-## 3. Build vertical slices
+## 3. Build vertical increments
 
 Do not model all requirements first, then all behavior, then all architecture.
 
-Work in traceable golden threads that connect:
+Work in traceable engineering increments that connect:
 
 - stakeholder concern;
 - scenario;
@@ -34,7 +34,7 @@ Work in traceable golden threads that connect:
 - verification;
 - decision.
 
-Scope that work in Git/PR (and naming), not via process metadata sprayed across the model.
+Scope each increment in Git/PR (and clear naming), not via process metadata on model elements.
 
 ## 4. Model only what creates value
 

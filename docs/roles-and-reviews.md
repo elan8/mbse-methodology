@@ -18,7 +18,7 @@ One person may hold several roles on a small project.
 
 | When | Review question | Typical approver |
 | --- | --- | --- |
-| Purpose slice | Is the boundary and need clear enough to design? | Product + systems |
+| Purpose increment | Is the boundary and need clear enough to design? | Product + systems |
 | Scenario + requirements | Are requirements testable and derived from needs? | Systems + verification |
 | Architecture / interface | Are responsibilities and boundaries stable enough? | Architecture owner + systems |
 | Verification readiness | Can we demonstrate critical requirements? | Verification + systems |
@@ -26,8 +26,8 @@ One person may hold several roles on a small project.
 
 ## Pull request as the review mechanism
 
-- Every vertical slice / golden-thread change lands as a PR with model diffs (and Spec42 check).
-- PR description states: concern(s), slice objective, decisions, residual risks.
+- Every engineering increment lands as a PR with model diffs (and Spec42 check).
+- PR description states: concern(s), increment objective, decisions, residual risks.
 - Use CODEOWNERS for package-path ownership; do not encode owners in SysML metadata.
 - Do not duplicate full approval workflows inside SysML; keep process approval in Git/PR.
 

@@ -31,7 +31,7 @@ What happens when a capability is lost or impaired?
 
 | Minimal (small) | Medium |
 | --- | --- |
-| One critical exception in the golden-thread scenario | State machine for operating modes + multiple hazards |
+| One critical exception in the increment scenario | State machine for operating modes + multiple hazards |
 | Doc-level handling for rare cases | Full fail-safe allocation and verification |
 
 ## Example

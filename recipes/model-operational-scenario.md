@@ -16,7 +16,7 @@ What end-to-end scenario must succeed, and which participants, actions, and flow
 3. Decompose into a small number of steps (`action` usages) with `first … then …` and `flow` where items move.
 4. Identify exceptional branches only when they change architecture or verification (see [model-degraded-behavior](model-degraded-behavior.md)).
 5. Tag with `@EngineeringConcern { concern = behavior; }`.
-6. Name golden-thread scenarios clearly; keep work-scope (which PR/slice) in Git, not in model metadata.
+6. Name increment scenarios clearly; keep work-scope (which PR/increment) in Git, not in model metadata.
 7. Expose the scenario in a view that satisfies `ScenarioViewpoint`.
 
 ## SysML v2 concepts used
@@ -38,7 +38,7 @@ What end-to-end scenario must succeed, and which participants, actions, and flow
 
 | Minimal (small) | Medium |
 | --- | --- |
-| One golden-thread scenario | Multiple scenarios + use-case wrappers |
+| One engineering-increment scenario | Multiple scenarios + use-case wrappers |
 | Happy path only | Degraded path (see degraded-behavior recipe) |
 
 Cross-link: robot-vacuum `cliffSafeStopGoldenThread`.

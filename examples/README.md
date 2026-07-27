@@ -15,6 +15,6 @@ The sibling repository [`sysml-robot-vacuum-cleaner`](../../sysml-robot-vacuum-c
 
 - Folders `00_project` … `90_library`
 - Imports `mbse-methodology/library` and `sysml-domain-libraries`
-- Cliff-safe-stop golden thread (`CliffSafeStopGoldenThread`)
+- Cliff-safe-stop engineering increment (`CliffSafeStopGoldenThread` scenario)
 
 Start with [`docs/ELAN8_METHOD_TOUR.md`](../../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md).
