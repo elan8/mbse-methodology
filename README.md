@@ -2,8 +2,7 @@
 
 A lightweight, SysML v2-native methodology for continuous model-based systems engineering.
 
-> **Status:** Version 0.2  
-> **Positioning:** Practical SysML v2 methodology for continuous model-based engineering. It connects stakeholder needs, system behavior, architecture, analysis, and verification in a machine-readable and reviewable engineering workflow.
+> Practical SysML v2 methodology for continuous model-based engineering. It connects stakeholder needs, system behavior, architecture, analysis, and verification in a machine-readable and reviewable engineering workflow.
 
 ---
 
@@ -47,7 +46,8 @@ mbse-methodology/
   recipes/                  # task-oriented modeling guides
   library/                  # Elan8 SysML v2 method libraries
   templates/project-template/
-  examples/                 # SE pattern fixtures; future method examples
+  examples/                 # SE pattern fixtures
+  scripts/                  # Spec42 validate helper
 ```
 
 | Area | Start here |
@@ -66,6 +66,7 @@ mbse-methodology/
 | SysML libraries | [library/README.md](library/README.md) |
 | Recipes | [recipes/](recipes/) |
 | Project template | [templates/project-template/](templates/project-template/) |
+| Examples | [examples/](examples/) |
 
 ---
 
@@ -84,6 +85,20 @@ mbse-methodology/
 
 ---
 
+## What this repository contains
+
+- Eight principles and six continuous engineering concerns
+- Soft abstraction-level guidance (operational / system / logical / physical)
+- SysML method libraries (`Elan8Requirement*`, `Elan8Method`, `Elan8Viewpoints`)
+- Project template with numbered concern folders
+- Full modeling recipes (product-variant recipe remains a short stub)
+- Quality-rule checklist plus a contracted Spec42 diagnostic contract (not yet implemented in Spec42)
+- SE pattern examples and a pointer to the robot-vacuum showcase
+
+Domain and technical vocabulary lives in sibling `sysml-domain-libraries`, not here.
+
+---
+
 ## SysML libraries
 
 Canonical packages (import these in new models):
@@ -93,7 +108,7 @@ Canonical packages (import these in new models):
 - `Elan8Method`
 - `Elan8Viewpoints`
 
-Domain and technical vocabulary stays in sibling `sysml-domain-libraries`. See [library-migration.md](docs/library-migration.md).
+See [library-migration.md](docs/library-migration.md) for the move out of domain libraries.
 
 Sibling checkout for Spec42:
 
@@ -105,44 +120,29 @@ spec42 --library-path .\library `
        check .\templates\project-template
 ```
 
+Or run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\validate-spec42.ps1
+```
+
 ---
 
 ## Lessons from existing methodologies
 
-Retained and adapted ideas from SYSMOD (recipes, examples), OOSEM (scenario-driven increments), and Arcadia (need vs solution, viewpoints)—with less diagram-centrism, less tool lock-in, and one semantic network rather than duplicated layer models. Details remain in the v0.1 concept discussion; practice is defined by recipes and libraries.
+Retained and adapted ideas from SYSMOD (recipes, examples), OOSEM (scenario-driven increments), and Arcadia (need vs solution, viewpoints)—with less diagram-centrism, less tool lock-in, and one semantic network rather than duplicated layer models. Practice is defined by recipes and libraries; see [method-mapping.md](docs/method-mapping.md).
 
 ---
 
 ## Tool support (intent)
 
-- **Spec42:** templates, snippets, live checks, semantic diff, CI.
+- **Spec42:** templates, snippets, live checks, semantic diff, CI; contracted quality diagnostics documented but not all implemented yet.
 - **Babel42:** dashboards, stakeholder views, coverage, decision logs, release readiness.
 
----
-
-## Version 0.1 scope
-
-Included:
-
-- eight principles;
-- six engineering concerns;
-- four abstraction levels (soft);
-- repository and package conventions;
-- five full recipes + stubs for the rest;
-- five standard viewpoints (library);
-- quality-rule candidates;
-- SE pattern examples;
-- project template;
-- migration of SE packages from domain libraries.
-
-Not yet:
-
-- robot-vacuum method compliance refactor;
-- executable Spec42 quality packs;
-- Babel42 method dashboards.
+Method libraries are resolved via `--library-path` (or sibling checkout). Spec42 embeds domain libraries separately; Elan8 Method packages are not required for every SysML model—only when imported.
 
 ---
 
 ## Definition of success
 
-Version 0.1 succeeds when a small team can start a SysML v2 project without inventing structure, model one end-to-end concern with recipes, detect common quality gaps via checklist, and grow toward tool-enforced rules later.
+A small team can start a SysML v2 project without inventing its own structure, model one end-to-end concern with recipes, review architecture and verification coverage, and evolve the model under version control with automated checks where available.

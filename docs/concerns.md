@@ -74,7 +74,7 @@ Expected outputs:
 - exceptional behavior;
 - interaction flows.
 
-**Modeling note:** Prefer `action def` / `action` for functions. Do not invent a separate capability metamodel for v0.1.
+**Modeling note:** Prefer `action def` / `action` for functions. Do not invent a separate capability metamodel unless a project clearly needs one.
 
 ---
 

@@ -15,7 +15,7 @@ Tag elements with `@AbstractionLevel` from `Elan8Method` when useful. Do not req
 
 ## Flexible logical vs physical
 
-Default guidance for v0.1:
+Default guidance:
 
 - **Logical** means responsibilities expressed as `action` (and optionally `part`) as needed.
 - A **parallel logical-part tree is optional**. Many projects allocate behavior directly to physical parts.

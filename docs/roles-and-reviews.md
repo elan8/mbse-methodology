@@ -29,7 +29,7 @@ One person may hold several roles on a small project.
 - Every vertical increment lands as a PR with model diffs (and Spec42 check).
 - PR description states: concern(s), increment id/objective, decisions, residual risks.
 - Optional `@MethodElementOwner` / CODEOWNERS for package paths — prefer CODEOWNERS for enforcement.
-- Do not duplicate full approval workflows inside SysML for v0.2.
+- Do not duplicate full approval workflows inside SysML; keep process approval in Git/PR.
 
 ## AI-assisted changes
 
