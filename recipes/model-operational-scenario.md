@@ -15,8 +15,9 @@ What end-to-end scenario must succeed, and which participants, actions, and flow
 2. Model the scenario as an `action def` (and a usage) with participants bound or referenced.
 3. Decompose into a small number of steps (`action` usages) with `first … then …` and `flow` where items move.
 4. Identify exceptional branches only when they change architecture or verification (see [model-degraded-behavior](model-degraded-behavior.md)).
-5. Tag with `@EngineeringConcern { concern = behavior; }` and optionally `@EngineeringIncrement`.
-6. Expose the scenario in a view that satisfies `ScenarioViewpoint`.
+5. Tag with `@EngineeringConcern { concern = behavior; }`.
+6. Name golden-thread scenarios clearly; keep work-scope (which PR/slice) in Git, not in model metadata.
+7. Expose the scenario in a view that satisfies `ScenarioViewpoint`.
 
 ## SysML v2 concepts used
 
@@ -25,7 +26,7 @@ What end-to-end scenario must succeed, and which participants, actions, and flow
 - `item` types for exchanged payloads
 - `use case` (optional wrapper)
 - `Elan8Viewpoints::ScenarioViewpoint`
-- `Elan8Method::EngineeringIncrement`
+- `Elan8Method::EngineeringConcern`
 
 ## Minimum required output
 
@@ -60,10 +61,6 @@ package Scenarios {
 
     action def CliffSafeStopScenario {
         @EngineeringConcern { concern = behavior; }
-        @EngineeringIncrement {
-            incrementId = "INC-CLIFF-001";
-            objective = "Detect cliff and stop safely";
-        }
         doc /* When a cliff is sensed, the robot stops and reports status. */
 
         action senseCliff { out observation : CliffObservation; }

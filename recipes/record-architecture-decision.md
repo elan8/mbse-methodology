@@ -12,7 +12,7 @@ What did we decide, what alternatives existed, and what is the rationale?
 ## Recommended steps
 
 1. Assign a stable `decisionId`.
-2. Annotate the owning definition/usage with `@DecisionRecord` (title, rationale, status).
+2. Annotate the owning definition/usage with `@DecisionRecord` (title, rationale).
 3. Link related assumptions/risks.
 4. Reference the decision in the PR description; merge records the approval in Git.
 5. When the decision selects a catalog part, keep “kind of” (specialization) separate from “implemented by” (dependency), as in robot-vacuum `selectedImplementation`.
@@ -43,7 +43,6 @@ part def DriveModule {
         decisionId = "ADR-DRIVE-002";
         title = "Differential drive with stall detection";
         rationale = "Meets cliff-stop timing with existing motor drivers";
-        status = "accepted";
     }
 }
 ```

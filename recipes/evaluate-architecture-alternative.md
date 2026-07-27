@@ -16,7 +16,7 @@ Which option best satisfies the key constraints, and why?
 2. Model each alternative lightly (variants, separate usages, or documented options) — enough to compare, not full designs.
 3. Capture assumptions with `@Assumption`.
 4. Run or reference analysis (`analysis` case) when quantitative.
-5. Record the selection with `@DecisionRecord` (id, title, rationale, status).
+5. Record the selection with `@DecisionRecord` (id, title, rationale).
 6. Update satisfy/allocate links to the chosen option; mark rejected options deprecated or remove if unused.
 
 ## SysML v2 concepts used
@@ -48,7 +48,6 @@ part def RobotMainMcu :> Microcontroller {
         decisionId = "ADR-MCU-001";
         title = "Select STM32U5 class MCU";
         rationale = "Meets timing budget and vendor longevity";
-        status = "accepted";
     }
 }
 ```

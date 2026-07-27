@@ -1,10 +1,11 @@
 package Elan8Method {
     doc /*
       Lightweight Elan8 Method vocabulary: engineering concerns, abstraction
-      levels, decisions, assumptions, risks, and increment identity.
+      levels, decisions, assumptions, and risks.
 
-      Process mechanics (PR review, CODEOWNERS, release tags) stay in Git.
-      This package encodes engineering meaning only.
+      Process mechanics (PR review, CODEOWNERS, release tags, work increments)
+      stay in Git and surrounding tooling. This package encodes engineering
+      meaning only.
     */
 
     import Elan8RequirementManagement::Name;
@@ -47,11 +48,13 @@ package Elan8Method {
     }
 
     metadata def DecisionRecord {
-        doc /* Records an architecture or engineering decision with rationale. */
+        doc /*
+          Records an architecture or engineering decision with rationale.
+          Approval/workflow status lives in Git (PR merge), not in the model.
+        */
         attribute decisionId : Identifier;
         attribute title : Name;
         attribute rationale : Name;
-        attribute status : Name;
     }
 
     metadata def Assumption {
@@ -68,25 +71,8 @@ package Elan8Method {
         attribute severity : Name;
     }
 
-    metadata def EngineeringIncrement {
-        doc /*
-          Identifies a vertical engineering increment that connects concern,
-          scenario, requirements, architecture, analysis, and verification.
-        */
-        attribute incrementId : Identifier;
-        attribute objective : Name;
-    }
-
-    metadata def MethodElementOwner {
-        doc /*
-          Optional human-readable owner label for released model areas.
-          Prefer CODEOWNERS / platform ownership for process enforcement.
-        */
-        attribute owner : Name;
-    }
-
-    part def ProjectTailoring {
-        doc /* Project-level record of how the Elan8 Method is tailored. */
+    part def ProjectInfo {
+        doc /* Project-level record of how the Elan8 Method is tailored for this model. */
         attribute projectName : Name;
         attribute profile : TailoringProfileKind;
         attribute notes : Name;

@@ -1,6 +1,6 @@
 # Tailoring
 
-The method must be tailorable. Record the chosen profile in `00_project` using `ProjectTailoring` from `Elan8Method` (or an equivalent project note).
+The method must be tailorable. Record the chosen profile in `00_project` using `ProjectInfo` from `Elan8Method` (or an equivalent project note).
 
 ## Small project
 

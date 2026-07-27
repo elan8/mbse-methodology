@@ -6,7 +6,7 @@ package Project {
 
     import Elan8Method::*;
 
-    part projectInfo : ProjectTailoring {
+    part projectInfo : ProjectInfo {
         attribute :>> projectName = "NewSystem";
         attribute :>> profile = small;
         attribute :>> notes = "Replace with project-specific tailoring notes.";
