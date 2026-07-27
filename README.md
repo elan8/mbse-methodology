@@ -64,6 +64,7 @@ mbse-methodology/
 | Spec42 quality contract | [docs/spec42-quality-contract.md](docs/spec42-quality-contract.md) |
 | Library migration | [docs/library-migration.md](docs/library-migration.md) |
 | SysML libraries | [library/README.md](library/README.md) |
+| KPAR release | Tag `v*` → GitHub Actions packs `library/` as `elan8-method-libraries-*.kpar` |
 | Recipes | [recipes/](recipes/) |
 | Project template | [templates/project-template/](templates/project-template/) |
 | Examples | [examples/](examples/) |
