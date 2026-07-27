@@ -5,6 +5,9 @@
 | [sysml-v2-primer.md](sysml-v2-primer.md) | Short SysML v2 orientation for Elan8 users |
 | [principles.md](principles.md) | Eight core principles |
 | [concerns.md](concerns.md) | Six continuous engineering concerns |
+| [engineering-increments.md](engineering-increments.md) | Increment as Git/PR work unit (no process metadata) |
+| [workflow.md](workflow.md) | Frame → Explore → Architect → Evaluate → Verify → Evolve |
+| [evidence-and-claims.md](evidence-and-claims.md) | Claim → Evidence → Confidence → Decision |
 | [glossary.md](glossary.md) | Method vs SysML terminology |
 | [method-mapping.md](method-mapping.md) | Mapping to SYSMOD / OOSEM / Arcadia / INCOSE |
 | [abstraction-levels.md](abstraction-levels.md) | Operational / system / logical / physical |

@@ -27,13 +27,43 @@ The central question is not “Which diagrams must we create?” but:
 ## Newcomer quick start
 
 1. Skim the [SysML v2 primer](docs/sysml-v2-primer.md) (definition/usage, satisfy/allocate/verify, views).
-2. Read [principles](docs/principles.md) and [six concerns](docs/concerns.md) (short).
+2. Read [principles](docs/principles.md), [six concerns](docs/concerns.md), and [engineering increments](docs/engineering-increments.md) (short).
 3. Copy [templates/project-template](templates/project-template/) as a starting repository layout.
 4. Walk recipes 1–3: [purpose](recipes/define-system-purpose.md), [context](recipes/define-system-context.md), [concerns](recipes/capture-stakeholder-concerns.md).
 5. Continue with [scenario](recipes/model-operational-scenario.md) and [derive requirements](recipes/derive-system-requirements.md).
-6. Follow the cliff-safe-stop tour in sibling `sysml-robot-vacuum-cleaner` ([ELAN8_METHOD_TOUR.md](../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md)).
+6. Follow one end-to-end increment: cliff-safe-stop in sibling `sysml-robot-vacuum-cleaner` ([ELAN8_METHOD_TOUR.md](../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md)).
 
-See also: [glossary](docs/glossary.md), [method mapping](docs/method-mapping.md), [roles and reviews](docs/roles-and-reviews.md).
+See also: [workflow loop](docs/workflow.md), [evidence and claims](docs/evidence-and-claims.md), [glossary](docs/glossary.md), [method mapping](docs/method-mapping.md), [roles and reviews](docs/roles-and-reviews.md).
+
+---
+
+## Method at a glance
+
+```mermaid
+flowchart TB
+  subgraph increment [Engineering increment = one PR]
+    Q[Engineering question]
+    Q --> Loop
+    Loop[Frame → Explore → Architect → Evaluate → Verify → Evolve]
+  end
+  subgraph concerns [Six continuous concerns]
+    P[Purpose]
+    B[Behavior]
+    A[Architecture]
+    E[Evidence]
+    V[Verification]
+    Ev[Evolution]
+  end
+  increment --> concerns
+  concerns --> Model[SysML v2 model]
+  Model --> Views[Views / Spec42 / Babel42]
+  Git[Git review and merge] -.-> increment
+```
+
+- **Increment** = reviewable work unit in Git/PR ([engineering-increments.md](docs/engineering-increments.md)).
+- **Concerns** = continuous perspectives, not phases ([concerns.md](docs/concerns.md)).
+- **Evidence chain** = Claim → Evidence → Confidence → Decision ([evidence-and-claims.md](docs/evidence-and-claims.md)).
+- **Showcase** = vacuum cliff-safe-stop increment ([tour tour](../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md)).
 
 ---
 
@@ -55,6 +85,9 @@ mbse-methodology/
 | SysML v2 primer | [docs/sysml-v2-primer.md](docs/sysml-v2-primer.md) |
 | Principles | [docs/principles.md](docs/principles.md) |
 | Six concerns | [docs/concerns.md](docs/concerns.md) |
+| Engineering increments | [docs/engineering-increments.md](docs/engineering-increments.md) |
+| Workflow loop | [docs/workflow.md](docs/workflow.md) |
+| Evidence and claims | [docs/evidence-and-claims.md](docs/evidence-and-claims.md) |
 | Glossary | [docs/glossary.md](docs/glossary.md) |
 | Method mapping | [docs/method-mapping.md](docs/method-mapping.md) |
 | Abstraction levels | [docs/abstraction-levels.md](docs/abstraction-levels.md) |
