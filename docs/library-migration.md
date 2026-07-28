@@ -14,7 +14,7 @@ The `generic/systems-engineering/` tree has been **deleted**.
 
 ## What stays in domain libraries
 
-- `domain/robotics/**`
+- `domain/**` (business-domain vocabulary; currently empty — see `sysml-domain-libraries/README.md` Migration Map for why `domain/robotics` was removed)
 - `technical/**` (electronics, communication, software)
 - `generic/units/MonetaryUnits.sysml`
 
