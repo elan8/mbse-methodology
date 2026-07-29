@@ -21,7 +21,7 @@ Which option best satisfies the key constraints, and why?
 
 ## SysML v2 concepts used
 
-- `@DecisionRecord`, `@Assumption`, `@Risk` (`Elan8Method`)
+- `@DecisionRecord`, `@Assumption`, `@Risk` (`Elan8::Method`)
 - `analysis` cases; optional `variation`/`variant` when product-line is in scope
 - Dependencies such as `selectedImplementation` (see robot-vacuum purchased parts)
 
@@ -41,7 +41,7 @@ Which option best satisfies the key constraints, and why?
 ## Example
 
 ```sysml
-metadata def /* use Elan8Method::DecisionRecord */;
+metadata def /* use Elan8::Method::DecisionRecord */;
 
 part def RobotMainMcu :> Microcontroller {
     @DecisionRecord {

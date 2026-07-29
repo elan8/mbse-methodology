@@ -19,4 +19,4 @@ Terms as used in the Elan8 Method. Where SysML v2 already defines a word, that m
 | **Definition / usage** | Type vs occurrence in SysML v2. | UML class vs instance only — usages are broader (roles, configurations). |
 | **Tailoring profile** | `small` / `medium` / `regulated` recorded in `ProjectInfo`. | Skipping all modeling for “agile.” |
 | **Domain library** | Vocabulary for things in the system (`sysml-domain-libraries`). | Method libraries (`mbse-methodology`). |
-| **Method library** | How Elan8 expects models to be authored and assured (`Elan8*` packages). | Product physics or protocol vocabularies. |
+| **Method library** | How Elan8 expects models to be authored and assured (`Elan8::Method` packages). | Product physics or protocol vocabularies. |

@@ -4,7 +4,7 @@ package Architecture {
       Logical part trees are optional; allocate behavior to parts when realizing the design.
     */
 
-    import Elan8Method::*;
+    import Elan8::Method::Core::*;
 
     // TODO: add system structure, interfaces, and allocations
 }

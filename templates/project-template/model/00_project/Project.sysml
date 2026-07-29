@@ -4,7 +4,7 @@ package Project {
       Process ownership and releases stay in Git; engineering meaning lives here.
     */
 
-    import Elan8Method::*;
+    import Elan8::Method::Core::*;
 
     part projectInfo : ProjectInfo {
         attribute :>> projectName = "NewSystem";
@@ -17,6 +17,6 @@ package Project {
       - Definitions: PascalCase
       - Usages: camelCase
       - Prefer ISQ/SI quantities
-      - Import Elan8* method packages; import domain/technical libraries as needed
+      - Import narrowly from Elan8::Method and the required domain namespaces
     */
 }

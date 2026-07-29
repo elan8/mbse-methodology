@@ -25,8 +25,8 @@ What end-to-end scenario must succeed, and which participants, actions, and flow
 - `flow`, succession (`first` / `then`)
 - `item` types for exchanged payloads
 - `use case` (optional wrapper)
-- `Elan8Viewpoints::ScenarioViewpoint`
-- `Elan8Method::EngineeringConcern`
+- `Elan8::Method::Viewpoints::ScenarioViewpoint`
+- `Elan8::Method::EngineeringConcern`
 
 ## Minimum required output
 
@@ -52,8 +52,8 @@ Cross-link: robot-vacuum `cliffSafeStopGoldenThread`.
 
 ```sysml
 package Scenarios {
-    import Elan8Method::*;
-    import Elan8Viewpoints::*;
+    import Elan8::Method::Core::*;
+    import Elan8::Method::Viewpoints::*;
 
     item def CliffObservation;
     item def StopCommand;

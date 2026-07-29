@@ -7,7 +7,7 @@
 | Minimal traceability | [se-patterns/minimal-traceability](se-patterns/minimal-traceability/) | derive → satisfy → verify |
 | Missing verification | [se-patterns/missing-verification](se-patterns/missing-verification/) | intentional verification gap |
 
-These use `Elan8RequirementManagement` and `Elan8RequirementMetadata`.
+These use `Elan8::Method::Requirements` and `Elan8::Method::Metadata`.
 
 ## Compliant showcase: robot vacuum
 

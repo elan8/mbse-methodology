@@ -20,7 +20,7 @@ How will we demonstrate that a critical requirement is met?
 ## SysML v2 concepts used
 
 - `verification` case, `verify`
-- `Elan8RequirementManagement::VerificationEvidence`
+- `Elan8::Method::Requirements::VerificationEvidence`
 - Analysis cases feeding verification (robot-vacuum cliff thread)
 
 ## Minimum required output

@@ -11,7 +11,7 @@ They provide orientation but are **not** mandatory sequential phases.
 | Logical | Which responsibilities and collaborations are needed? | Logical functions, optional logical components, logical interfaces |
 | Physical | How is the solution implemented? | Hardware, software, mechanics, people, physical interfaces |
 
-Tag elements with `@AbstractionLevel` from `Elan8Method` when useful. Do not require every element to appear at every level.
+Tag elements with `@AbstractionLevel` from `Elan8::Method::Core` when useful. Do not require every element to appear at every level.
 
 ## Flexible logical vs physical
 

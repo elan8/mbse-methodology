@@ -23,7 +23,7 @@ Which testable system requirements follow from stakeholder needs and scenarios?
 
 - `requirement` with `subject`, `assume`, `require constraint`
 - `#derivation connection`
-- `Elan8RequirementMetadata`, `Elan8RequirementManagement`
+- `Elan8::Method::Metadata`, `Elan8::Method::Requirements`
 - `ModelingMetadata::StatusInfo`
 - ISQ/SI quantity types
 
@@ -53,8 +53,8 @@ Cross-link: robot-vacuum `StakeholderNeeds` → `SystemRequirements` cliff/safet
 ```sysml
 package SystemRequirements {
     private import ISQ::*;
-    import Elan8RequirementMetadata::*;
-    import Elan8RequirementManagement::*;
+    import Elan8::Method::Metadata::*;
+    import Elan8::Method::Requirements::*;
     import ModelingMetadata::*;
 
     part def CleaningRobot;

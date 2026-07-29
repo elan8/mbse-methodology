@@ -22,6 +22,8 @@ if (-not $Spec42Exe) {
 }
 
 $arguments = @(
+    "--disable-kpar-library", "domain",
+    "--disable-kpar-library", "method",
     "--library-path", (Join-Path $repoRoot "library")
 )
 

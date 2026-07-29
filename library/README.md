@@ -4,12 +4,21 @@ Canonical SysML v2 packages for the Elan8 Method.
 
 | Package | File | Purpose |
 | --- | --- | --- |
-| `Elan8RequirementManagement` | `Elan8RequirementManagement.sysml` | Evidence, baselines, traceability concerns |
-| `Elan8RequirementMetadata` | `Elan8RequirementMetadata.sysml` | Requirement role and identity annotations |
-| `Elan8Method` | `Elan8Method.sysml` | Concerns, abstraction levels, decisions, project info |
-| `Elan8Viewpoints` | `Elan8Viewpoints.sysml` | Five standard viewpoints and view stubs |
+| `Elan8::Method::Requirements` | `Requirements.sysml` | Evidence, baselines, traceability concerns |
+| `Elan8::Method::Metadata` | `Metadata.sysml` | Requirement role and identity annotations |
+| `Elan8::Method` | `Method.sysml` | Concerns, abstraction levels, decisions, project info |
+| `Elan8::Method::Viewpoints` | `Viewpoints.sysml` | Five standard viewpoints and view stubs |
 
 These packages are the canonical systems-engineering / method libraries. Domain vocabulary lives in sibling `sysml-domain-libraries` only.
+
+Import narrowly, for example:
+
+```sysml
+private import Elan8::Method::EngineeringConcern;
+private import Elan8::Method::Metadata::*;
+```
+
+Avoid `import Elan8::*`; the root namespace intentionally contains multiple library families.
 
 ## Sibling checkout
 

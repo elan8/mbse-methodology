@@ -44,7 +44,7 @@ Examples:
 - supplier datasheet / calculation note;
 - inspection or review record (when that is the agreed method).
 
-Prefer `Elan8RequirementManagement::VerificationEvidence` (name + `evidenceUri`) and analysis elements in `40_analysis/` over embedding large datasets in SysML.
+Prefer `Elan8::Method::Requirements::VerificationEvidence` (name + `evidenceUri`) and analysis elements in `40_analysis/` over embedding large datasets in SysML.
 
 Evidence should state (in the model or at the URI):
 

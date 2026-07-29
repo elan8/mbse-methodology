@@ -22,8 +22,8 @@ Which stakeholder concerns and risks must the design address, and who cares abou
 - `concern`
 - `stakeholder`
 - `requirement` with `frame concern …` (when appropriate)
-- `Elan8Method` metadata
-- `Elan8RequirementMetadata`
+- `Elan8::Method` metadata
+- `Elan8::Method::Metadata`
 
 ## Minimum required output
 
@@ -46,8 +46,8 @@ Which stakeholder concerns and risks must the design address, and who cares abou
 
 ```sysml
 package StakeholderConcerns {
-    import Elan8RequirementMetadata::*;
-    import Elan8Method::*;
+    import Elan8::Method::Metadata::*;
+    import Elan8::Method::Core::*;
 
     part def Homeowner;
     part homeowner : Homeowner;

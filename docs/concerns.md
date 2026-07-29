@@ -4,7 +4,7 @@ The Elan8 Method is organized around six continuous engineering concerns.
 
 These are **not** sequential lifecycle phases. They are perspectives that evolve together. An engineering increment typically touches several concerns in one coherent PR.
 
-Annotate elements with `@EngineeringConcern` from `Elan8Method` when that helps navigation or views; do not require every element to carry a concern tag.
+Annotate elements with `@EngineeringConcern` from `Elan8::Method::Core` when that helps navigation or views; do not require every element to carry a concern tag.
 
 ---
 

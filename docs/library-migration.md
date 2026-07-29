@@ -6,8 +6,8 @@
 
 | Former location (sysml-domain-libraries)                               | Canonical location (mbse-methodology)      | Package rename                                         |
 | ---------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------ |
-| `generic/systems-engineering/requirements/RequirementManagement.sysml` | `library/Elan8RequirementManagement.sysml` | `RequirementManagement` → `Elan8RequirementManagement` |
-| `generic/systems-engineering/requirements/RequirementMetadata.sysml`   | `library/Elan8RequirementMetadata.sysml`   | `RequirementMetadata` → `Elan8RequirementMetadata`     |
+| `generic/systems-engineering/requirements/RequirementManagement.sysml` | `library/Requirements.sysml` | `RequirementManagement` → `Elan8::Method::Requirements` |
+| `generic/systems-engineering/requirements/RequirementMetadata.sysml`   | `library/Metadata.sysml`   | `RequirementMetadata` → `Elan8::Method::Metadata`     |
 | `generic/systems-engineering/examples/…`                               | `examples/se-patterns/…`                   | same example package names                             |
 
 The `generic/systems-engineering/` tree has been **deleted**.
@@ -20,8 +20,9 @@ The `generic/systems-engineering/` tree has been **deleted**.
 ## Import rule
 
 ```sysml
-import Elan8RequirementManagement::*;
-import Elan8RequirementMetadata::*;
+import Elan8::Method::Requirements::*;
+import Elan8::Method::Metadata::*;
+import Elan8::Method::Core::*;
 ```
 
 Do not import `RequirementManagement` or `RequirementMetadata` — those package names no longer exist.

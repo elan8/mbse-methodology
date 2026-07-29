@@ -123,7 +123,7 @@ mbse-methodology/
 
 - Eight principles and six continuous engineering concerns
 - Soft abstraction-level guidance (operational / system / logical / physical)
-- SysML method libraries (`Elan8Requirement*`, `Elan8Method`, `Elan8Viewpoints`)
+- SysML method libraries under `Elan8::Method`
 - Project template with numbered concern folders
 - Full modeling recipes (product-variant recipe remains a short stub)
 - Quality-rule checklist plus a contracted Spec42 diagnostic contract (not yet implemented in Spec42)
@@ -137,10 +137,10 @@ Domain and technical vocabulary lives in sibling `sysml-domain-libraries`, not h
 
 Canonical packages (import these in new models):
 
-- `Elan8RequirementManagement`
-- `Elan8RequirementMetadata`
-- `Elan8Method`
-- `Elan8Viewpoints`
+- `Elan8::Method::Requirements`
+- `Elan8::Method::Metadata`
+- `Elan8::Method::Core`
+- `Elan8::Method::Viewpoints`
 
 See [library-migration.md](docs/library-migration.md) for the move out of domain libraries.
 

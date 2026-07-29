@@ -21,7 +21,7 @@ Which responsibilities and collaborations are needed before (or apart from) choo
 ## SysML v2 concepts used
 
 - `action` / `part` / `port` / `allocate`
-- `Elan8Method` metadata
+- `Elan8::Method` metadata
 - See [abstraction-levels](../docs/abstraction-levels.md)
 
 ## Minimum required output

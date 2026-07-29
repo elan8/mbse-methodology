@@ -21,8 +21,8 @@ Why does the system exist, and what outcomes must it achieve?
 ## SysML v2 concepts used
 
 - `requirement` usages
-- `Elan8RequirementMetadata` (`@RequirementRole`, `@RequirementIdentity`)
-- `Elan8Method` (`@EngineeringConcern`, optional `@Assumption` / `@Risk`)
+- `Elan8::Method::Metadata` (`@RequirementRole`, `@RequirementIdentity`)
+- `Elan8::Method` (`@EngineeringConcern`, optional `@Assumption` / `@Risk`)
 - `doc` comments for narrative purpose
 
 ## Minimum required output
@@ -47,8 +47,8 @@ Why does the system exist, and what outcomes must it achieve?
 
 ```sysml
 package Purpose {
-    import Elan8RequirementMetadata::*;
-    import Elan8Method::*;
+    import Elan8::Method::Metadata::*;
+    import Elan8::Method::Core::*;
     import ModelingMetadata::*;
 
     doc /* Purpose: enable unattended floor cleaning in a home without damaging furniture or people. */

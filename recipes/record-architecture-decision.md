@@ -19,7 +19,7 @@ What did we decide, what alternatives existed, and what is the rationale?
 
 ## SysML v2 concepts used
 
-- `Elan8Method::DecisionRecord`
+- `Elan8::Method::DecisionRecord`
 - `dependency` for implementation selection
 - Git PR for process approval
 
