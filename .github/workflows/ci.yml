@@ -29,7 +29,7 @@ jobs:
 
       - name: Build spec42 CLI
         working-directory: spec42
-        run: cargo build --release -p spec42
+        run: cargo build --release --bin spec42
 
       - name: spec42 check (library, template, examples)
         env:
