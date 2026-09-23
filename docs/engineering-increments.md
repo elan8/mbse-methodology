@@ -66,12 +66,15 @@ Use the numbered folders as a checklist, not a waterfall:
 
 | Folder | Often touched in an increment |
 | --- | --- |
-| `10_purpose/` | Need, context, requirements |
-| `20_behavior/` | Scenario / actions / states |
-| `30_architecture/` | Parts, ports, allocate |
-| `40_analysis/` | Claims support (see [evidence-and-claims](evidence-and-claims.md)) |
-| `50_verification/` | Verification cases / evidence refs |
-| `60_views/` | Expose the increment’s spine |
+| `10_context/` | Need, context, requirements |
+| `20_usecases/` | Use cases / operational scenarios |
+| `30_capabilities/` | Capabilities realized by the use cases |
+| `40_functions/` | System functional decomposition |
+| `50_logical/` | Logical responsibilities, interfaces |
+| `60_physical/` | Physical parts, ports, allocate |
+| `70_analysis/` | Claims support (see [evidence-and-claims](evidence-and-claims.md)) |
+| `80_verification/` | Verification cases / evidence refs |
+| `90_views/` | Expose the increment’s spine |
 | `00_project/` | Only if tailoring (`ProjectInfo`) changes |
 
 ## Working loop (per increment)

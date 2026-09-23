@@ -36,6 +36,22 @@ package Elan8 {
             enum regulated;
         }
 
+        enum def EngineeringStageKind {
+            enum context;
+            enum useCases;
+            enum capabilities;
+            enum functions;
+            enum logicalArchitecture;
+            enum physicalArchitecture;
+            enum verification;
+        }
+
+        enum def StageStatusKind {
+            enum applicable;
+            enum notApplicable;
+            enum mergedIntoAnotherStage;
+        }
+
         metadata def EngineeringConcern {
             doc /* Tags a model element with one of the six continuous Elan8 concerns. */
             attribute concern : EngineeringConcernKind;
@@ -47,6 +63,22 @@ package Elan8 {
               mandatory sequential phases. Small projects may collapse system+logical.
             */
             attribute level : AbstractionLevelKind;
+        }
+
+        metadata def StageDisposition {
+            doc /*
+              Declares whether a fixed-structure stage package (context, use cases,
+              capabilities, functions, logical architecture, physical architecture,
+              verification) is populated, deliberately skipped, or merged into a
+              neighboring stage for this project. Every stage package carries exactly
+              one StageDisposition so tooling can distinguish "empty on purpose" from
+              "empty because someone forgot it." Skipped or merged stages require a
+              rationale.
+            */
+            attribute stage : EngineeringStageKind;
+            attribute status : StageStatusKind;
+            attribute rationale : Name;
+            attribute mergedInto : EngineeringStageKind[0..1];
         }
 
         metadata def DecisionRecord {

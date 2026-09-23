@@ -33,7 +33,7 @@ What must remain stable at a boundary between parts or systems?
 | Minimal (small) | Medium |
 | --- | --- |
 | One critical external interface typed | Interface defs for all public subsystem boundaries |
-| Inline ports acceptable inside private assemblies | Reusable port/item library in `90_library` or domain libs |
+| Inline ports acceptable inside private assemblies | Reusable port/item library in `99_library` or domain libs |
 
 ## Example
 

@@ -46,7 +46,7 @@ Why does the system exist, and what outcomes must it achieve?
 ## Example
 
 ```sysml
-package Purpose {
+package Context {
     import Elan8::Method::Metadata::*;
     import Elan8::Method::Core::*;
     import ModelingMetadata::*;
