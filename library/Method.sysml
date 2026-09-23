@@ -2,8 +2,8 @@ package Elan8 {
     package Method {
         package Core {
         doc /*
-          Lightweight Elan8 Method vocabulary: engineering concerns, abstraction
-          levels, decisions, assumptions, and risks.
+          Lightweight Elan8 Method vocabulary: engineering concerns, fixed-stage
+          disposition, decisions, assumptions, and risks.
 
           Process mechanics (PR review, CODEOWNERS, release tags, work increments)
           stay in Git and surrounding tooling. This package encodes engineering
@@ -23,17 +23,26 @@ package Elan8 {
             enum evolution;
         }
 
-        enum def AbstractionLevelKind {
-            enum operational;
-            enum system;
-            enum logical;
-            enum physical;
-        }
-
         enum def TailoringProfileKind {
             enum small;
             enum medium;
             enum regulated;
+        }
+
+        enum def EngineeringStageKind {
+            enum context;
+            enum useCases;
+            enum capabilities;
+            enum functions;
+            enum logicalArchitecture;
+            enum physicalArchitecture;
+            enum verification;
+        }
+
+        enum def StageStatusKind {
+            enum applicable;
+            enum notApplicable;
+            enum mergedIntoAnotherStage;
         }
 
         metadata def EngineeringConcern {
@@ -41,12 +50,20 @@ package Elan8 {
             attribute concern : EngineeringConcernKind;
         }
 
-        metadata def AbstractionLevel {
+        metadata def StageDisposition {
             doc /*
-              Optional abstraction tag. Levels orient the model; they are not
-              mandatory sequential phases. Small projects may collapse system+logical.
+              Declares whether a fixed-structure stage package (context, use cases,
+              capabilities, functions, logical architecture, physical architecture,
+              verification) is populated, deliberately skipped, or merged into a
+              neighboring stage for this project. Every stage package carries exactly
+              one StageDisposition so tooling can distinguish "empty on purpose" from
+              "empty because someone forgot it." Skipped or merged stages require a
+              rationale.
             */
-            attribute level : AbstractionLevelKind;
+            attribute stage : EngineeringStageKind;
+            attribute status : StageStatusKind;
+            attribute rationale : Name;
+            attribute mergedInto : EngineeringStageKind[0..1];
         }
 
         metadata def DecisionRecord {

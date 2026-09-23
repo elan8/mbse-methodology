@@ -77,7 +77,7 @@ Views **expose** existing elements; they must not duplicate handoff tables or re
 
 ## 7. Packages and libraries
 
-- Organize by **engineering concern** folders (`10_purpose`, `20_behavior`, …), but packages own semantics.
+- Organize by **engineering concern** folders (`10_context`, `20_usecases`, …), but packages own semantics.
 - Import **method** packages from `mbse-methodology/library`.
 - Import **domain/technical** vocabulary from `sysml-domain-libraries`.
 

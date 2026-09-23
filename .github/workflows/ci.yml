@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+env:
+  SPEC42_VERSION: v0.52.0
+
+jobs:
+  validate:
+    name: Validate method (spec42 checks)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mbse-methodology
+        uses: actions/checkout@v6
+
+      # Install the prebuilt release binary rather than compiling spec42 from
+      # source: it's the same artifact a real user would run, it's an order
+      # of magnitude faster than a Rust build, and pinning to a release tag
+      # (rather than tracking spec42's main branch tip) keeps this repo's CI
+      # from breaking every time spec42 changes underneath it.
+      #
+      # This intentionally does NOT use the elan8/spec42 composite action:
+      # that action bundles a released snapshot of *this repo's own*
+      # library/ as its default "method" KPAR, and doesn't expose
+      # --disable-kpar-library to override it. Validating this repo's
+      # in-progress library sources needs that flag (see scripts/_spec42.py)
+      # -- something only the plain CLI invocation below can do.
+      - name: Install Spec42 ${{ env.SPEC42_VERSION }}
+        run: |
+          set -euo pipefail
+          archive="spec42-${SPEC42_VERSION#v}-linux-x64.tar.gz"
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/$archive" \
+            "https://github.com/elan8/spec42/releases/download/${SPEC42_VERSION}/${archive}"
+          mkdir -p "$RUNNER_TEMP/spec42"
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP/spec42"
+          chmod +x "$RUNNER_TEMP/spec42/spec42"
+          echo "SPEC42_EXE=$RUNNER_TEMP/spec42/spec42" >> "$GITHUB_ENV"
+
+      - name: spec42 check (library, template, examples)
+        run: python3 scripts/validate_spec42.py
+
+      - name: Recipe example fences parse cleanly
+        run: python3 scripts/check_recipe_fences.py
+
+      - name: Library definitions are referenced outside library/
+        run: python3 scripts/check_unused_library_defs.py

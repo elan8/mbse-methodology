@@ -44,7 +44,7 @@ Examples:
 - supplier datasheet / calculation note;
 - inspection or review record (when that is the agreed method).
 
-Prefer `Elan8::Method::Requirements::VerificationEvidence` (name + `evidenceUri`) and analysis elements in `40_analysis/` over embedding large datasets in SysML.
+Prefer `Elan8::Method::Requirements::VerificationEvidence` (name + `evidenceUri`) and analysis elements in `70_analysis/` over embedding large datasets in SysML.
 
 Evidence should state (in the model or at the URI):
 
@@ -115,4 +115,5 @@ For each [engineering increment](engineering-increments.md):
 - [concerns.md](concerns.md) — Evidence and Verification
 - [engineering-increments.md](engineering-increments.md)
 - [quality-rules.md](quality-rules.md)
+- `Elan8::Method::Viewpoints::TraceabilityViewpoint` / `TraceabilityView` — expose gaps and orphaned elements across the claim → evidence → decision chain
 - Showcase: vacuum `SafetyReactionAnalysis` + `verifyCliffSafeStop`

@@ -1,5 +1,6 @@
 package Verification {
     doc /* Verification cases, pass criteria, and evidence references. */
+    @StageDisposition { stage = verification; status = applicable; }
 
     import Elan8::Method::Requirements::*;
     import Elan8::Method::Core::*;

@@ -23,7 +23,6 @@ What is inside the system boundary, and which external actors or systems interac
 - `port` / `interface` (lightweight)
 - `connection` / `flow`
 - `Elan8::Method::Viewpoints::MissionAndContextViewpoint`
-- `@AbstractionLevel { level = operational; }` or `system` as appropriate
 
 ## Minimum required output
 
@@ -58,7 +57,6 @@ package Context {
 
     part context {
         @EngineeringConcern { concern = purpose; }
-        @AbstractionLevel { level = operational; }
         part user : HouseholdUser;
         part app : MobileApp;
         part home : HomeEnvironment;
