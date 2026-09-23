@@ -17,7 +17,7 @@ Recommended minimum:
 
 Possible simplifications:
 
-- combine System and Logical levels;
+- mark Capabilities and/or Functions `mergedIntoAnotherStage` via `StageDisposition` (see [abstraction-levels.md](abstraction-levels.md)) instead of modeling them separately;
 - limited viewpoint set;
 - lightweight lifecycle metadata;
 - no formal trade study unless needed.
