@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+env:
+  SPEC42_VERSION: v0.52.0
+
 jobs:
   validate:
     name: Validate method (spec42 checks)
@@ -13,32 +16,33 @@ jobs:
       - name: Checkout mbse-methodology
         uses: actions/checkout@v6
 
-      - name: Checkout Spec42
-        uses: actions/checkout@v6
-        with:
-          repository: elan8/spec42
-          path: spec42
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Cache cargo
-        uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: spec42
-
-      - name: Build spec42 CLI
-        working-directory: spec42
-        run: cargo build --release --bin spec42
+      # Install the prebuilt release binary rather than compiling spec42 from
+      # source: it's the same artifact a real user would run, it's an order
+      # of magnitude faster than a Rust build, and pinning to a release tag
+      # (rather than tracking spec42's main branch tip) keeps this repo's CI
+      # from breaking every time spec42 changes underneath it.
+      #
+      # This intentionally does NOT use the elan8/spec42 composite action:
+      # that action bundles a released snapshot of *this repo's own*
+      # library/ as its default "method" KPAR, and doesn't expose
+      # --disable-kpar-library to override it. Validating this repo's
+      # in-progress library sources needs that flag (see scripts/_spec42.py)
+      # -- something only the plain CLI invocation below can do.
+      - name: Install Spec42 ${{ env.SPEC42_VERSION }}
+        run: |
+          set -euo pipefail
+          archive="spec42-${SPEC42_VERSION#v}-linux-x64.tar.gz"
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/$archive" \
+            "https://github.com/elan8/spec42/releases/download/${SPEC42_VERSION}/${archive}"
+          mkdir -p "$RUNNER_TEMP/spec42"
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP/spec42"
+          chmod +x "$RUNNER_TEMP/spec42/spec42"
+          echo "SPEC42_EXE=$RUNNER_TEMP/spec42/spec42" >> "$GITHUB_ENV"
 
       - name: spec42 check (library, template, examples)
-        env:
-          SPEC42_EXE: ${{ github.workspace }}/spec42/target/release/spec42
         run: python3 scripts/validate_spec42.py
 
       - name: Recipe example fences parse cleanly
-        env:
-          SPEC42_EXE: ${{ github.workspace }}/spec42/target/release/spec42
         run: python3 scripts/check_recipe_fences.py
 
       - name: Library definitions are referenced outside library/
