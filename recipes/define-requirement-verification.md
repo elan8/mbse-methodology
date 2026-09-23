@@ -22,7 +22,7 @@ How will we demonstrate that a critical requirement is met?
 
 - `verification` case, `verify`
 - `Elan8::Method::Requirements::VerificationEvidence`
-- `Elan8::Method::Viewpoints::VerificationReadinessViewpoint`
+- `Elan8::Method::Viewpoints::VerificationReadinessViewpoint` / `VerificationReadinessView`
 - Analysis cases feeding verification (robot-vacuum cliff thread)
 
 ## Minimum required output
@@ -53,6 +53,16 @@ verification verifyCliffSafeStop {
 part cliffStopEvidence : VerificationEvidence {
     attribute :>> evidenceName = "Cliff fixture test report";
     attribute :>> evidenceUri = "https://example.com/reports/cliff-stop-2026-09.pdf";
+}
+```
+
+Once several critical requirements have cases, expose coverage across all of them:
+
+```sysml
+import Elan8::Method::Viewpoints::*;
+
+view verificationCoverage : VerificationReadinessView {
+    satisfy VerificationReadinessViewpoint;
 }
 ```
 

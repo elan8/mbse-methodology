@@ -146,18 +146,18 @@ See [library-migration.md](docs/library-migration.md) for the move out of domain
 
 Sibling checkout for Spec42:
 
-```powershell
-spec42 --library-path .\library `
-       --library-path ..\sysml-domain-libraries\domain `
-       --library-path ..\sysml-domain-libraries\technical `
-       --library-path ..\sysml-domain-libraries\generic `
-       check .\templates\project-template
+```sh
+spec42 --library-path library \
+       --library-path ../sysml-domain-libraries/domain \
+       --library-path ../sysml-domain-libraries/technical \
+       --library-path ../sysml-domain-libraries/generic \
+       check templates/project-template
 ```
 
-Or run:
+Or run (Python 3, no dependencies; works the same on Linux/macOS/Windows):
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\validate-spec42.ps1
+```sh
+python3 scripts/validate_spec42.py
 ```
 
 ---

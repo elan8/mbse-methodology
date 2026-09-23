@@ -33,11 +33,11 @@ elan8/
 
 Pass both roots to Spec42, for example:
 
-```powershell
-spec42 --library-path ..\mbse-methodology\library `
-       --library-path ..\sysml-domain-libraries\domain `
-       --library-path ..\sysml-domain-libraries\technical `
-       --library-path ..\sysml-domain-libraries\generic `
+```sh
+spec42 --library-path ../mbse-methodology/library \
+       --library-path ../sysml-domain-libraries/domain \
+       --library-path ../sysml-domain-libraries/technical \
+       --library-path ../sysml-domain-libraries/generic \
        check .
 ```
 

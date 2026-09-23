@@ -34,11 +34,11 @@ stage deliberately.
 
 From a sibling checkout:
 
-```powershell
-spec42 --library-path ..\..\..\library `
-       --library-path ..\..\..\..\sysml-domain-libraries\domain `
-       --library-path ..\..\..\..\sysml-domain-libraries\technical `
-       --library-path ..\..\..\..\sysml-domain-libraries\generic `
+```sh
+spec42 --library-path ../../../library \
+       --library-path ../../../../sysml-domain-libraries/domain \
+       --library-path ../../../../sysml-domain-libraries/technical \
+       --library-path ../../../../sysml-domain-libraries/generic \
        check .
 ```
 
