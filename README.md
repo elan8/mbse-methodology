@@ -154,7 +154,10 @@ spec42 --library-path library \
        check templates/project-template
 ```
 
-Or run (Python 3, no dependencies; works the same on Linux/macOS/Windows):
+Or run (Python 3, no dependencies; works the same on Linux/macOS/Windows). If
+`spec42` isn't already on `PATH` or pointed to by `SPEC42_EXE`, this
+downloads and caches the release pinned in [`.spec42-version`](.spec42-version)
+automatically:
 
 ```sh
 python3 scripts/validate_spec42.py
