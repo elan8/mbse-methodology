@@ -1,18 +1,22 @@
 # Abstraction levels
 
-The method uses four common abstraction levels to orient individual model
-elements: Operational, System, Logical, Physical. They are a semantic tag,
-not a folder — do not confuse them with the seven fixed [stage
-packages](../templates/project-template/README.md) (`10_context` …
-`80_verification`) that structure every project.
+The method uses four common abstraction-level *terms* to talk and write about
+altitude: Operational, System, Logical, Physical. This is shared vocabulary
+for docs, recipes, and review comments — **not** a model metadata tag. An
+earlier `@AbstractionLevel` annotation was retired because nothing in the
+method (no view, no query, no quality rule) ever consumed it, and the seven
+fixed [stage packages](../templates/project-template/README.md) already give
+every element an enforced, structural answer to "what altitude is this,"
+via `StageDisposition`. Do not confuse the two:
 
 - **Stage** (`StageDisposition`) is *where a package sits in the fixed
   pipeline* — Context, Use Cases, Capabilities, Functions, Logical
   Architecture, Physical Architecture, Verification. Every project has all
-  seven packages; see [engineering-increments.md](engineering-increments.md).
-- **Abstraction level** (`AbstractionLevel`) is *how concrete a piece of
-  content is* — it can be tagged on any element, in any stage package, when
-  that helps orient a reader. It is not mandatory and not sequential.
+  seven packages, and every package carries a disposition; see
+  [engineering-increments.md](engineering-increments.md).
+- **Abstraction level** is *how concrete a piece of content is*, useful when
+  writing recipes/docs or explaining a design in review — it has no formal
+  model representation.
 
 | Level | Central question | Typical content | Falls mostly in stage(s) |
 | --- | --- | --- | --- |
@@ -21,10 +25,12 @@ packages](../templates/project-template/README.md) (`10_context` …
 | Logical | Which responsibilities and collaborations are needed? | Logical functions, optional logical components, logical interfaces | Logical Architecture |
 | Physical | How is the solution implemented? | Hardware, software, mechanics, people, physical interfaces | Physical Architecture |
 
-Tag elements with `@AbstractionLevel` from `Elan8::Method::Core` when useful.
-Do not require every element to carry a level tag, and do not expect a
-one-to-one match between level and stage package — a Functions package will
-often mix Operational and System-level content, for example.
+Do not expect a one-to-one match between level and stage package — a
+Functions package will often mix Operational and System-level content, for
+example. If a future need for formal, queryable altitude tagging emerges
+(a view that filters by level, a quality rule that checks it), reintroduce
+`AbstractionLevel` metadata then, backed by that consumer — don't restore it
+speculatively.
 
 ## Flexible logical vs physical content
 
@@ -60,8 +66,8 @@ them, and it keeps the folder shape identical across every project.
 - every stage package exists in every project; whether it is populated,
   merged, or not applicable is recorded with `StageDisposition`, not with a
   missing folder;
-- not every element must carry an `@AbstractionLevel` tag;
-- abstraction levels may be exercised in parallel within and across stages;
+- abstraction-level vocabulary may be used in parallel within and across
+  stages when writing docs, recipes, or review comments;
 - traceability should capture engineering meaning, not administrative
   completeness;
 - duplication between logical and physical content should be minimized —

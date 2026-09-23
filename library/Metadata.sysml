@@ -9,8 +9,6 @@ package Elan8 {
             */
 
             import Elan8::Method::Requirements::Identifier;
-            private import Metaobjects::SemanticMetadata;
-            private import Requirements::requirementChecks;
 
             enum def RequirementRoleKind {
                 enum user;
@@ -36,18 +34,6 @@ package Elan8 {
                 doc /* Optional stable identifier for a requirement usage (e.g. USR-001, SYS-042). */
                 :> annotatedElement : SysML::RequirementUsage;
                 attribute requirementId : Identifier;
-            }
-
-            metadata def <user> UserRequirementRole :> SemanticMetadata {
-                doc /* Semantic tag for stakeholder/user-facing requirements. */
-                :> annotatedElement : SysML::RequirementUsage;
-                :>> baseType = requirementChecks meta SysML::Usage;
-            }
-
-            metadata def <system> SystemRequirementRole :> SemanticMetadata {
-                doc /* Semantic tag for derived system-level requirements. */
-                :> annotatedElement : SysML::RequirementUsage;
-                :>> baseType = requirementChecks meta SysML::Usage;
             }
         }
     }

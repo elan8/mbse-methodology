@@ -115,4 +115,5 @@ For each [engineering increment](engineering-increments.md):
 - [concerns.md](concerns.md) — Evidence and Verification
 - [engineering-increments.md](engineering-increments.md)
 - [quality-rules.md](quality-rules.md)
+- `Elan8::Method::Viewpoints::TraceabilityViewpoint` — expose gaps and orphaned elements across the claim → evidence → decision chain
 - Showcase: vacuum `SafetyReactionAnalysis` + `verifyCliffSafeStop`

@@ -142,7 +142,7 @@ Use draft PRs or clearly labeled WIP branches. Do not leave permanent “in prog
 
 ## Baselines and releases
 
-Increments accumulate into baselines via Git tags/releases and, when needed, `RequirementBaseline` / evidence records in the model. The increment itself is not a baseline; the merge history is.
+Increments accumulate into baselines via Git tags/releases and, when needed, `VerificationEvidence` / evidence records in the model. The increment itself is not a baseline; the merge history is.
 
 ## Showcase
 

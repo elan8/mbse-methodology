@@ -2,8 +2,8 @@ package Elan8 {
     package Method {
         package Core {
         doc /*
-          Lightweight Elan8 Method vocabulary: engineering concerns, abstraction
-          levels, decisions, assumptions, and risks.
+          Lightweight Elan8 Method vocabulary: engineering concerns, fixed-stage
+          disposition, decisions, assumptions, and risks.
 
           Process mechanics (PR review, CODEOWNERS, release tags, work increments)
           stay in Git and surrounding tooling. This package encodes engineering
@@ -21,13 +21,6 @@ package Elan8 {
             enum evidence;
             enum verification;
             enum evolution;
-        }
-
-        enum def AbstractionLevelKind {
-            enum operational;
-            enum system;
-            enum logical;
-            enum physical;
         }
 
         enum def TailoringProfileKind {
@@ -55,14 +48,6 @@ package Elan8 {
         metadata def EngineeringConcern {
             doc /* Tags a model element with one of the six continuous Elan8 concerns. */
             attribute concern : EngineeringConcernKind;
-        }
-
-        metadata def AbstractionLevel {
-            doc /*
-              Optional abstraction tag. Levels orient the model; they are not
-              mandatory sequential phases. Small projects may collapse system+logical.
-            */
-            attribute level : AbstractionLevelKind;
         }
 
         metadata def StageDisposition {
