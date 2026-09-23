@@ -1,5 +1,7 @@
 # Elan8 Method
 
+[![License](https://img.shields.io/github/license/elan8/mbse-methodology)](LICENSE)
+
 A lightweight, SysML v2-native methodology for continuous model-based systems engineering.
 
 > Practical SysML v2 methodology for continuous model-based engineering. It connects stakeholder needs, system behavior, architecture, analysis, and verification in a machine-readable and reviewable engineering workflow.
@@ -180,3 +182,9 @@ Method libraries are resolved via `--library-path` (or sibling checkout). Spec42
 ## Definition of success
 
 A small team can start a SysML v2 project without inventing its own structure, model one end-to-end concern with recipes, review architecture and verification coverage, and evolve the model under version control with automated checks where available.
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE).
