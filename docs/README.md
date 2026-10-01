@@ -9,7 +9,8 @@
 | [requirements.md](requirements.md) | Requirements across stages, traceability, and review |
 | [behavior.md](behavior.md) | Actor-facing use cases, nominal and degraded scenarios |
 | [architecture.md](architecture.md) | Responsibilities, interfaces, alternatives, and decisions |
-| [verification.md](verification.md) | Definitions, observations, verdicts, evidence, and coverage |
+| [verification.md](verification.md) | Verification, stakeholder validation, verdicts, evidence, and coverage |
+| [stage-readiness.md](stage-readiness.md) | Scoped review criteria for each stage and tailored content |
 | [workflow.md](workflow.md) | Frame → Explore → Architect → Evaluate → Verify → Evolve |
 | [evidence-and-claims.md](evidence-and-claims.md) | Claim → Evidence → Confidence → Decision |
 | [glossary.md](glossary.md) | Method vs SysML terminology |

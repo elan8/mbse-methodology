@@ -10,6 +10,10 @@ Terms as used in the Elan8 Method. Where SysML v2 already defines a word, that m
 | **Logical** | Responsibilities expressed mainly as actions (and optionally parts) before or apart from technology choice. | SysML v1 BDD / “logical architecture package” as a mandatory duplicate tree. |
 | **Physical** | Selected implementation baseline (hardware, software, people, mechanics). | “Only CAD” — firmware and software parts count as physical realization. |
 | **Operational / system / logical / physical levels** | Orientation layers; not mandatory waterfall phases. | Arcadia OA/SA/LA/PA as fixed sequential gateways (similar ideas, softer rules here). |
+| **Stakeholder need** | Desired outcome in the stakeholder's operating or lifecycle context. | A specified system obligation. |
+| **Customer/stakeholder requirement** | Obligation supplied or agreed by a stakeholder, possibly contractual; preserve its source and scope. | Necessarily an informal or imprecise statement. |
+| **System requirement** | Engineering obligation on the system of interest, with explicit subject, conditions, and acceptance criteria. | A duplicate of every customer requirement. |
+| **Stakeholder validation** | Evaluation of whether the system achieves stakeholder needs in intended use. | Verification of specified requirements alone. |
 | **Subject** | The model element a requirement or case constrains or evaluates. | A document section title. |
 | **Satisfy** | Asserts that an element fulfills a requirement’s subject constraints. | Informal “we think this is fine.” |
 | **Allocate** | Maps behavior (or other source) to a realizing part. | Copy-paste of the same function into a second architecture layer. |

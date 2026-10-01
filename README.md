@@ -135,7 +135,7 @@ Project-specific vocabulary belongs in the project-local library or in explicitl
 
 ## Where requirements fit
 
-Requirements run through all seven stages and connect stakeholder intent to design and verification. Keep stakeholder needs and all requirement levels together in `model/05_requirements`. Stage packages reference these requirements and their subjects remain the relevant system, function, interface, or component. Each requirement has one canonical model location, with relationships and views connecting it to the other stages.
+Requirements run through all seven stages and connect stakeholder intent to design and verification. Keep stakeholder needs, supplied customer/stakeholder requirements, and all engineering requirement levels together in `model/05_requirements`. Preserve source obligations and derive system requirements where needed; reference directly applicable supplied requirements without duplication. Stage packages reference these requirements and their subjects remain the relevant system, function, interface, or component. Each requirement has one canonical model location, with relationships and views connecting it to the other stages.
 
 See [requirements](docs/requirements.md) for placement, traceability, and review guidance. Requirements use native SysML v2 constructs, with optional role annotations from `Metadata`; identifiers use native short names. Evidence references belong to `Verification`.
 

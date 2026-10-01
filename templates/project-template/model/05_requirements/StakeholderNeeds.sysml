@@ -4,5 +4,6 @@ package StakeholderNeeds {
     private import Elan8Method::Metadata::*;
 
     // TODO: add native requirement usages with optional role metadata and native short names as needed.
-    // For system obligations, declare the subject and measurable acceptance criteria.
+    // Capture desired stakeholder outcomes; supplied obligations belong in StakeholderRequirements when needed.
+    // Derive measurable system obligations separately, preserving the motivating needs.
 }

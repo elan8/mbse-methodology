@@ -91,3 +91,11 @@ Manage:
 - residual risks and next increment question.
 
 See [roles-and-reviews.md](roles-and-reviews.md) and [engineering-increments.md](engineering-increments.md).
+
+## Lifecycle scope and feedback
+
+During Frame, consider installation, operation, maintenance, recovery, upgrades, and disposal. Select the lifecycle activities relevant to the question and identify their stakeholders, enabling systems, needs, and interfaces. Record exclusions and conflicting needs. Describe the problem and desired outcome before committing to a solution; distinguish externally imposed design constraints from choices the team can reconsider.
+
+During Verify, assess both requirement conformance and stakeholder outcomes using [verification and validation guidance](verification.md#stakeholder-validation). During Evolve, trace changed needs, requirements, observations, and assumptions to affected scenarios, decisions, allocations, analyses, and cases. Earlier evidence remains evidence for its recorded baseline; its applicability to a changed baseline requires review.
+
+Use [stage readiness](stage-readiness.md) within increment reviews. These criteria guide the current scope and do not require completion of all stages in order. See the [change-impact walkthrough](../examples/guard-stop/README.md#change-impact-walkthrough).

@@ -15,7 +15,7 @@ model/
   50_logical/       logical responsibilities, collaborations, interfaces
   60_physical/      selected implementation baseline, physical allocations
   70_analysis/      analysis cases, assumptions, trade studies
-  80_verification/  verification cases and coverage
+  80_verification/  verification, validation, evidence, and coverage
   90_views/         stakeholder views
   99_library/       project-local reusable definitions
   Root.sysml        workspace import hub
@@ -36,7 +36,7 @@ Requirements (`05_requirements`), analysis (`70_analysis`), views (`90_views`), 
 
 ## Requirements within the stages
 
-Keep all canonical requirements in `05_requirements`. The template starts with `StakeholderNeeds.sysml` and `SystemRequirements.sysml`. Add `FunctionalRequirements.sysml`, `InterfaceRequirements.sysml`, and `ComponentRequirements.sysml` there when needed, and import their packages in `Root.sysml`. Stage packages reference requirements instead of copying them; requirement subjects identify the constrained elements wherever those elements live.
+Keep all canonical requirements in `05_requirements`. The template starts with `StakeholderNeeds.sysml` and `SystemRequirements.sysml`, and includes an optional `StakeholderRequirements.sysml` placeholder for supplied or agreed obligations. If it is not needed, remove that file and its import from `Root.sysml`. Add `FunctionalRequirements.sysml`, `InterfaceRequirements.sysml`, and `ComponentRequirements.sysml` there when needed, and import their packages in `Root.sysml`. Stage packages reference requirements instead of copying them; requirement subjects identify the constrained elements wherever those elements live.
 
 The number sets browsing order; Requirements is a supporting package, not an eighth stage. Tailoring stages does not move requirements out of this shared home. See [requirements guidance](../../docs/requirements.md).
 
@@ -54,3 +54,11 @@ See [library/README.md](../../library/README.md).
    verification as vertical increments. Set `StageDisposition` to
    `notApplicable` or `mergedIntoAnotherStage` (with rationale) for any stage
    your project tailors away.
+
+## Reviewing an increment
+
+Use the [stage readiness criteria](../../docs/stage-readiness.md) for the content touched by the increment. Keep stakeholder validation plans and evidence alongside verification in `80_verification`; reference canonical needs and scenarios rather than copying them. Review significant scenario paths through allocated functions and interfaces, and revisit their evidence when the baseline changes. See [verification and validation](../../docs/verification.md).
+
+## Supplied and derived requirements
+
+Preserve customer/stakeholder obligations, their source references and revisions, and relevant contractual status in `StakeholderRequirements.sysml`. Derive engineering obligations into `SystemRequirements.sysml` when interpretation or decomposition is needed. If a supplied requirement already constrains the system adequately, reference it directly without copying it into the system file. Verify obligations at their applicable boundary and validate stakeholder outcomes separately. See [requirements roles and source handling](../../docs/requirements.md#needs-stakeholder-requirements-and-system-requirements).

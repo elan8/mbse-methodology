@@ -22,9 +22,7 @@ phase-based methodology:
 | Verification | Verification definition and evidence | Requirements & test | Verification planning | Integration & IVV hooks | Verification & validation |
 
 Elan8 does not have a dedicated Arcadia-style "System Analysis" (SA) stage;
-its scope splits across Capabilities and Functions. Conversely, Arcadia has
-no first-class Capabilities layer between Operational Analysis and System
-Analysis the way Elan8 does — treat both as approximate, not exact.
+its scope splits across Capabilities and Functions. Arcadia models operational capabilities and system capabilities across its perspectives; Elan8 gives capability work a separate navigation package. The mapping is approximate, not a claim that Arcadia lacks capabilities.
 
 ## Continuous concerns vs familiar activities
 
@@ -71,3 +69,11 @@ names to line up more directly than before. Map Elan8 activities onto the
 activities you already run, use `StageDisposition` to merge stages your
 process doesn't distinguish (for example, no separate Capabilities layer),
 and adopt the project template when starting new SysML v2 work.
+
+## Practices adopted and sources
+
+Elan8 strengthens problem/solution separation, lifecycle stakeholder analysis, scenario continuity, architecture justification, and stakeholder validation within its existing stages. See [stage readiness](stage-readiness.md). These practices do not imply conformance to another methodology or require its library.
+
+- [SYSMOD overview](https://mbse4u.com/wp-content/sysmod/sysmodv5-reveal.html): problem, needs, solution, verification and validation as tailorable artifacts.
+- [Arcadia guidance](https://mbse-capella.org/arcadia-qna.html): scenario/function/exchange continuity, capability perspectives, and architecture justification.
+- [OOSEM evolution presented through INCOSE](https://www.incose.org/docs/default-source/working-groups/requirements-wg/rwg_meetings_2025/2025.04.22_ison_oosem_final-incoserwg.pdf?sfvrsn=fb7051c7_4): lifecycle needs and distinction between stakeholder validation and requirement verification. This is an evolution proposal and implementation discussion, not a universal OOSEM mandate.

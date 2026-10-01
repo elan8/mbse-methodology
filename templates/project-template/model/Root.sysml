@@ -3,6 +3,7 @@ package ProjectRoot {
 
     public import Project::*;
     public import StakeholderNeeds::*;
+    public import StakeholderRequirements::*; // Optional; remove with the unused placeholder.
     public import SystemRequirements::*;
     public import Context::*;
     public import ProjectUseCases::*;

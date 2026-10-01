@@ -34,3 +34,7 @@ One person may hold several roles on a small project.
 ## AI-assisted changes
 
 AI may draft model text. Humans remain accountable for requirements, assumptions, decisions, and verification claims before merge.
+
+## Readiness and stakeholder outcomes
+
+Use the [stage readiness criteria](stage-readiness.md) for the stages touched by an increment, including relevant criteria carried by merged stages. Review both requirement conformance and stakeholder validation with the product/stakeholder lead. State which claims are supported, which are only planned, and which remain open; a merged PR records acceptance of the increment, not proof of product fitness.

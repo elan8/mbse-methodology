@@ -23,3 +23,17 @@ Analysis may support a verification case when its assumptions and inputs are jus
 Use `VerificationReadinessViewpoint` and `VerificationReadinessView` to expose missing cases, methods, criteria, or evidence. Review critical requirement coverage and residual gaps against the [quality rules](quality-rules.md) and [diagnostic contract](quality-diagnostic-contract.md). Distinguish proposed checks, implemented checks, and manual review.
 
 Keep the subject and requirement canonical so changes to a limit or baseline can be traced to affected cases. Record residual risks and follow-up questions in the engineering increment.
+
+## Stakeholder validation
+
+Verification asks whether the system meets its specified requirements. Stakeholder validation asks whether it achieves the intended outcome in its operating context. Passing a response-time requirement does not establish that access to a machine is safe.
+
+Plan both questions when framing an increment. For validation, identify the stakeholder need, representative lifecycle scenario, participating people and external systems, outcome measure, conditions, and evidence needed. Review conflicting needs and agree the success criteria with relevant stakeholders. A requirement may be correctly verified while its interpretation of the need remains inadequate.
+
+Keep validation plans, cases, and evidence alongside verification in `80_verification`; use the canonical needs in `05_requirements` and scenarios in `20_usecases`. No additional stage or method-library type is needed. Native cases can express the evaluation; their names and documentation should make the validation purpose clear. Do not claim an executed validation from a planned case or stakeholder review of a model alone.
+
+Report requirement results and stakeholder outcomes separately, with the evaluated baseline, limitations, and unresolved needs. See the [guard-stop validation gap](../examples/guard-stop/README.md#stakeholder-validation-gap) and [stage readiness](stage-readiness.md).
+
+## Requirements from different sources
+
+Customer/stakeholder requirements and system requirements both need verification against their applicable criteria and subject boundaries. Do not infer machine-level compliance from passing controller checks. Preserve source traceability, review whether derived obligations collectively address the source, and identify evidence gaps. Validation addresses stakeholder needs and intended use separately. See [requirement roles](requirements.md#needs-stakeholder-requirements-and-system-requirements).

@@ -19,3 +19,11 @@ Keep canonical requirements in `05_requirements` and reference them from the use
 Review the actor goal, boundary, observable outcome, typed exchanges, and relevant failure conditions. Use `ScenarioViewpoint` and `ScenarioView` from the method Viewpoints package when exposing a scenario for stakeholders. `MissionAndContextViewpoint` and `MissionAndContextView` support review of participants and the system boundary.
 
 Follow the [worked example](../examples/guard-stop/README.md) to see the behavior connected to requirements, allocations, and verification.
+
+## Scenario continuity through the architecture
+
+For each scenario significant to the increment, follow the path from initiating event to observable outcome. Identify participating functions, their allocated elements, transferred items, interface conditions, and relevant time or resource budgets. Review nominal and selected degraded paths with the same boundary and baseline.
+
+Check that every required step has a responsible element, each cross-boundary exchange has compatible types and directions, and sequencing and conditions are explicit where they matter. An allocation alone does not demonstrate a complete interaction path. Record missing exchanges or external responsibilities as open scope rather than implying they are modeled.
+
+Reuse the existing functions, ports, requirements, and cases in a scenario view or review table. The table is a navigation aid, not another authoritative model. See the [guard-stop continuity review](../examples/guard-stop/README.md#scenario-continuity-review).

@@ -9,16 +9,47 @@ All canonical requirements live in `model/05_requirements`. This supporting fold
 | File | Content | Stages that develop or reference it |
 | --- | --- | --- |
 | `StakeholderNeeds.sysml` | Stakeholder needs and desired outcomes | Context, Use Cases, Capabilities |
+| `StakeholderRequirements.sysml` (when needed) | Customer/stakeholder-supplied or agreed obligations, including contractual constraints | Context, Use Cases, Capabilities, Verification |
 | `SystemRequirements.sysml` | System-boundary obligations and constraints | Context, Use Cases, Capabilities, Verification |
 | `FunctionalRequirements.sysml` (when needed) | Required behavior and functional performance | Functions, Logical, Physical, Verification |
 | `InterfaceRequirements.sysml` (when needed) | External, logical, and physical interface contracts | Context, Logical, Physical, Verification |
 | `ComponentRequirements.sysml` (when needed) | Obligations allocated or derived for implementation elements | Physical, Verification |
 
-The template starts with the first two files; add the others when needed and import their packages in `Root.sysml`. Keep one canonical requirement usage for each obligation. Its subject references the constrained system, function, interface, or component in the relevant stage package. Scenarios clarify requirements, architecture records satisfaction claims, and verification cases reference the same canonical requirements. Folder ownership does not change subject ownership.
+The template includes needs and system requirements plus an optional stakeholder-requirements placeholder. Remove the optional file and its `Root.sysml` import if there are no separate supplied or agreed obligations. Add functional, interface, and component files when needed and import their packages in `Root.sysml`. Keep one canonical requirement usage for each obligation. Its subject references the constrained system, function, interface, or component in the relevant stage package. Scenarios clarify requirements, architecture records satisfaction claims, and verification cases reference the same canonical requirements. Folder ownership does not change subject ownership.
 
 Tailoring or merging stages leaves requirements in this shared home and preserves their traceability to the applicable subjects. Split requirements further within this folder only when it improves review; avoid duplicate usages for the same obligation.
 
 Requirements are not limited to functional behavior: safety, security, performance, interfaces, regulatory constraints, and other qualities can apply at any appropriate level. `RequirementRole` describes the engineering role, not folder ownership; a safety requirement may constrain the whole system or one component.
+
+## Needs, stakeholder requirements, and system requirements
+
+These are engineering roles, not a ranking of precision or mandatory steps in a chain.
+
+| Role | Meaning | Guard-stop illustration |
+| --- | --- | --- |
+| Stakeholder need | Desired outcome in the stakeholder's operating or lifecycle context | The operator needs safe access for maintenance. |
+| Customer/stakeholder requirement | An obligation supplied or agreed by a stakeholder; it may be contractual | The machine shall prevent hazardous motion while the access guard is open. |
+| System requirement | An engineering obligation on the system of interest, with explicit subject, conditions, and acceptance criteria | The controller shall remove drive enable within 200 ms after guard opening. |
+
+Customer requirements are stakeholder requirements from a particular source. They may already be precise, or prescribe technology, interfaces, or regulatory constraints. Do not assume they are informal needs or silently replace them with an engineering interpretation. The examples above illustrate distinct scopes; the controller timing obligation alone does not establish compliance with the machine-level obligation.
+
+Use native requirement definitions/usages and short names. File placement and documentation distinguish these roles; no custom requirement class is required. Existing optional `RequirementRole` metadata does not encode contractual status or source ownership: `user` alone cannot distinguish a need from a stakeholder requirement. Do not infer those meanings from that tag.
+
+### Handling supplied obligations
+
+1. Preserve the supplied wording and identifier, source document/revision or reference, and applicable contractual status where relevant. Use documentation or a source artifact reference; keep contractual interpretation and agreement records in the project's controlled documents and review process.
+2. Analyze ambiguity, conflicts, feasibility, applicability, and system boundary with the relevant stakeholder. Record clarifications, dispositions, and agreed changes rather than editing the original meaning without explanation.
+3. Derive system obligations explicitly where interpretation or decomposition is required. Record derivation, assumptions, and rationale. The relationships may be many-to-many: one stakeholder obligation may require several system obligations, and one system obligation may address several sources.
+4. If a supplied requirement already constrains the system adequately, use that canonical requirement directly from its stakeholder-requirements home. Reference it from architecture and verification; do not create a second usage merely to populate `SystemRequirements.sysml` or connect it to itself through derivation.
+5. Review coverage in both directions. Every applicable stakeholder obligation has an engineering response or explicit unresolved gap; excluded or superseded obligations have a reviewed disposition. Every system obligation has a source or justified rationale, including obligations derived from analysis or design decisions.
+
+A derivation relationship records the engineering interpretation; it is not proof that satisfying the derived requirements fulfills the source obligation. Review completeness and the assumptions connecting their subjects and acceptance criteria.
+
+### Verification and stakeholder validation
+
+Verify both stakeholder requirements and system requirements against their stated criteria at the appropriate boundary. A contractual machine-level requirement may need machine-level evidence even when component requirements pass. Validate the resulting system against stakeholder needs and intended use. Requirement source does not determine whether verification is needed.
+
+Keep plans and evidence in `80_verification`, referencing the canonical obligations and needs. See [verification and validation](verification.md#stakeholder-validation).
 
 ## The traceability chain
 

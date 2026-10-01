@@ -23,3 +23,9 @@ Git review and merge record acceptance of the increment. A decision should remai
 ## Review and views
 
 Review explicit responsibility, stable interface contracts, unresolved choices, and rationale for omitted layers. Use `ArchitectureViewpoint` and `ArchitectureView` to expose the decomposition without duplicating model content. Add stakeholder views only when they support a concrete review question.
+
+## Comparing candidates proportionally
+
+For a consequential decision, record the alternatives considered, non-negotiable obligations, comparison criteria, supporting analysis, uncertainty, and why the selected candidate is preferred. Distinguish measured results, predictions, and engineering judgment. Do not assign numerical scores without a defensible basis.
+
+Reject candidates that violate mandatory constraints before comparing preferences. Where evidence is incomplete, record a provisional choice and the evidence that could change it. Revisit the decision when its assumptions, requirements, or operating context change. The [guard-stop comparison](../examples/guard-stop/README.md#architecture-comparison) illustrates a scoped teaching decision.
