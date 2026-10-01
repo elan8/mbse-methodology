@@ -42,8 +42,5 @@ jobs:
       - name: spec42 check (library, template, examples)
         run: python3 scripts/validate_spec42.py
 
-      - name: Recipe example fences parse cleanly
-        run: python3 scripts/check_recipe_fences.py
-
       - name: Library definitions are referenced outside library/
         run: python3 scripts/check_unused_library_defs.py

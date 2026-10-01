@@ -17,16 +17,14 @@ package MissingVerification {
         attribute :>> systemName = "notification-service";
     }
 
-    requirement notifyCustomer {
+    requirement <'USR-002'> notifyCustomer {
         @RequirementRole { role = RequirementRoleKind::user; }
-        @RequirementIdentity { requirementId = "USR-002"; }
         @StatusInfo { status = StatusKind::done; }
         doc /* Customers shall receive timely order-state notifications. */
     }
 
-    requirement sendOrderUpdate {
+    requirement <'SYS-002'> sendOrderUpdate {
         @RequirementRole { role = RequirementRoleKind::functional; }
-        @RequirementIdentity { requirementId = "SYS-002"; }
         @StatusInfo { status = StatusKind::done; }
         doc /* The delivery system shall publish notification events for order-state changes. */
     }

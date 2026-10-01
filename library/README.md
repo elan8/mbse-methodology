@@ -5,11 +5,11 @@ Canonical SysML v2 packages for the Elan8 Method.
 | Package | File | Purpose |
 | --- | --- | --- |
 | `Elan8Method::Verification` | `Verification.sysml` | References to external verification evidence |
-| `Elan8Method::Metadata` | `Metadata.sysml` | Requirement role and identity annotations |
+| `Elan8Method::Metadata` | `Metadata.sysml` | Requirement role annotations; identifiers use native short names |
 | `Elan8Method::MethodCore` | `Core.sysml` | Concerns, stage disposition, decisions, project info |
 | `Elan8Method::Viewpoints` | `Viewpoints.sysml` | Five standard viewpoints and view stubs |
 
-These packages are the canonical systems-engineering / method libraries. Domain vocabulary lives in sibling `sysml-domain-libraries` only.
+These packages are the canonical systems-engineering / method libraries. Domain vocabulary belongs in project-local definitions or explicitly selected external domain libraries.
 
 `Elan8Method.sysml` declares the single `Elan8Method` facade and publicly imports MethodCore and Viewpoints. Its Metadata namespace publicly imports the separately declared MethodMetadata package, avoiding the standard Metadata package name. Its Verification namespace publicly imports the contents of the separately declared MethodVerification package. No method file declares `Elan8`; that root belongs to the domain-library facade. Nested packages are valid, but repeating declarations does not reopen or merge a namespace.
 
@@ -24,31 +24,12 @@ private import Elan8Method::Metadata::*;
 
 Avoid `import Elan8::*`; the root namespace intentionally contains multiple library families.
 
-## Sibling checkout
+## Loading the library
 
-Spec42 discovers libraries by path. Typical layout:
+Load every `.sysml` file in this directory together with the standard SysML v2 libraries. Configure the library source path or archive through your modeling environment. The included examples and project template do not require any other repository.
 
-```text
-elan8/
-  mbse-methodology/library/     # this folder
-  sysml-domain-libraries/       # domain + technical vocabulary
-  sysml-robot-vacuum-cleaner/   # method-compliant showcase
-```
-
-Pass both roots to Spec42, for example:
-
-```sh
-spec42 --library-path ../mbse-methodology/library \
-       --library-path ../sysml-domain-libraries/domain \
-       --library-path ../sysml-domain-libraries/technical \
-       --library-path ../sysml-domain-libraries/generic \
-       check .
-```
-
-## Migration
-
-SE packages formerly under `sysml-domain-libraries/generic/systems-engineering/` were moved here. That tree is removed (no re-exports). See [docs/library-migration.md](../docs/library-migration.md).
+Avoid loading both this source library and an older archive of the same library in one workspace. See [library migration](../docs/library-migration.md) for the current namespace and import changes.
 
 ## Native requirements and scalar types
 
-The former Requirements package is removed: native SysML supplies requirements and their relationships. Metadata retains role and identity annotations. Names, identifiers, and evidence URIs use `ScalarValues::String`; the former unconstrained Identifier, Name, and EvidenceUri attribute definitions are not needed. Move evidence imports to `Elan8Method::Verification` and associate evidence with its verification case.
+The former Requirements package is removed: native SysML supplies requirements and their relationships. Metadata retains role annotations; identifiers use native short names. Text attributes such as project names, decision identifiers, and evidence URIs use `ScalarValues::String`; the former unconstrained Identifier, Name, and EvidenceUri attribute definitions are not needed. Move evidence imports to `Elan8Method::Verification` and associate evidence with its verification case.

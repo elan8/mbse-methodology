@@ -1,47 +1,28 @@
-# Library migration: systems-engineering → Elan8 Method
+# Method library migration
 
-**Status: updated.** There are no re-exports in `sysml-domain-libraries`.
+## Current namespace
 
-## What moved
+Load all files from `library/` together. The single `Elan8Method` facade exposes Metadata, MethodCore, Verification, and Viewpoints. Leaf packages have distinct names so they do not shadow the standard library.
 
-| Former location (sysml-domain-libraries)                               | Canonical location (mbse-methodology)      | Package rename                                         |
-| ---------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------ |
-| `generic/systems-engineering/requirements/RequirementManagement.sysml` | `library/Verification.sysml` | Evidence → `Elan8Method::Verification`; generic text → `ScalarValues::String`; requirements → native SysML |
-| `generic/systems-engineering/requirements/RequirementMetadata.sysml`   | `library/Metadata.sysml`   | `RequirementMetadata` → `Elan8Method::Metadata`     |
-| `generic/systems-engineering/examples/…`                               | `examples/se-patterns/…`                   | same example package names                             |
+Older model imports under `Elan8::Method::...` or `Method::...` must migrate to the corresponding `Elan8Method::...` namespaces. Repeated same-named package declarations do not reopen or merge a namespace.
 
-The `generic/systems-engineering/` tree has been **deleted**.
+## Removed Requirements package
 
-## What stays in domain libraries
+Native SysML supplies requirements and their relationships. Use `Elan8Method::Metadata` for optional requirement roles; use native short names for identifiers. Names, identifiers, and URIs use `ScalarValues::String`.
 
-- `technical/**` (electronics, communication, software)
-- `generic/units/MonetaryUnits.sysml`
+Verification evidence moved to `Elan8Method::Verification::VerificationEvidence`. Keep evidence associated with its verification case; a URI alone does not establish a passing result.
 
-## Import rule
+## Consumer imports
 
 ```sysml
-// Only when evidence records are needed:
-private import Elan8Method::Verification::*;
 private import Elan8Method::Metadata::*;
 private import Elan8Method::MethodCore::*;
+private import Elan8Method::Verification::*;
+private import Elan8Method::Viewpoints::*;
 ```
 
-Do not import `RequirementManagement` or `RequirementMetadata` — those package names no longer exist.
+Import only the packages needed by a model. Update model imports and library versions together. Avoid loading an older archive alongside the current sources. External domain libraries are optional and must be configured explicitly.
 
-## Sibling checkout
+## Identity and tailoring simplification
 
-```text
-elan8/
-  mbse-methodology/
-  sysml-domain-libraries/
-  sysml-robot-vacuum-cleaner/
-```
-
-Spec42 must include `--library-path ../mbse-methodology/library` whenever models use Elan8 Method packages.
-
-## Split rule
-
-| Belongs in                 | Content                                                                  |
-| -------------------------- | ------------------------------------------------------------------------ |
-| **mbse-methodology**       | How Elan8 expects models to be authored, traced, reviewed, and assured   |
-| **sysml-domain-libraries** | Vocabulary for things in the system (domains and technical capabilities) |
+Requirement identifiers now use native SysML short names. Move previous identity values to the requirement declaration's short name and remove the identity annotation. The project-wide tailoring enum and ProjectInfo profile attribute are removed; record applicability and merging independently on each stage using StageDisposition.

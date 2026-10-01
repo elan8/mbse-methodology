@@ -1,6 +1,6 @@
 # Method mapping (orientation)
 
-Elan8 Method concerns, recipes, and fixed stages compared to familiar MBSE
+Elan8 Method concerns, activities, and fixed stages compared to familiar MBSE
 approaches. This is **orientation**, not a claim of one-to-one equivalence.
 
 ## Fixed stages vs familiar phases
@@ -11,15 +11,15 @@ and the [project template](../templates/project-template/README.md)). This
 table is the closer, structural comparison for teams coming from a
 phase-based methodology:
 
-| Elan8 stage | Typical recipes | SYSMOD (approx.) | OOSEM (approx.) | Arcadia (approx.) | INCOSE process flavor |
+| Elan8 stage | Typical activities | SYSMOD (approx.) | OOSEM (approx.) | Arcadia (approx.) | INCOSE process flavor |
 | --- | --- | --- | --- | --- | --- |
-| Context | define-system-purpose, define-system-context, capture-stakeholder-concerns | System idea, stakeholder needs | Stakeholder needs, context | Operational Analysis (need) | Stakeholder needs definition |
-| Use Cases | model-operational-scenario, model-degraded-behavior | Use cases / processes | Scenario analysis | Operational Analysis (scenarios) | Use case / scenario definition |
-| Capabilities | derive-system-requirements (partial) | — (implicit in use cases) | Capability needs | Operational capabilities | Business/mission analysis |
-| Functions | derive-system-requirements | Logical behavior | Functional analysis | System Functional Analysis | Functional analysis & allocation |
-| Logical Architecture | create-logical-architecture, define-interface-contract | System architecture | Logical architecture | Logical Architecture (LA) | Architecture definition |
-| Physical Architecture | create-logical-architecture, record-architecture-decision | System architecture | Physical architecture | Physical Architecture (PA) | Architecture definition |
-| Verification | define-requirement-verification | Requirements & test | Verification planning | Integration & IVV hooks | Verification & validation |
+| Context | Problem, boundary, stakeholders, concerns | System idea, stakeholder needs | Stakeholder needs, context | Operational Analysis (need) | Stakeholder needs definition |
+| Use Cases | Actor goals, nominal/degraded scenarios | Use cases / processes | Scenario analysis | Operational Analysis (scenarios) | Use case / scenario definition |
+| Capabilities | Mission outcomes and derived obligations | — (implicit in use cases) | Capability needs | Operational capabilities | Business/mission analysis |
+| Functions | Requirement derivation and functional analysis | Logical behavior | Functional analysis | System Functional Analysis | Functional analysis & allocation |
+| Logical Architecture | Responsibilities and interface contracts | System architecture | Logical architecture | Logical Architecture (LA) | Architecture definition |
+| Physical Architecture | Implementation selection and allocation | System architecture | Physical architecture | Physical Architecture (PA) | Architecture definition |
+| Verification | Verification definition and evidence | Requirements & test | Verification planning | Integration & IVV hooks | Verification & validation |
 
 Elan8 does not have a dedicated Arcadia-style "System Analysis" (SA) stage;
 its scope splits across Capabilities and Functions. Conversely, Arcadia has
@@ -32,7 +32,7 @@ Independently of the fixed stages, the [six continuous
 concerns](concerns.md) are a cross-cutting lens usable on any element in any
 stage. This table compares concerns, not stages:
 
-| Elan8 concern | Typical recipes | SYSMOD (approx.) | OOSEM (approx.) | Arcadia (approx.) | INCOSE process flavor |
+| Elan8 concern | Typical activities | SYSMOD (approx.) | OOSEM (approx.) | Arcadia (approx.) | INCOSE process flavor |
 | --- | --- | --- | --- | --- | --- |
 | Purpose | purpose, context, concerns | System idea, stakeholder needs | Stakeholder needs, context | Operational Analysis (need) | Stakeholder needs definition |
 | Behavior | scenario, degraded behavior | Use cases / processes | Scenario analysis, logical behavior | System / Logical functions | System requirements & functional analysis |
@@ -67,7 +67,7 @@ stage. This table compares concerns, not stages:
 
 The fixed stage structure now maps closely onto OA/SA/LA/PA-style phases (see
 the table above), so keep your team's mental model and expect the folder
-names to line up more directly than before. Map Elan8 recipes onto the
+names to line up more directly than before. Map Elan8 activities onto the
 activities you already run, use `StageDisposition` to merge stages your
 process doesn't distinguish (for example, no separate Capabilities layer),
 and adopt the project template when starting new SysML v2 work.

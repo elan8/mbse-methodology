@@ -2,7 +2,7 @@
 
 The method uses four common abstraction-level *terms* to talk and write about
 altitude: Operational, System, Logical, Physical. This is shared vocabulary
-for docs, recipes, and review comments — **not** a model metadata tag. An
+for docs and and review comments — **not** a model metadata tag. An
 earlier `@AbstractionLevel` annotation was retired because nothing in the
 method (no view, no query, no quality rule) ever consumed it, and the seven
 fixed [stage packages](../templates/project-template/README.md) already give
@@ -15,7 +15,7 @@ via `StageDisposition`. Do not confuse the two:
   seven packages, and every package carries a disposition; see
   [engineering-increments.md](engineering-increments.md).
 - **Abstraction level** is *how concrete a piece of content is*, useful when
-  writing recipes/docs or explaining a design in review — it has no formal
+  writing guidance or explaining a design in review — it has no formal
   model representation.
 
 | Level | Central question | Typical content | Falls mostly in stage(s) |
@@ -57,7 +57,7 @@ choice recorded with `StageDisposition`:
 - **Allocation** (`allocate` behavior → parts) is the required bridge between
   behavior and structure — not mandatory layer duplication.
 
-This matches lean SysML v2 practice (for example the robot-vacuum showcase)
+This supports lean SysML v2 practice
 while still allowing richer logical architectures when the project needs
 them, and it keeps the folder shape identical across every project.
 
@@ -67,7 +67,7 @@ them, and it keeps the folder shape identical across every project.
   merged, or not applicable is recorded with `StageDisposition`, not with a
   missing folder;
 - abstraction-level vocabulary may be used in parallel within and across
-  stages when writing docs, recipes, or review comments;
+  stages when writing docs and or review comments;
 - traceability should capture engineering meaning, not administrative
   completeness;
 - duplication between logical and physical content should be minimized —

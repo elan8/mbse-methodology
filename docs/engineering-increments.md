@@ -34,7 +34,7 @@ Prefer increments that:
 - answer one concrete engineering question;
 - reduce a real risk or unlock a design decision;
 - can be reviewed without understanding the entire model;
-- leave the Spec42 check green (or document intentional gaps).
+- leave the model validation green (or document intentional gaps).
 
 Avoid increments that only rearrange folders, rename without intent, or span unrelated concerns “because we were editing those files anyway.”
 
@@ -49,7 +49,7 @@ Before opening the PR (or as its first commit):
 
 ## Typical scope
 
-Minimal (small profile):
+Essential content:
 
 - stakeholder need or concern update;
 - one operational scenario (or a focused extension);
@@ -58,7 +58,7 @@ Minimal (small profile):
 - verification intent for critical requirements;
 - `@DecisionRecord` / `@Assumption` / `@Risk` only when they affect the decision.
 
-Medium: add analysis case, degraded path, interface contracts, or physical realization for the same question.
+Expand as needed: add analysis case, degraded path, interface contracts, or physical realization for the same question.
 
 ## Expected model content
 
@@ -122,7 +122,7 @@ purpose / behavior / architecture / evidence / verification / evolution
 ## Definition of done
 - [ ] Question answered in the model
 - [ ] Critical links (derive / satisfy / allocate / verify) present
-- [ ] Spec42 check green (or gaps listed)
+- [ ] model validation green (or gaps listed)
 - [ ] Reviewer can follow the spine without tribal knowledge
 ```
 
@@ -149,7 +149,7 @@ Increments accumulate into baselines via Git tags/releases and, when needed, `Ve
 
 ## Showcase
 
-Sibling [`sysml-robot-vacuum-cleaner`](../../sysml-robot-vacuum-cleaner): cliff-safe-stop increment — see [ELAN8_METHOD_TOUR.md](../../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md).
+[Guard-stop increment](../examples/guard-stop/README.md): self-contained concern-to-verification reading path.
 
 ## Related
 

@@ -14,7 +14,7 @@ SysML v2 is a powerful systems modeling language, but it does not prescribe a si
 
 The Elan8 Method combines proven systems engineering practices with a modern Digital Engineering workflow based on SysML v2, text-based modeling, version control, automated quality checks, continuous analysis and verification, generated views, and human-reviewed AI assistance.
 
-It supports Spec42, Babel42, and other Elan8 tooling, but remains usable independently of any single tool.
+The methodology uses standard SysML v2 and can be applied with any conforming modeling environment. This repository contains its own method library, project template, guidance, and examples.
 
 It is designed as a:
 
@@ -31,9 +31,8 @@ The central question is not “Which diagrams must we create?” but:
 1. Skim the [SysML v2 primer](docs/sysml-v2-primer.md) (definition/usage, satisfy/allocate/verify, views).
 2. Read [principles](docs/principles.md), [six concerns](docs/concerns.md), and [engineering increments](docs/engineering-increments.md) (short).
 3. Copy [templates/project-template](templates/project-template/) as a starting repository layout.
-4. Walk recipes 1–3: [purpose](recipes/define-system-purpose.md), [context](recipes/define-system-context.md), [concerns](recipes/capture-stakeholder-concerns.md).
-5. Continue with [scenario](recipes/model-operational-scenario.md) and [derive requirements](recipes/derive-system-requirements.md).
-6. Follow one end-to-end increment: cliff-safe-stop in sibling `sysml-robot-vacuum-cleaner` ([ELAN8_METHOD_TOUR.md](../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md)).
+4. Read [requirements](docs/requirements.md), [behavior](docs/behavior.md), [architecture](docs/architecture.md), and [verification](docs/verification.md) as needed.
+5. Start with the populated [guard-stop increment](examples/guard-stop/README.md), including shared requirements, two scenarios, and verification verdicts.
 
 See also: [workflow loop](docs/workflow.md), [evidence and claims](docs/evidence-and-claims.md), [glossary](docs/glossary.md), [method mapping](docs/method-mapping.md), [roles and reviews](docs/roles-and-reviews.md).
 
@@ -58,14 +57,14 @@ flowchart TB
   end
   increment --> concerns
   concerns --> Model[SysML v2 model]
-  Model --> Views[Views / Spec42 / Babel42]
+  Model --> Views[Stakeholder views]
   Git[Git review and merge] -.-> increment
 ```
 
 - **Increment** = reviewable work unit in Git/PR ([engineering-increments.md](docs/engineering-increments.md)).
 - **Concerns** = continuous perspectives, not phases ([concerns.md](docs/concerns.md)).
 - **Evidence chain** = Claim → Evidence → Confidence → Decision ([evidence-and-claims.md](docs/evidence-and-claims.md)).
-- **Showcase** = vacuum cliff-safe-stop increment ([method tour](../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md)).
+- **Example** = [guard-stop engineering increment](examples/guard-stop/README.md).
 
 ---
 
@@ -75,11 +74,10 @@ flowchart TB
 mbse-methodology/
   README.md                 # this page
   docs/                     # principles, concerns, levels, tailoring, quality, migration
-  recipes/                  # task-oriented modeling guides
   library/                  # Elan8 SysML v2 method libraries
   templates/project-template/
   examples/                 # SE pattern fixtures
-  scripts/                  # Spec42 validate helper
+  scripts/                  # repository maintenance checks
 ```
 
 | Area | Start here |
@@ -97,11 +95,10 @@ mbse-methodology/
 | Tailoring | [docs/tailoring.md](docs/tailoring.md) |
 | Roles and reviews | [docs/roles-and-reviews.md](docs/roles-and-reviews.md) |
 | Quality rules | [docs/quality-rules.md](docs/quality-rules.md) |
-| Spec42 quality contract | [docs/spec42-quality-contract.md](docs/spec42-quality-contract.md) |
+| Quality diagnostic contract | [docs/quality-diagnostic-contract.md](docs/quality-diagnostic-contract.md) |
 | Library migration | [docs/library-migration.md](docs/library-migration.md) |
 | SysML libraries | [library/README.md](library/README.md) |
 | KPAR release | Tag `v*` → GitHub Actions packs `library/` as `elan8-method-libraries-*.kpar` |
-| Recipes | [recipes/](recipes/) |
 | Project template | [templates/project-template/](templates/project-template/) |
 | Examples | [examples/](examples/) |
 
@@ -128,11 +125,11 @@ mbse-methodology/
 - Soft abstraction-level guidance (operational / system / logical / physical)
 - SysML method libraries under `Elan8Method`
 - Project template with seven fixed engineering stages and supporting packages
-- Full modeling recipes (product-variant recipe remains a short stub)
-- Quality-rule checklist plus a contracted Spec42 diagnostic contract (not yet implemented in Spec42)
-- SE pattern examples and a pointer to the robot-vacuum traceability showcase (its earlier layout still needs migration)
+- Modeling guidance connected to complete examples
+- Quality-rule checklist and a tool-independent diagnostic contract
+- Self-contained SE pattern fixtures and a populated guard-stop example
 
-Domain and technical vocabulary lives in sibling `sysml-domain-libraries`, not here.
+Project-specific vocabulary belongs in the project-local library or in explicitly selected external domain libraries. The included examples require only the method library and standard SysML v2 libraries.
 
 ---
 
@@ -140,7 +137,7 @@ Domain and technical vocabulary lives in sibling `sysml-domain-libraries`, not h
 
 Requirements run through all seven stages and connect stakeholder intent to design and verification. Keep stakeholder needs and all requirement levels together in `model/05_requirements`. Stage packages reference these requirements and their subjects remain the relevant system, function, interface, or component. Each requirement has one canonical model location, with relationships and views connecting it to the other stages.
 
-See [requirements](docs/requirements.md) for placement, traceability, and review guidance. Requirements use native SysML v2 constructs, with optional role and identity annotations from `Metadata`. Evidence references belong to `Verification`.
+See [requirements](docs/requirements.md) for placement, traceability, and review guidance. Requirements use native SysML v2 constructs, with optional role annotations from `Metadata`; identifiers use native short names. Evidence references belong to `Verification`.
 
 ## SysML libraries
 
@@ -151,44 +148,31 @@ Canonical packages (import these in new models):
 - `Elan8Method::MethodCore`
 - `Elan8Method::Viewpoints`
 
-See [library-migration.md](docs/library-migration.md) for the move out of domain libraries.
+See [library-migration.md](docs/library-migration.md) for namespace and package updates.
 
-Sibling checkout for Spec42:
+Load `library/` alongside the copied template or example model in a SysML v2 environment with the matching standard libraries. No sibling repository is required. Configure library resolution using your environment's supported mechanism.
 
-```sh
-spec42 --library-path library \
-       --library-path ../sysml-domain-libraries/domain \
-       --library-path ../sysml-domain-libraries/technical \
-       --library-path ../sysml-domain-libraries/generic \
-       check templates/project-template
-```
-
-Or run (Python 3, no dependencies; works the same on Linux/macOS/Windows):
-
-```sh
-python3 scripts/validate_spec42.py
-```
+For a worked reading path, start with [examples/guard-stop](examples/guard-stop/README.md).
 
 ---
 
 ## Lessons from existing methodologies
 
-Retained and adapted ideas from SYSMOD (recipes, examples), OOSEM (scenario-driven increments), and Arcadia (need vs solution, viewpoints)—with less diagram-centrism, less tool lock-in, and one semantic network rather than duplicated layer models. Practice is defined by recipes and libraries; see [method-mapping.md](docs/method-mapping.md).
+Retained and adapted ideas from SYSMOD (practical modeling guidance and examples), OOSEM (scenario-driven increments), and Arcadia (need vs solution, viewpoints)—with less diagram-centrism, less tool lock-in, and one semantic network rather than duplicated layer models. Practice is illustrated by the worked example and supported by the method library; see [method-mapping.md](docs/method-mapping.md).
 
 ---
 
-## Tool support (intent)
+## Modeling environment capabilities
 
-- **Spec42:** templates, snippets, live checks, semantic diff, CI; contracted quality diagnostics documented but not all implemented yet.
-- **Babel42:** dashboards, stakeholder views, coverage, decision logs, release readiness.
+Useful capabilities include import/type resolution, model validation, requirement coverage, stakeholder views, semantic change review, and automated checks in CI. The methodology defines engineering expectations independently of how a particular environment implements them.
 
-Method libraries are resolved via `--library-path` (or sibling checkout). Spec42 embeds domain libraries separately; Elan8 Method packages are not required for every SysML model—only when imported.
+Treat a quality rule as a review checklist unless your chosen validator implements it. Parsing successfully does not establish requirement coverage, evidence validity, or passing verification results.
 
 ---
 
 ## Definition of success
 
-A small team can start a SysML v2 project without inventing its own structure, model one end-to-end concern with recipes, review architecture and verification coverage, and evolve the model under version control with automated checks where available.
+A small team can start a SysML v2 project without inventing its own structure, model one end-to-end concern using the template and worked example, review architecture and verification coverage, and evolve the model under version control with automated checks where available.
 
 ---
 

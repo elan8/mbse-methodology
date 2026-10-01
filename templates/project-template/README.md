@@ -40,24 +40,16 @@ Keep all canonical requirements in `05_requirements`. The template starts with `
 
 The number sets browsing order; Requirements is a supporting package, not an eighth stage. Tailoring stages does not move requirements out of this shared home. See [requirements guidance](../../docs/requirements.md).
 
-## Spec42 library paths
+## Library resolution
 
-From a sibling checkout:
+Load this model together with the repository's `library/` directory and standard SysML v2 libraries. When copying the template elsewhere, retain an explicit reference to the method-library source or a versioned archive through your modeling environment's configuration. No domain library or sibling checkout is required.
 
-```sh
-spec42 --library-path ../../library \
-       --library-path ../../../sysml-domain-libraries/domain \
-       --library-path ../../../sysml-domain-libraries/technical \
-       --library-path ../../../sysml-domain-libraries/generic \
-       check .
-```
-
-Adjust relative paths to your workspace. See [library/README.md](../../library/README.md).
+See [library/README.md](../../library/README.md).
 
 ## Next steps
 
-1. Edit `00_project/Project.sysml` (name, tailoring profile).
-2. Follow recipes: purpose → context → concerns → scenario → requirements.
+1. Edit `00_project/Project.sysml` (name and notes), then choose a disposition for each stage.
+2. Follow the [workflow guidance](../../docs/workflow.md) and [guard-stop walkthrough](../../examples/guard-stop/README.md).
 3. Grow use cases, capabilities, functions, logical/physical architecture, and
    verification as vertical increments. Set `StageDisposition` to
    `notApplicable` or `mergedIntoAnotherStage` (with rationale) for any stage

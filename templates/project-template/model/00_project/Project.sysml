@@ -8,7 +8,6 @@ package Project {
 
     part projectInfo : ProjectInfo {
         attribute :>> projectName = "NewSystem";
-        attribute :>> profile = TailoringProfileKind::small;
         attribute :>> notes = "Replace with project-specific tailoring notes.";
     }
 

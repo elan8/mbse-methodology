@@ -2,7 +2,7 @@
 
 Candidate rules for the Elan8 Method. Distinguish **errors**, **warnings**, **recommendations**, and project-specific exceptions.
 
-Until Spec42 implements a rule, treat it as a **manual / checklist** item. Do not add non-executable YAML rule catalogs. Contracted diagnostics: [spec42-quality-contract.md](spec42-quality-contract.md).
+Until your validator implements a rule, treat it as a **manual / checklist** item. Do not add non-executable YAML rule catalogs. Contracted diagnostics: [quality-diagnostic-contract.md](quality-diagnostic-contract.md).
 
 | ID | Area | Rule | Severity | Status |
 | --- | --- | --- | --- | --- |
@@ -27,8 +27,8 @@ Until Spec42 implements a rule, treat it as a **manual / checklist** item. Do no
 | QR-VER-03 | Verification | Requirement coverage gaps are reported | warning | **contracted** → `elan8.ver.coverage_gap` |
 | QR-EVO-01 | Evolution | Released elements have an owner and lifecycle status | warning | checklist |
 | QR-EVO-02 | Evolution | Orphaned elements are reported | recommendation | checklist |
-| QR-EVO-03 | Evolution | Invalid references fail CI | error | Spec42 / CI |
+| QR-EVO-03 | Evolution | Invalid references fail CI | error | validator / CI |
 
 ## Tooling intent
 
-Spec42 should enforce the contracted subset as diagnostics. Babel42 should surface coverage and gaps for review. Until then, recipes and reviews use this table as a shared checklist.
+Validators can enforce the contracted subset as diagnostics; stakeholder views should surface coverage and gaps for review. Until then, model reviews use this table as a shared checklist.

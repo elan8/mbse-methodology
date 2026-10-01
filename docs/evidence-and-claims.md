@@ -63,7 +63,7 @@ Capture confidence lightly:
 - via risks (`@Risk`) when confidence is low;
 - in the PR discussion for the increment.
 
-Do not invent a mandatory confidence metadata stereotype unless a regulated profile requires it. Honesty beats false precision.
+Add confidence metadata only when project assurance obligations require it. Honesty beats false precision.
 
 Examples of confidence language:
 
@@ -116,4 +116,4 @@ For each [engineering increment](engineering-increments.md):
 - [engineering-increments.md](engineering-increments.md)
 - [quality-rules.md](quality-rules.md)
 - `Elan8Method::Viewpoints::TraceabilityViewpoint` / `TraceabilityView` — expose gaps and orphaned elements across the claim → evidence → decision chain
-- Showcase: vacuum `SafetyReactionAnalysis` + `verifyCliffSafeStop`
+- Example: [guard-stop analysis and verification](../examples/guard-stop/README.md).

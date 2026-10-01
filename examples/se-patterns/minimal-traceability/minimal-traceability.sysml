@@ -14,16 +14,14 @@ package MinimalTraceability {
         attribute :>> systemName = "notification-service";
     }
 
-    requirement notifyCustomer {
+    requirement <'USR-001'> notifyCustomer {
         @RequirementRole { role = RequirementRoleKind::user; }
-        @RequirementIdentity { requirementId = "USR-001"; }
         @StatusInfo { status = StatusKind::done; }
         doc /* Customers shall be notified when an order changes state. */
     }
 
-    requirement sendOrderUpdate {
+    requirement <'SYS-001'> sendOrderUpdate {
         @RequirementRole { role = RequirementRoleKind::functional; }
-        @RequirementIdentity { requirementId = "SYS-001"; }
         @StatusInfo { status = StatusKind::done; }
         doc /* The delivery system shall send an order update notification after state changes. */
     }

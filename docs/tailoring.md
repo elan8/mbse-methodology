@@ -1,51 +1,31 @@
-# Tailoring
+# Tailoring per stage
 
-The method must be tailorable. Record the chosen profile in `00_project` using `ProjectInfo` from `Elan8Method::MethodCore` (or an equivalent project note).
+Choose which stages add engineering value and how much detail each needs. There is no project-wide profile or size classification. A project can need detailed verification and physical interfaces while deliberately merging its logical architecture into its physical baseline.
 
-## Small project
+## Stage choices
 
-Recommended minimum:
+Record one `StageDisposition` on each of the seven stage packages:
 
-- system context;
-- key scenarios;
-- top-level requirements;
-- simple architecture;
-- critical interfaces;
-- essential verification cases;
-- decisions and assumptions;
-- automated baseline checks.
+| Status | Meaning | Required explanation |
+| --- | --- | --- |
+| `applicable` | This stage has a distinct engineering purpose in the project | State its scope and choose content depth to match the current question |
+| `notApplicable` | This stage does not apply to this project's scope | Give the reason; an empty draft stage is not automatically inapplicable |
+| `mergedIntoAnotherStage` | Another stage carries the relevant content | Identify `mergedInto` and explain why separate content would duplicate it |
 
-Possible simplifications:
+The template retains the seven package locations for navigation. Users choose whether each stage is used separately, omitted in content, or represented within another stage. Folder presence does not require a separate model layer or a populated duplicate architecture.
 
-- mark Capabilities and/or Functions `mergedIntoAnotherStage` via `StageDisposition` (see [abstraction-levels.md](abstraction-levels.md)) instead of modeling them separately;
-- limited viewpoint set;
-- lightweight lifecycle metadata;
-- no formal trade study unless needed.
+Requirements remain together in `05_requirements`; their subjects reference the applicable system, behavior, or architecture elements. Supporting analysis, views, and local vocabulary are developed only as needed. `ProjectInfo` contains the project name and notes; it does not select a tailoring preset.
 
-## Medium project
+## Choose depth independently
 
-Recommended additions:
+For each stage, ask what decision it supports, what risk would remain without it, and what minimum model content and evidence answer the current engineering question.
 
-- explicit logical and physical architecture where useful;
-- interface contracts;
-- structured analysis cases;
-- risk and assumption tracking;
-- verification coverage dashboards;
-- baseline and release workflow;
-- model ownership by subsystem.
+Start with the engineering question and the worked example and add interfaces, quantitative analysis, degraded scenarios, configuration management, or richer views when the question requires them. Assurance and regulatory obligations may require additional evidence and review regardless of which architecture stages are merged.
 
-## Large or regulated project
+Do not infer low criticality from a small model or an omitted layer. Stage tailoring does not waive verification of critical requirements, invalidate subjects, or remove needed responsibility and interface relationships.
 
-Recommended additions:
+## Example
 
-- formal lifecycle states;
-- review and approval workflows;
-- configuration and variant management;
-- evidence provenance;
-- explicit compliance viewpoints;
-- controlled libraries;
-- formal verification planning;
-- release baselines;
-- audit-ready change history.
+The [guard-stop example](../examples/guard-stop/README.md) uses Context, Use Cases, Functions, Physical, and Verification. Capabilities and Logical Architecture are explicitly merged into Physical with separate rationales. The project has no global profile.
 
-Tailoring decisions should be recorded in the model or repository. Prefer Git for process enforcement; put engineering meaning in SysML.
+Record engineering tailoring in the model; keep review, ownership, and acceptance of increments in Git and repository workflows.

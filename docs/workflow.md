@@ -25,7 +25,7 @@ Clarify:
 - constraints;
 - success criteria.
 
-Typical recipes: [define-system-purpose](../recipes/define-system-purpose.md), [define-system-context](../recipes/define-system-context.md), [capture-stakeholder-concerns](../recipes/capture-stakeholder-concerns.md).
+Separate the existing problem, desired stakeholder outcome, and candidate solution. Identify the system boundary, stakeholders, external interactions, assumptions, and exclusions. Capture stakeholder concerns and frame them with the needs they motivate; avoid treating a stakeholder wish as an implementation choice.
 
 ## Explore
 
@@ -38,7 +38,7 @@ Develop:
 - exceptional and degraded situations;
 - candidate requirements.
 
-Typical recipes: [model-operational-scenario](../recipes/model-operational-scenario.md), [model-degraded-behavior](../recipes/model-degraded-behavior.md), [derive-system-requirements](../recipes/derive-system-requirements.md).
+See [behavior](behavior.md) and [requirements](requirements.md) for actor goals, scenario paths, and measurable obligations.
 
 ## Architect
 
@@ -51,7 +51,7 @@ Define:
 - allocations;
 - variants (when needed).
 
-Typical recipes: [create-logical-architecture](../recipes/create-logical-architecture.md) and related architecture recipes.
+See [architecture](architecture.md) for responsibilities, interface contracts, allocations, and layer tailoring.
 
 ## Evaluate
 
@@ -64,7 +64,7 @@ Assess:
 - trade-offs;
 - decision rationale (`@DecisionRecord` — no approval `status` in the model; merge records acceptance).
 
-Typical recipes: [evaluate-architecture-alternative](../recipes/evaluate-architecture-alternative.md), [record-architecture-decision](../recipes/record-architecture-decision.md).
+See [architecture decisions](architecture.md#alternatives-and-decisions) for criteria, comparison, and rationale.
 
 See also [evidence-and-claims.md](evidence-and-claims.md).
 
@@ -78,7 +78,7 @@ Define and collect:
 - evidence URIs;
 - compliance or test results (as references, not bulk data in SysML).
 
-Typical recipes: [define-requirement-verification](../recipes/define-requirement-verification.md).
+See [verification](verification.md) for case definitions, observations, verdicts, evidence, and coverage.
 
 ## Evolve
 

@@ -29,21 +29,20 @@ part def Robot {
 A requirement is a constraint on a **subject**, not a text box.
 
 ```sysml
-requirement stopOnCliff {
+requirement <'SYS-SAFE-010'> stopOnCliff {
     subject robot : CleaningRobot;
     attribute maxReactionTime : ISQ::TimeValue;
     require constraint { robot.cliffReactionTime <= maxReactionTime }
 }
 ```
 
-Elan8 adds role and identity metadata (see `Elan8Method::Metadata`):
+The native short name (`SYS-SAFE-010` above) is the requirement identifier. Elan8 optionally adds role metadata (see `Elan8Method::Metadata`):
 
 ```sysml
 @RequirementRole { role = RequirementRoleKind::safety; }
-@RequirementIdentity { requirementId = "SYS-SAFE-010"; }
 ```
 
-Use OMG `@StatusInfo` for work status. Recipe: [derive-system-requirements](../recipes/derive-system-requirements.md).
+Use OMG `@StatusInfo` for work status. See [requirements guidance](requirements.md).
 
 ## 4. Traceability relationships
 
@@ -79,11 +78,11 @@ Views **expose** existing elements; they must not duplicate handoff tables or re
 
 - Organize by **engineering concern** folders (`10_context`, `20_usecases`, …), but packages own semantics.
 - Import **method** packages from `mbse-methodology/library`.
-- Import **domain/technical** vocabulary from `sysml-domain-libraries`.
+- Keep **domain/technical** vocabulary in the project-local library or explicitly selected external libraries.
 
 ## 8. Where to go next
 
 1. [principles](principles.md) and [concerns](concerns.md)
 2. Project [template](../templates/project-template/)
-3. Recipes starting with [define-system-purpose](../recipes/define-system-purpose.md)
-4. Optional: robot-vacuum [Elan8 method tour](../../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md) (sibling repo)
+3. [Workflow](workflow.md) and [modeling guidance](README.md)
+4. Explore the [guard-stop example](../examples/guard-stop/README.md).

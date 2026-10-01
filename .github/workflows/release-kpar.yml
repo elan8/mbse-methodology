@@ -65,6 +65,6 @@ jobs:
           fi
           gh release create "${TAG}" \
             --title "Method libraries ${TAG}" \
-            --notes "KerML Project Archive (KPAR) release of Elan8 method libraries for Spec42 ${TAG}." \
+            --notes "KerML Project Archive (KPAR) release of Elan8 method libraries ${TAG}." \
             "${ARTIFACT}" \
             SHA256SUMS.txt

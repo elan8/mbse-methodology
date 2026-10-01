@@ -20,11 +20,6 @@ package MethodCore {
         enum evolution;
     }
 
-    enum def TailoringProfileKind {
-        enum small;
-        enum medium;
-        enum regulated;
-    }
 
     enum def EngineeringStageKind {
         enum context;
@@ -88,9 +83,8 @@ package MethodCore {
     }
 
     part def ProjectInfo {
-        doc /* Project-level record of how the Elan8 Method is tailored for this model. */
+        doc /* Project name and notes. StageDisposition records tailoring independently for each stage. */
         attribute projectName : String;
-        attribute profile : TailoringProfileKind;
         attribute notes : String;
     }
 }

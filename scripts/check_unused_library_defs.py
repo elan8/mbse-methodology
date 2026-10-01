@@ -6,14 +6,12 @@ Scope, deliberately: only `metadata def`, `part def`, `view def`, and
 would type by name (`@Foo { ... }`, `part x : Foo`, `: FooView`, `satisfy
 FooViewpoint`). Two things are excluded on purpose:
 
-- `enum def ...Kind` and `attribute def`: supporting types an author never
-  spells out directly (nobody writes `attribute x : Identifier` in a
-  recipe; they write `@RequirementIdentity { requirementId = "..."; }` and
-  the Identifier type is exercised transitively). Checking those would only
-  produce false positives.
+- `enum def ...Kind` and `attribute def`: supporting types may be
+  exercised through metadata and other definitions rather than named by
+  a consumer directly. Checking those would produce false positives.
 - bare `concern` declarations: concern names are lowercase words
   (`scenario`, `architecture`, `traceability`, ...) that coincidentally
-  appear all over the prose in docs/recipes regardless of whether the
+  appear all over the prose in documentation regardless of whether the
   actual SysML `concern` element is ever framed by anything -- a
   reference-count check on them is closer to noise than signal. The
   `viewpoint` that frames a concern is the externally-meaningful unit.
@@ -39,7 +37,7 @@ LIBRARY_DIR = REPO_ROOT / "library"
 # Search these trees for real usage. library/ itself is excluded: a
 # definition referencing a sibling definition inside the library doesn't
 # count as "earning its keep" -- an outside project has to use it.
-SEARCH_DIRS = ["recipes", "examples", "templates", "docs"]
+SEARCH_DIRS = ["examples", "templates", "docs"]
 
 # Definitions that are legitimate internal building blocks with no expected
 # direct outside reference. Keep this list short and justified; it is a
@@ -95,7 +93,7 @@ def main() -> int:
         for name, path in unused:
             print(f"  {name}  ({path.relative_to(REPO_ROOT)})")
         print(
-            "\nEither wire it into a recipe/example/template, add it to "
+            "\nEither wire it into a example/template/document, add it to "
             "ALLOWLIST in this script with a one-line justification, or "
             "remove it -- see this script's docstring."
         )

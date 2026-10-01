@@ -1,8 +1,8 @@
-# Spec42 quality-rule contract
+# Quality diagnostic contract
 
-**Status:** contracted / **not implemented** in Spec42 yet.
+**Status:** proposed diagnostic behavior; implementation depends on the chosen modeling environment.
 
-This document defines diagnostics Spec42 should eventually emit for Elan8 Method projects. Until implemented, treat them as review checklists (see [quality-rules.md](quality-rules.md)).
+This document defines tool-independent diagnostic expectations for Elan8 Method projects. Until a chosen validator implements them, treat them as review checklists (see [quality-rules.md](quality-rules.md)).
 
 ---
 
@@ -19,9 +19,9 @@ This document defines diagnostics Spec42 should eventually emit for Elan8 Method
 **Bad (illustrative):**
 
 ```sysml
-requirement stopOnCliff {
+requirement removeDriveEnable {
     @StatusInfo { status = StatusKind::done; }
-    doc /* Shall stop after cliff detection. */
+    doc /* Shall remove drive enable on guard opening. */
     // no subject
 }
 ```
@@ -29,10 +29,10 @@ requirement stopOnCliff {
 **Good:**
 
 ```sysml
-requirement stopOnCliff {
-    subject robot : CleaningRobot;
+requirement removeDriveEnable {
+    subject controller : Controller;
     @StatusInfo { status = StatusKind::done; }
-    require constraint { robot.cliffReactionTime <= 100 [ms] }
+    require constraint { controller.responseTime <= 0.200 [s] }
 }
 ```
 
@@ -68,8 +68,8 @@ requirement stopOnCliff {
 
 ---
 
-## Implementation notes (for Spec42 later)
+## Implementation guidance
 
 - Prefer analyzing the KerML/SysML semantic graph, not regex on source text.
-- Respect project tailoring: `small` profile may narrow which requirements are “critical.”
-- Do not add non-executable YAML rule catalogs in repos until Spec42 can run them.
+- Define requirement criticality from the relevant hazards and assurance obligations; omitting a stage does not waive verification of critical requirements.
+- Use executable checks where supported; otherwise make the review checklist explicit.

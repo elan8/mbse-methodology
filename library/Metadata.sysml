@@ -1,12 +1,9 @@
 package MethodMetadata {
     doc /*
-      Annotates standard SysML requirement usages with engineering role and
-      stable identity. Does not introduce custom requirement definitions.
+      Annotates standard SysML requirement usages with engineering role. Does not introduce custom requirement definitions.
 
-      Formerly RequirementMetadata in sysml-domain-libraries.
+      Requirement identifiers use native SysML short names.
     */
-
-    private import ScalarValues::String;
 
     enum def RequirementRoleKind {
         enum user;
@@ -28,9 +25,4 @@ package MethodMetadata {
         attribute role : RequirementRoleKind;
     }
 
-    metadata def RequirementIdentity {
-        doc /* Optional stable identifier for a requirement usage (e.g. USR-001, SYS-042). */
-        :> annotatedElement : SysML::RequirementUsage;
-        attribute requirementId : String;
-    }
 }

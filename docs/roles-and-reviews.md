@@ -26,7 +26,7 @@ One person may hold several roles on a small project.
 
 ## Pull request as the review mechanism
 
-- Every engineering increment lands as a PR with model diffs (and Spec42 check).
+- Every engineering increment lands as a PR with model diffs (and model validation).
 - PR description states: concern(s), increment objective, decisions, residual risks.
 - Use CODEOWNERS for package-path ownership; do not encode owners in SysML metadata.
 - Do not duplicate full approval workflows inside SysML; keep process approval in Git/PR.

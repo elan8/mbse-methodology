@@ -17,6 +17,6 @@ Terms as used in the Elan8 Method. Where SysML v2 already defines a word, that m
 | **Evidence URI** | Reference (`VerificationEvidence.evidenceUri`) to external proof. | Storing full test datasets inside the SysML model. |
 | **View / viewpoint** | Projection of the model for stakeholders; viewpoint states framed concerns. | A separate “diagram file” that is itself the source of truth. |
 | **Definition / usage** | Type vs occurrence in SysML v2. | UML class vs instance only — usages are broader (roles, configurations). |
-| **Tailoring profile** | `small` / `medium` / `regulated` recorded in `ProjectInfo`. | Skipping all modeling for “agile.” |
-| **Domain library** | Vocabulary for things in the system (`sysml-domain-libraries`). | Method libraries (`mbse-methodology`). |
+| **Stage tailoring** | A per-stage choice to use it separately, mark it not applicable, or merge its content into another stage, recorded with `StageDisposition`. | A project-wide size preset or silently empty folders. |
+| **Domain library** | Vocabulary for things in the system, supplied locally or through selected domain libraries. | Method libraries (`mbse-methodology`). |
 | **Method library** | How Elan8 expects models to be authored and assured (`Elan8Method` packages). | Product physics or protocol vocabularies. |
