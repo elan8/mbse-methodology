@@ -65,7 +65,7 @@ flowchart TB
 - **Increment** = reviewable work unit in Git/PR ([engineering-increments.md](docs/engineering-increments.md)).
 - **Concerns** = continuous perspectives, not phases ([concerns.md](docs/concerns.md)).
 - **Evidence chain** = Claim → Evidence → Confidence → Decision ([evidence-and-claims.md](docs/evidence-and-claims.md)).
-- **Showcase** = vacuum cliff-safe-stop increment ([tour tour](../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md)).
+- **Showcase** = vacuum cliff-safe-stop increment ([method tour](../sysml-robot-vacuum-cleaner/docs/ELAN8_METHOD_TOUR.md)).
 
 ---
 
@@ -87,6 +87,7 @@ mbse-methodology/
 | SysML v2 primer | [docs/sysml-v2-primer.md](docs/sysml-v2-primer.md) |
 | Principles | [docs/principles.md](docs/principles.md) |
 | Six concerns | [docs/concerns.md](docs/concerns.md) |
+| Requirements | [docs/requirements.md](docs/requirements.md) |
 | Engineering increments | [docs/engineering-increments.md](docs/engineering-increments.md) |
 | Workflow loop | [docs/workflow.md](docs/workflow.md) |
 | Evidence and claims | [docs/evidence-and-claims.md](docs/evidence-and-claims.md) |
@@ -125,24 +126,30 @@ mbse-methodology/
 
 - Eight principles and six continuous engineering concerns
 - Soft abstraction-level guidance (operational / system / logical / physical)
-- SysML method libraries under `Elan8::Method`
-- Project template with numbered concern folders
+- SysML method libraries under `Elan8Method`
+- Project template with seven fixed engineering stages and supporting packages
 - Full modeling recipes (product-variant recipe remains a short stub)
 - Quality-rule checklist plus a contracted Spec42 diagnostic contract (not yet implemented in Spec42)
-- SE pattern examples and a pointer to the robot-vacuum showcase
+- SE pattern examples and a pointer to the robot-vacuum traceability showcase (its earlier layout still needs migration)
 
 Domain and technical vocabulary lives in sibling `sysml-domain-libraries`, not here.
 
 ---
 
+## Where requirements fit
+
+Requirements run through all seven stages and connect stakeholder intent to design and verification. Keep stakeholder needs and all requirement levels together in `model/05_requirements`. Stage packages reference these requirements and their subjects remain the relevant system, function, interface, or component. Each requirement has one canonical model location, with relationships and views connecting it to the other stages.
+
+See [requirements](docs/requirements.md) for placement, traceability, and review guidance. Requirements use native SysML v2 constructs, with optional role and identity annotations from `Metadata`. Evidence references belong to `Verification`.
+
 ## SysML libraries
 
 Canonical packages (import these in new models):
 
-- `Elan8::Method::Requirements`
-- `Elan8::Method::Metadata`
-- `Elan8::Method::Core`
-- `Elan8::Method::Viewpoints`
+- `Elan8Method::Verification`
+- `Elan8Method::Metadata`
+- `Elan8Method::MethodCore`
+- `Elan8Method::Viewpoints`
 
 See [library-migration.md](docs/library-migration.md) for the move out of domain libraries.
 

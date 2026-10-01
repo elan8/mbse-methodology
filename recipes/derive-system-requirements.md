@@ -6,9 +6,13 @@ Which testable system requirements follow from stakeholder needs and scenarios?
 
 ## Expected input
 
-- User needs with `@RequirementRole { role = user; }`
+- User needs with `@RequirementRole { role = RequirementRoleKind::user; }`
 - At least one operational scenario
 - Design limits or quantitative targets when known
+
+## Model placement
+
+Keep stakeholder needs, system-boundary requirements, and more specific functional, interface, and component requirements together in `05_requirements`. Their subjects reference the relevant stage elements. Keep one canonical usage per obligation and link to it from scenarios, satisfaction claims, and verification cases. See [requirements guidance](../docs/requirements.md).
 
 ## Recommended steps
 
@@ -23,7 +27,7 @@ Which testable system requirements follow from stakeholder needs and scenarios?
 
 - `requirement` with `subject`, `assume`, `require constraint`
 - `#derivation connection`
-- `Elan8::Method::Metadata`, `Elan8::Method::Requirements`
+- `Elan8Method::Metadata`
 - `ModelingMetadata::StatusInfo`
 - ISQ/SI quantity types
 
@@ -53,23 +57,23 @@ Cross-link: robot-vacuum `StakeholderNeeds` → `SystemRequirements` cliff/safet
 ```sysml
 package SystemRequirements {
     private import ISQ::*;
-    import Elan8::Method::Metadata::*;
-    import Elan8::Method::Requirements::*;
-    import ModelingMetadata::*;
+    private import Elan8Method::Metadata::*;
+    private import ModelingMetadata::*;
+    private import RequirementDerivation::*;
 
     part def CleaningRobot;
 
     requirement operateSafely {
-        @RequirementRole { role = user; }
+        @RequirementRole { role = RequirementRoleKind::user; }
         @RequirementIdentity { requirementId = "USR-SAFE-001"; }
         doc /* The product shall be safe for unattended operation. */
     }
 
     requirement stopOnCliff {
         subject robot : CleaningRobot;
-        @RequirementRole { role = safety; }
+        @RequirementRole { role = RequirementRoleKind::safety; }
         @RequirementIdentity { requirementId = "SYS-SAFE-010"; }
-        @StatusInfo { status = inProgress; }
+        @StatusInfo { status = StatusKind::open; }
         attribute maxReactionTime : TimeValue = 200 [ms];
         require constraint { robot.cliffReactionTime <= maxReactionTime }
         doc /* The robot shall stop after cliff detection within maxReactionTime. */

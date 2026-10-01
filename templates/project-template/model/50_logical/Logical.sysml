@@ -5,9 +5,9 @@ package Logical {
       logical-part tree is optional; allocating behavior directly to physical
       parts is a valid tailoring choice (see StageDisposition mergedIntoAnotherStage).
     */
-    @StageDisposition { stage = logicalArchitecture; status = applicable; }
+    @StageDisposition { stage = EngineeringStageKind::logicalArchitecture; status = StageStatusKind::applicable; }
 
-    import Elan8::Method::Core::*;
+    private import Elan8Method::MethodCore::*;
 
     // TODO: add logical responsibilities, collaborations, and interfaces
 }

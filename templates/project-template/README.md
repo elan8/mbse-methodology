@@ -7,7 +7,8 @@ Copy this folder as the starting point for a new SysML v2 project.
 ```text
 model/
   00_project/       project metadata, tailoring, conventions
-  10_context/       stakeholders, concerns, operational context, top-level needs
+  05_requirements/  stakeholder needs and canonical requirements at all levels
+  10_context/       stakeholders, concerns, operational context
   20_usecases/      actor-facing use cases, operational scenarios
   30_capabilities/  mission-level capabilities realized by use cases
   40_functions/     system-level functional decomposition (black-box)
@@ -20,8 +21,9 @@ model/
   Root.sysml        workspace import hub
 ```
 
-Every stage package from `10_context` through `80_verification` carries a
-`StageDisposition` metadata usage (`Elan8::Method::Core::StageDisposition`).
+The seven stage packages (`10_context` through `60_physical`, plus
+`80_verification`) each carry a
+`StageDisposition` metadata usage (`Elan8Method::MethodCore::StageDisposition`).
 The fixed structure is always present; a project tailors *content*, not the
 folder layout. If a stage genuinely doesn't apply (for example, `capabilities`
 on a straightforward technical module), set `status = notApplicable` (or
@@ -30,15 +32,23 @@ don't just leave the package empty. This keeps the shape consistent across
 projects for review and automated tooling while still letting teams skip a
 stage deliberately.
 
+Requirements (`05_requirements`), analysis (`70_analysis`), views (`90_views`), project information, and local libraries support the stages; they are not additional engineering stages and do not carry `StageDisposition`.
+
+## Requirements within the stages
+
+Keep all canonical requirements in `05_requirements`. The template starts with `StakeholderNeeds.sysml` and `SystemRequirements.sysml`. Add `FunctionalRequirements.sysml`, `InterfaceRequirements.sysml`, and `ComponentRequirements.sysml` there when needed, and import their packages in `Root.sysml`. Stage packages reference requirements instead of copying them; requirement subjects identify the constrained elements wherever those elements live.
+
+The number sets browsing order; Requirements is a supporting package, not an eighth stage. Tailoring stages does not move requirements out of this shared home. See [requirements guidance](../../docs/requirements.md).
+
 ## Spec42 library paths
 
 From a sibling checkout:
 
 ```sh
-spec42 --library-path ../../../library \
-       --library-path ../../../../sysml-domain-libraries/domain \
-       --library-path ../../../../sysml-domain-libraries/technical \
-       --library-path ../../../../sysml-domain-libraries/generic \
+spec42 --library-path ../../library \
+       --library-path ../../../sysml-domain-libraries/domain \
+       --library-path ../../../sysml-domain-libraries/technical \
+       --library-path ../../../sysml-domain-libraries/generic \
        check .
 ```
 

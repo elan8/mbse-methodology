@@ -16,14 +16,14 @@ Which responsibilities and collaborations are needed before (or apart from) choo
 3. Define the main logical interfaces (ports/items) between responsibilities.
 4. `allocate` actions to parts when a realizing structure exists (or will exist).
 5. Record open technology choices as assumptions or defer to a decision recipe.
-6. Tag with `@EngineeringConcern { concern = architecture; }` when useful.
+6. Tag with `@EngineeringConcern { 'concern' = EngineeringConcernKind::architecture; }` when useful.
 7. Expose the decomposition in a view that satisfies `ArchitectureViewpoint` when it needs review.
 
 ## SysML v2 concepts used
 
 - `action` / `part` / `port` / `allocate`
-- `Elan8::Method` metadata
-- `Elan8::Method::Viewpoints::ArchitectureViewpoint`
+- `Elan8Method` metadata
+- `Elan8Method::Viewpoints::ArchitectureViewpoint`
 - See [abstraction-levels](../docs/abstraction-levels.md) for what "logical" vs "physical" means here
 
 ## Minimum required output
@@ -64,7 +64,7 @@ Cross-link: robot-vacuum `Architecture::robotSystem` allocates `operate` steps t
 When the decomposition is stable enough to review, expose it:
 
 ```sysml
-import Elan8::Method::Viewpoints::*;
+private import Elan8Method::Viewpoints::*;
 
 view robotArchitectureOverview : ArchitectureView {
     expose RobotSystem;

@@ -6,6 +6,7 @@
 | [principles.md](principles.md) | Eight core principles |
 | [concerns.md](concerns.md) | Six continuous engineering concerns |
 | [engineering-increments.md](engineering-increments.md) | Increment as Git/PR work unit (no process metadata) |
+| [requirements.md](requirements.md) | Requirements across stages, traceability, and review |
 | [workflow.md](workflow.md) | Frame → Explore → Architect → Evaluate → Verify → Evolve |
 | [evidence-and-claims.md](evidence-and-claims.md) | Claim → Evidence → Confidence → Decision |
 | [glossary.md](glossary.md) | Method vs SysML terminology |

@@ -1,49 +1,44 @@
-package Elan8 {
-    package Examples {
-        package Method {
-            package MinimalTraceability {
-                doc /* Teaching fixture: derive, satisfy, and verify with Elan8 requirement libraries. */
+package MinimalTraceability {
+    doc /* Teaching fixture: derive, satisfy, and verify with Elan8 requirement libraries. */
 
-                import Elan8::Method::Requirements::*;
-                import Elan8::Method::Metadata::*;
-                import ModelingMetadata::*;
+    private import ScalarValues::String;
+    private import Elan8Method::Metadata::*;
+    private import ModelingMetadata::*;
+    private import RequirementDerivation::*;
 
-                part def DeliverySystem {
-                    attribute systemName : Name;
-                }
+    part def DeliverySystem {
+        attribute systemName : String;
+    }
 
-                part notificationService : DeliverySystem {
-                    attribute :>> systemName = "notification-service";
-                }
+    part notificationService : DeliverySystem {
+        attribute :>> systemName = "notification-service";
+    }
 
-                requirement notifyCustomer {
-                    @RequirementRole { role = user; }
-                    @RequirementIdentity { requirementId = "USR-001"; }
-                    @StatusInfo { status = done; }
-                    doc /* Customers shall be notified when an order changes state. */
-                }
+    requirement notifyCustomer {
+        @RequirementRole { role = RequirementRoleKind::user; }
+        @RequirementIdentity { requirementId = "USR-001"; }
+        @StatusInfo { status = StatusKind::done; }
+        doc /* Customers shall be notified when an order changes state. */
+    }
 
-                requirement sendOrderUpdate {
-                    @RequirementRole { role = functional; }
-                    @RequirementIdentity { requirementId = "SYS-001"; }
-                    @StatusInfo { status = done; }
-                    doc /* The delivery system shall send an order update notification after state changes. */
-                }
+    requirement sendOrderUpdate {
+        @RequirementRole { role = RequirementRoleKind::functional; }
+        @RequirementIdentity { requirementId = "SYS-001"; }
+        @StatusInfo { status = StatusKind::done; }
+        doc /* The delivery system shall send an order update notification after state changes. */
+    }
 
-                #derivation connection {
-                    end #original ::> notifyCustomer;
-                    end #derive ::> sendOrderUpdate;
-                }
+    #derivation connection {
+        end #original ::> notifyCustomer;
+        end #derive ::> sendOrderUpdate;
+    }
 
-                satisfy sendOrderUpdate by notificationService;
+    satisfy sendOrderUpdate by notificationService;
 
-                verification verifyOrderUpdateNotification {
-                    subject systemUnderTest : DeliverySystem;
-                    objective {
-                        verify sendOrderUpdate;
-                    }
-                }
-            }
+    verification verifyOrderUpdateNotification {
+        subject systemUnderTest : DeliverySystem;
+        objective {
+            verify sendOrderUpdate;
         }
     }
 }

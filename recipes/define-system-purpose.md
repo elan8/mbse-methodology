@@ -14,15 +14,15 @@ Why does the system exist, and what outcomes must it achieve?
 
 1. State the system of interest in one sentence.
 2. List primary stakeholders and their success criteria.
-3. Capture top-level needs as `requirement` usages with `@RequirementRole { role = user; }`.
+3. Capture top-level needs as `requirement` usages with `@RequirementRole { role = RequirementRoleKind::user; }`.
 4. Record open risks or drivers with `@Risk` / `@Assumption` if already known.
-5. Tag the purpose package or key elements with `@EngineeringConcern { concern = purpose; }`.
+5. Tag the purpose package or key elements with `@EngineeringConcern { 'concern' = EngineeringConcernKind::purpose; }`.
 
 ## SysML v2 concepts used
 
 - `requirement` usages
-- `Elan8::Method::Metadata` (`@RequirementRole`, `@RequirementIdentity`)
-- `Elan8::Method` (`@EngineeringConcern`, optional `@Assumption` / `@Risk`)
+- `Elan8Method::Metadata` (`@RequirementRole`, `@RequirementIdentity`)
+- `Elan8Method` (`@EngineeringConcern`, optional `@Assumption` / `@Risk`)
 - `doc` comments for narrative purpose
 
 ## Minimum required output
@@ -47,17 +47,17 @@ Why does the system exist, and what outcomes must it achieve?
 
 ```sysml
 package Context {
-    import Elan8::Method::Metadata::*;
-    import Elan8::Method::Core::*;
-    import ModelingMetadata::*;
+    private import Elan8Method::Metadata::*;
+    private import Elan8Method::MethodCore::*;
+    private import ModelingMetadata::*;
 
     doc /* Purpose: enable unattended floor cleaning in a home without damaging furniture or people. */
 
     requirement cleanFloorsUnattended {
-        @RequirementRole { role = user; }
+        @RequirementRole { role = RequirementRoleKind::user; }
         @RequirementIdentity { requirementId = "USR-PURPOSE-001"; }
-        @EngineeringConcern { concern = purpose; }
-        @StatusInfo { status = inProgress; }
+        @EngineeringConcern { 'concern' = EngineeringConcernKind::purpose; }
+        @StatusInfo { status = StatusKind::open; }
         doc /* The household shall obtain clean floors with minimal operator intervention. */
     }
 }

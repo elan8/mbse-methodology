@@ -6,9 +6,9 @@ package Capabilities {
       layer — set StageDisposition to notApplicable with a rationale instead of
       leaving this package silently empty.
     */
-    @StageDisposition { stage = capabilities; status = applicable; }
+    @StageDisposition { stage = EngineeringStageKind::capabilities; status = StageStatusKind::applicable; }
 
-    import Elan8::Method::Core::*;
+    private import Elan8Method::MethodCore::*;
 
     // TODO: add capabilities and their realizing use cases
 }

@@ -1,8 +1,8 @@
-package UseCases {
+package ProjectUseCases {
     doc /* Actor-facing use cases and operational scenarios realizing capabilities. See recipe: model-operational-scenario. */
-    @StageDisposition { stage = useCases; status = applicable; }
+    @StageDisposition { stage = EngineeringStageKind::useCases; status = StageStatusKind::applicable; }
 
-    import Elan8::Method::Core::*;
+    private import Elan8Method::MethodCore::*;
 
     // TODO: add use cases and operational scenarios
 }

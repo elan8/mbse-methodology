@@ -1,7 +1,7 @@
 package Analysis {
     doc /* Analysis cases, calculations, assumptions, and trade studies. */
 
-    import Elan8::Method::Core::*;
+    private import Elan8Method::MethodCore::*;
 
     // TODO: add analysis cases and explicit assumptions
 }

@@ -1,9 +1,9 @@
 package Verification {
     doc /* Verification cases, pass criteria, and evidence references. */
-    @StageDisposition { stage = verification; status = applicable; }
+    @StageDisposition { stage = EngineeringStageKind::'verification'; status = StageStatusKind::applicable; }
 
-    import Elan8::Method::Requirements::*;
-    import Elan8::Method::Core::*;
+    private import Elan8Method::Verification::*;
+    private import Elan8Method::MethodCore::*;
 
     // TODO: add verification cases that verify critical requirements
 }

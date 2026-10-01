@@ -41,7 +41,7 @@ def library_path_args() -> list[str]:
 
     Disables the domain/method managed KPAR libraries so they don't collide
     with the raw --library-path sources below (both resolve the same
-    Elan8::Method::* namespace and would otherwise be reported ambiguous).
+    Elan8Method::* namespace and would otherwise be reported ambiguous).
     """
     args = [
         "--disable-kpar-library", "domain",
@@ -50,6 +50,9 @@ def library_path_args() -> list[str]:
     ]
     domain_libs = REPO_ROOT.parent / "sysml-domain-libraries"
     if domain_libs.is_dir():
+        if (domain_libs / "model" / "Elan8.sysml").is_file():
+            args += ["--library-path", str(domain_libs / "model")]
+            return args
         for sub in ("domain", "technical", "generic"):
             path = domain_libs / sub
             if path.is_dir():

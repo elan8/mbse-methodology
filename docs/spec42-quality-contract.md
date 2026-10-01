@@ -13,14 +13,14 @@ This document defines diagnostics Spec42 should eventually emit for Elan8 Method
 | Method rule | QR-REQ-01 |
 | Proposed diagnostic id | `elan8.req.missing_subject` |
 | Severity | error |
-| Trigger | A `requirement` usage that is considered approved (e.g. `@StatusInfo { status = done; }` or project-defined approved set) has no `subject` |
+| Trigger | A `requirement` usage that is considered approved (e.g. `@StatusInfo { status = StatusKind::done; }` or project-defined approved set) has no `subject` |
 | Out of scope | Draft/in-progress requirements; pure stakeholder need docs without approval |
 
 **Bad (illustrative):**
 
 ```sysml
 requirement stopOnCliff {
-    @StatusInfo { status = done; }
+    @StatusInfo { status = StatusKind::done; }
     doc /* Shall stop after cliff detection. */
     // no subject
 }
@@ -31,7 +31,7 @@ requirement stopOnCliff {
 ```sysml
 requirement stopOnCliff {
     subject robot : CleaningRobot;
-    @StatusInfo { status = done; }
+    @StatusInfo { status = StatusKind::done; }
     require constraint { robot.cliffReactionTime <= 100 [ms] }
 }
 ```
@@ -45,7 +45,7 @@ requirement stopOnCliff {
 | Method rule | QR-REQ-03 |
 | Proposed diagnostic id | `elan8.req.missing_verification` |
 | Severity | error |
-| Trigger | A requirement tagged critical/safety (e.g. `@RequirementRole { role = safety; }` or project criticality metadata) is not referenced by any verification case `objective { verify … }` |
+| Trigger | A requirement tagged critical/safety (e.g. `@RequirementRole { role = RequirementRoleKind::safety; }` or project criticality metadata) is not referenced by any verification case `objective { verify … }` |
 | Out of scope | User needs that are only derived further; deprecated requirements |
 
 **Bad:** safety system requirement with `satisfy` but no `verification` case that `verify`s it.

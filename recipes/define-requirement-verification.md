@@ -14,15 +14,15 @@ How will we demonstrate that a critical requirement is met?
 1. For each critical requirement, choose a method (test, analysis, inspection, demonstration).
 2. Create a `verification` case with `subject` and `objective { verify <requirement>; }`.
 3. State pass criteria in `doc` or constraints; link analysis when quantitative.
-4. Optionally add `VerificationEvidence` with an `evidenceUri` pointing outside the model.
+4. Optionally own a `VerificationEvidence` record inside the relevant verification case, with an `evidenceUri` pointing outside the model.
 5. Do not treat “verification case exists” as “passed” without a verdict/evidence process.
 6. Expose coverage across many requirements in a view that satisfies `VerificationReadinessViewpoint`.
 
 ## SysML v2 concepts used
 
 - `verification` case, `verify`
-- `Elan8::Method::Requirements::VerificationEvidence`
-- `Elan8::Method::Viewpoints::VerificationReadinessViewpoint` / `VerificationReadinessView`
+- `Elan8Method::Verification::VerificationEvidence`
+- `Elan8Method::Viewpoints::VerificationReadinessViewpoint` / `VerificationReadinessView`
 - Analysis cases feeding verification (robot-vacuum cliff thread)
 
 ## Minimum required output
@@ -40,7 +40,7 @@ How will we demonstrate that a critical requirement is met?
 ## Example
 
 ```sysml
-import Elan8::Method::Requirements::*;
+private import Elan8Method::Verification::*;
 
 verification verifyCliffSafeStop {
     subject robot : CleaningRobot;
@@ -48,18 +48,17 @@ verification verifyCliffSafeStop {
         verify stopOnCliff;
     }
     doc /* Pass: stop within maxSafeStopReactionTime under cliff fixture tests. */
-}
-
-part cliffStopEvidence : VerificationEvidence {
-    attribute :>> evidenceName = "Cliff fixture test report";
-    attribute :>> evidenceUri = "https://example.com/reports/cliff-stop-2026-09.pdf";
+    part cliffStopEvidence : VerificationEvidence {
+        attribute :>> evidenceName = "Cliff fixture test report";
+        attribute :>> evidenceUri = "https://example.com/reports/cliff-stop-2026-09.pdf";
+    }
 }
 ```
 
 Once several critical requirements have cases, expose coverage across all of them:
 
 ```sysml
-import Elan8::Method::Viewpoints::*;
+private import Elan8Method::Viewpoints::*;
 
 view verificationCoverage : VerificationReadinessView {
     satisfy VerificationReadinessViewpoint;

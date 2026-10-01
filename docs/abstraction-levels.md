@@ -43,8 +43,8 @@ choice recorded with `StageDisposition`:
   `part`) as needed.
 - A **parallel logical-part tree is optional**. Many projects allocate
   behavior directly to physical parts — in that case, set
-  `@StageDisposition { stage = logicalArchitecture; status =
-  mergedIntoAnotherStage; mergedInto = physicalArchitecture; rationale = "…";
+  `@StageDisposition { stage = EngineeringStageKind::logicalArchitecture; status =
+  mergedIntoAnotherStage; mergedInto = EngineeringStageKind::physicalArchitecture; rationale = "…";
   }` on `50_logical/Logical.sysml` rather than leaving it silently empty.
 - **Physical** means the selected implementation baseline when technology
   choices matter.

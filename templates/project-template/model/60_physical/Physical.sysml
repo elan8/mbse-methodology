@@ -5,9 +5,9 @@ package Physical {
       directly from functions) to physical parts is the required bridge — not
       mandatory duplication of the logical structure.
     */
-    @StageDisposition { stage = physicalArchitecture; status = applicable; }
+    @StageDisposition { stage = EngineeringStageKind::physicalArchitecture; status = StageStatusKind::applicable; }
 
-    import Elan8::Method::Core::*;
+    private import Elan8Method::MethodCore::*;
 
     // TODO: add physical parts, interfaces, and allocations
 }

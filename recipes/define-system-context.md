@@ -22,7 +22,7 @@ What is inside the system boundary, and which external actors or systems interac
 - `part def` / `part`
 - `port` / `interface` (lightweight)
 - `connection` / `flow`
-- `Elan8::Method::Viewpoints::MissionAndContextViewpoint`
+- `Elan8Method::Viewpoints::MissionAndContextViewpoint`
 
 ## Minimum required output
 
@@ -47,8 +47,8 @@ What is inside the system boundary, and which external actors or systems interac
 
 ```sysml
 package Context {
-    import Elan8::Method::Core::*;
-    import Elan8::Method::Viewpoints::*;
+    private import Elan8Method::MethodCore::*;
+    private import Elan8Method::Viewpoints::*;
 
     part def HouseholdUser;
     part def MobileApp;
@@ -56,7 +56,7 @@ package Context {
     part def FloorCleaningRobot;
 
     part context {
-        @EngineeringConcern { concern = purpose; }
+        @EngineeringConcern { 'concern' = EngineeringConcernKind::purpose; }
         part user : HouseholdUser;
         part app : MobileApp;
         part home : HomeEnvironment;

@@ -15,7 +15,7 @@ What end-to-end scenario must succeed, and which participants, actions, and flow
 2. Model the scenario as an `action def` (and a usage) with participants bound or referenced.
 3. Decompose into a small number of steps (`action` usages) with `first … then …` and `flow` where items move.
 4. Identify exceptional branches only when they change architecture or verification (see [model-degraded-behavior](model-degraded-behavior.md)).
-5. Tag with `@EngineeringConcern { concern = behavior; }`.
+5. Tag with `@EngineeringConcern { 'concern' = EngineeringConcernKind::behavior; }`.
 6. Name increment scenarios clearly; keep work-scope (which PR/increment) in Git, not in model metadata.
 7. Expose the scenario in a view that satisfies `ScenarioViewpoint`.
 
@@ -25,8 +25,8 @@ What end-to-end scenario must succeed, and which participants, actions, and flow
 - `flow`, succession (`first` / `then`)
 - `item` types for exchanged payloads
 - `use case` (optional wrapper)
-- `Elan8::Method::Viewpoints::ScenarioViewpoint`
-- `Elan8::Method::EngineeringConcern`
+- `Elan8Method::Viewpoints::ScenarioViewpoint`
+- `Elan8Method::MethodCore::EngineeringConcern`
 
 ## Minimum required output
 
@@ -52,15 +52,15 @@ Cross-link: robot-vacuum `cliffSafeStopGoldenThread`.
 
 ```sysml
 package Scenarios {
-    import Elan8::Method::Core::*;
-    import Elan8::Method::Viewpoints::*;
+    private import Elan8Method::MethodCore::*;
+    private import Elan8Method::Viewpoints::*;
 
     item def CliffObservation;
     item def StopCommand;
     item def StatusReport;
 
     action def CliffSafeStopScenario {
-        @EngineeringConcern { concern = behavior; }
+        @EngineeringConcern { 'concern' = EngineeringConcernKind::behavior; }
         doc /* When a cliff is sensed, the robot stops and reports status. */
 
         action senseCliff { out observation : CliffObservation; }

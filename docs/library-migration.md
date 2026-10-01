@@ -1,13 +1,13 @@
 # Library migration: systems-engineering → Elan8 Method
 
-**Status: complete.** There are no re-exports in `sysml-domain-libraries`.
+**Status: updated.** There are no re-exports in `sysml-domain-libraries`.
 
 ## What moved
 
 | Former location (sysml-domain-libraries)                               | Canonical location (mbse-methodology)      | Package rename                                         |
 | ---------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------ |
-| `generic/systems-engineering/requirements/RequirementManagement.sysml` | `library/Requirements.sysml` | `RequirementManagement` → `Elan8::Method::Requirements` |
-| `generic/systems-engineering/requirements/RequirementMetadata.sysml`   | `library/Metadata.sysml`   | `RequirementMetadata` → `Elan8::Method::Metadata`     |
+| `generic/systems-engineering/requirements/RequirementManagement.sysml` | `library/Verification.sysml` | Evidence → `Elan8Method::Verification`; generic text → `ScalarValues::String`; requirements → native SysML |
+| `generic/systems-engineering/requirements/RequirementMetadata.sysml`   | `library/Metadata.sysml`   | `RequirementMetadata` → `Elan8Method::Metadata`     |
 | `generic/systems-engineering/examples/…`                               | `examples/se-patterns/…`                   | same example package names                             |
 
 The `generic/systems-engineering/` tree has been **deleted**.
@@ -20,9 +20,10 @@ The `generic/systems-engineering/` tree has been **deleted**.
 ## Import rule
 
 ```sysml
-import Elan8::Method::Requirements::*;
-import Elan8::Method::Metadata::*;
-import Elan8::Method::Core::*;
+// Only when evidence records are needed:
+private import Elan8Method::Verification::*;
+private import Elan8Method::Metadata::*;
+private import Elan8Method::MethodCore::*;
 ```
 
 Do not import `RequirementManagement` or `RequirementMetadata` — those package names no longer exist.

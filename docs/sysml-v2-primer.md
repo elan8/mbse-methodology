@@ -36,10 +36,10 @@ requirement stopOnCliff {
 }
 ```
 
-Elan8 adds role and identity metadata (see `Elan8::Method::Metadata`):
+Elan8 adds role and identity metadata (see `Elan8Method::Metadata`):
 
 ```sysml
-@RequirementRole { role = safety; }
+@RequirementRole { role = RequirementRoleKind::safety; }
 @RequirementIdentity { requirementId = "SYS-SAFE-010"; }
 ```
 
@@ -67,13 +67,13 @@ Keep these as semantic model links, not path strings in attributes.
 ```sysml
 viewpoint MissionAndContextViewpoint { frame missionAndContext; }
 
-view contextOverview : GeneralView {
+view contextOverview : Views::View {
     satisfy MissionAndContextViewpoint;
     expose context;
 }
 ```
 
-Views **expose** existing elements; they must not duplicate handoff tables or restate the architecture. Elan8 provides five standard viewpoints in `Elan8::Method::Viewpoints`.
+Views **expose** existing elements; they must not duplicate handoff tables or restate the architecture. Elan8 provides five standard viewpoints in `Elan8Method::Viewpoints`.
 
 ## 7. Packages and libraries
 

@@ -66,16 +66,19 @@ Use the numbered folders as a checklist, not a waterfall:
 
 | Folder | Often touched in an increment |
 | --- | --- |
-| `10_context/` | Need, context, requirements |
+| `05_requirements/` | Stakeholder needs and system, functional, interface, or component requirements |
+| `10_context/` | Stakeholders, concerns, operational context |
 | `20_usecases/` | Use cases / operational scenarios |
 | `30_capabilities/` | Capabilities realized by the use cases |
-| `40_functions/` | System functional decomposition |
-| `50_logical/` | Logical responsibilities, interfaces |
-| `60_physical/` | Physical parts, ports, allocate |
+| `40_functions/` | System functions linked to functional requirements |
+| `50_logical/` | Logical responsibilities and interfaces linked to requirements |
+| `60_physical/` | Physical parts, ports, allocation, satisfaction of component requirements |
 | `70_analysis/` | Claims support (see [evidence-and-claims](evidence-and-claims.md)) |
 | `80_verification/` | Verification cases / evidence refs |
 | `90_views/` | Expose the increment’s spine |
 | `00_project/` | Only if tailoring (`ProjectInfo`) changes |
+
+Requirements are kept together in `05_requirements` and referenced across the stages; see [requirements](requirements.md) for canonical ownership and traceability.
 
 ## Working loop (per increment)
 

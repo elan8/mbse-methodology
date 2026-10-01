@@ -22,8 +22,8 @@ Which stakeholder concerns and risks must the design address, and who cares abou
 - `concern`
 - `stakeholder`
 - `requirement` with `frame concern …` (when appropriate)
-- `Elan8::Method` metadata
-- `Elan8::Method::Metadata`
+- `Elan8Method` metadata
+- `Elan8Method::Metadata`
 
 ## Minimum required output
 
@@ -46,8 +46,8 @@ Which stakeholder concerns and risks must the design address, and who cares abou
 
 ```sysml
 package StakeholderConcerns {
-    import Elan8::Method::Metadata::*;
-    import Elan8::Method::Core::*;
+    private import Elan8Method::Metadata::*;
+    private import Elan8Method::MethodCore::*;
 
     part def Homeowner;
     part homeowner : Homeowner;
@@ -59,9 +59,9 @@ package StakeholderConcerns {
     }
 
     requirement operateSafely {
-        @RequirementRole { role = user; }
+        @RequirementRole { role = RequirementRoleKind::user; }
         @RequirementIdentity { requirementId = "USR-SAFE-001"; }
-        @EngineeringConcern { concern = purpose; }
+        @EngineeringConcern { 'concern' = EngineeringConcernKind::purpose; }
         frame concern unattendedSafety;
         doc /* The product shall be safe for unattended operation in a typical home. */
     }
