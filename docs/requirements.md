@@ -77,7 +77,7 @@ For each requirement in an increment, review:
 - verification method, acceptance criteria, coverage, and evidence for critical obligations;
 - native short names where needed, ownership, and the baseline being reviewed.
 
-Use Git review and merge for acceptance of an engineering increment. Product lifecycle metadata may be used with project-defined meaning; it does not replace review or evidence. The [quality rules](quality-rules.md) distinguish automated checks from manual checklists and diagnostics that are only contracted.
+Use Git review and merge for acceptance of an engineering increment. Product lifecycle metadata may be used with project-defined meaning; it does not replace review or evidence. The [rule catalog](quality-rules.md) separates deterministic semantic checks, wording cues, hybrid checks and engineering judgment; its implementation status is explicit.
 
 Read [verification guidance](verification.md) and the [elevator walkthrough](../examples/elevator/README.md). Use [engineering increments](engineering-increments.md) to keep the chain coherent as requirements change.
 
@@ -96,3 +96,9 @@ For quantitative obligations, define the measured property, quantity type, unit,
 A satisfying element must conform to the requirement subject's type. Keep a reusable requirement subject typed but unbound when different design or verification contexts must supply their own subject. A fixed binding value on that subject cannot be overridden by a satisfaction claim. Use fixed instance bindings only when the requirement deliberately constrains that exact instance.
 
 A use case whose subject is an elevator service is not itself an elevator service. Frame the motivating concern in the use-case objective instead of claiming that the use case satisfies a requirement with an ElevatorService subject. The [elevator example](../examples/elevator/README.md) illustrates the distinction.
+
+## Requirement quality and review
+
+Use the [INCOSE-referenced rule catalog](quality-rules.md#relationship-to-incose-guidance) to review both individual obligations and the requirement set. Check source fidelity, appropriate scope, clear conditions and practical evaluation; then review set-level gaps and stakeholder outcomes. A typed subject, populated constraint or source link is useful structural evidence, not proof that the obligation is necessary, complete or feasible.
+
+Review the human-language statement together with its formal constraint, subject, units, assumptions and referenced conditions. Avoid applying prose-writing rules mechanically to SysML expressions or splitting one bounded obligation merely because it contains a conjunction. Optional LLM assistance can suggest clarification; accountable engineering review determines adequacy. See [implementation guidance](quality-diagnostic-contract.md#text-cues-and-optional-llm-assisted-review).

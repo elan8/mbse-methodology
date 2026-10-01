@@ -56,7 +56,7 @@ Use native SysML v2 constructs. Views expose canonical model content. Consequent
 - [examples/](examples/README.md): elevator model and focused SE pattern fixtures.
 - `scripts/`: repository model and library maintenance checks.
 
-Use the method library alongside matching standard SysML v2 libraries; examples require no external domain library or sibling repository. The method is tool-independent. Automated checks are useful where implemented, but successful parsing does not establish evidence validity or product fitness. See [quality rules](docs/quality-rules.md), [diagnostic expectations](docs/quality-diagnostic-contract.md) and [library migration](docs/library-migration.md).
+Use the method library alongside matching standard SysML v2 libraries; examples require no external domain library or sibling repository. The method is tool-independent. Automated checks are useful where implemented, but successful parsing does not establish evidence validity or product fitness. See the [rule catalog](docs/quality-rules.md) and [implementation guidance](docs/quality-diagnostic-contract.md) and [library migration](docs/library-migration.md).
 
 For background, read [principles](docs/principles.md), [evidence and claims](docs/evidence-and-claims.md), [roles and reviews](docs/roles-and-reviews.md), [method comparisons](docs/method-mapping.md) and the [glossary](docs/glossary.md).
 

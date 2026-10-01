@@ -18,6 +18,6 @@
 | [abstraction-levels.md](abstraction-levels.md) | Operational / system / logical / physical |
 | [tailoring.md](tailoring.md) | Use, merge or omit content according to the question |
 | [roles-and-reviews.md](roles-and-reviews.md) | Review responsibilities and Git acceptance |
-| [quality-rules.md](quality-rules.md) | Candidate quality rules |
-| [quality-diagnostic-contract.md](quality-diagnostic-contract.md) | Tool-independent quality diagnostic expectations |
+| [quality-rules.md](quality-rules.md) | Rule catalog: semantic, text-cue, hybrid and judgment checks |
+| [quality-diagnostic-contract.md](quality-diagnostic-contract.md) | Semantic algorithms, diagnostic contract and optional LLM review |
 | [library-migration.md](library-migration.md) | Namespace, package, and consumer import updates |
