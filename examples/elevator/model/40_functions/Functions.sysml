@@ -1,6 +1,6 @@
 package ElevatorFunctions {
     private import Elan8Method::MethodCore::*;
-    @StageDisposition { stage = EngineeringStageKind::functions; status = StageStatusKind::applicable; rationale = "Distinct content for the two-elevator example."; }
+
     private import ElevatorTypes::*;
     action registerCall : RegisterCall;
     action assignCar : AssignCar;

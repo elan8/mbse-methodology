@@ -7,7 +7,6 @@ package ProjectRoot {
     public import SystemRequirements::*;
     public import Context::*;
     public import ProjectUseCases::*;
-    public import Capabilities::*;
     public import Functions::*;
     public import Logical::*;
     public import Physical::*;

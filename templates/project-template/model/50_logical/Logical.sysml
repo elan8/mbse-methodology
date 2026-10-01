@@ -3,9 +3,8 @@ package Logical {
       Logical responsibilities and collaborations that realize the functions:
       logical actions/parts, interfaces, and internal allocations. A parallel
       logical-part tree is optional; allocating behavior directly to physical
-      parts is a valid tailoring choice (see StageDisposition mergedIntoAnotherStage).
+      parts is a valid tailoring choice (explain the merge in package documentation).
     */
-    @StageDisposition { stage = EngineeringStageKind::logicalArchitecture; status = StageStatusKind::applicable; }
 
     private import Elan8Method::MethodCore::*;
 

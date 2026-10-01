@@ -112,8 +112,7 @@ For each [engineering increment](engineering-increments.md):
 
 ## Related
 
-- [concerns.md](concerns.md) — Evidence and Verification
 - [engineering-increments.md](engineering-increments.md)
 - [quality-rules.md](quality-rules.md)
 - `Elan8Method::Viewpoints::TraceabilityViewpoint` / `TraceabilityView` — expose gaps and orphaned elements across the claim → evidence → decision chain
-- Example: [guard-stop analysis and verification](../examples/guard-stop/README.md).
+- Example: [elevator analysis and verification](../examples/elevator/README.md).

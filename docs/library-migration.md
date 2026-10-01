@@ -23,6 +23,14 @@ private import Elan8Method::Viewpoints::*;
 
 Import only the packages needed by a model. Update model imports and library versions together. Avoid loading an older archive alongside the current sources. External domain libraries are optional and must be configured explicitly.
 
-## Identity and tailoring simplification
+## Identity and lightweight working method
 
-Requirement identifiers now use native SysML short names. Move previous identity values to the requirement declaration's short name and remove the identity annotation. The project-wide tailoring enum and ProjectInfo profile attribute are removed; record applicability and merging independently on each stage using StageDisposition.
+Requirement identifiers use native SysML short names; remove duplicated identity metadata. The old project-wide profile is removed. The separate engineering-concern taxonomy and `EngineeringConcern`/`EngineeringConcernKind` are removed; retain native SysML stakeholder `concern` elements where they express engineering meaning.
+
+`StageDisposition`, `EngineeringStageKind` and `StageStatusKind` are removed. Replace useful merge/omission rationales with short package documentation or project notes, and remove obsolete imports and tags. Areas are navigation locations; increments are the working unit. No replacement concern or area-status metadata is introduced.
+
+## Six model areas
+
+Capabilities is no longer a separate area. Move useful outcomes, conditions, measures and scenario references from `30_capabilities` into `10_context`, update views and imports, and remove redundant groupings. Existing folder numbers remain stable. The six model areas are Context, Use Cases, Functions, Logical Architecture, Physical Architecture and Verification.
+
+The old concerns document is removed and the per-stage readiness table is replaced by [increment review](increment-review.md). Follow the three [working steps](workflow.md).

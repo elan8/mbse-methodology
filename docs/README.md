@@ -3,21 +3,21 @@
 | Document | Description |
 | --- | --- |
 | [sysml-v2-primer.md](sysml-v2-primer.md) | Short SysML v2 orientation for Elan8 users |
+| [model-areas.md](model-areas.md) | Six navigation areas and their practical questions |
 | [principles.md](principles.md) | Eight core principles |
-| [concerns.md](concerns.md) | Six continuous engineering concerns |
 | [engineering-increments.md](engineering-increments.md) | Increment as Git/PR work unit (no process metadata) |
-| [requirements.md](requirements.md) | Requirements across stages, traceability, and review |
+| [requirements.md](requirements.md) | Requirements across model areas, traceability, and review |
 | [behavior.md](behavior.md) | Actor-facing use cases, nominal and degraded scenarios |
 | [architecture.md](architecture.md) | Responsibilities, interfaces, alternatives, and decisions |
 | [verification.md](verification.md) | Verification, stakeholder validation, verdicts, evidence, and coverage |
-| [stage-readiness.md](stage-readiness.md) | Scoped review criteria for each stage and tailored content |
-| [workflow.md](workflow.md) | Frame → Explore → Architect → Evaluate → Verify → Evolve |
+| [increment-review.md](increment-review.md) | One review checklist for the connected answer |
+| [workflow.md](workflow.md) | State the question → Develop the connected model → Evaluate and review |
 | [evidence-and-claims.md](evidence-and-claims.md) | Claim → Evidence → Confidence → Decision |
 | [glossary.md](glossary.md) | Method vs SysML terminology |
 | [method-mapping.md](method-mapping.md) | Mapping to SYSMOD / OOSEM / Arcadia / INCOSE |
 | [abstraction-levels.md](abstraction-levels.md) | Operational / system / logical / physical |
-| [tailoring.md](tailoring.md) | Per-stage applicability, merging, and content depth |
-| [roles-and-reviews.md](roles-and-reviews.md) | Lightweight RACI and PR reviews |
+| [tailoring.md](tailoring.md) | Use, merge or omit content according to the question |
+| [roles-and-reviews.md](roles-and-reviews.md) | Review responsibilities and Git acceptance |
 | [quality-rules.md](quality-rules.md) | Candidate quality rules |
 | [quality-diagnostic-contract.md](quality-diagnostic-contract.md) | Tool-independent quality diagnostic expectations |
 | [library-migration.md](library-migration.md) | Namespace, package, and consumer import updates |

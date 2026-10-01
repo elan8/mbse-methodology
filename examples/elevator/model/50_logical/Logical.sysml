@@ -1,6 +1,6 @@
 package ElevatorLogical {
     private import Elan8Method::MethodCore::*;
-    @StageDisposition { stage = EngineeringStageKind::logicalArchitecture; status = StageStatusKind::applicable; rationale = "Distinct content for the two-elevator example."; }
+
     private import ElevatorTypes::*;
     part dispatchManager {
         port requests : ~RequestPort;

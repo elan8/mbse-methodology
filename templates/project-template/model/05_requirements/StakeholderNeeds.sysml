@@ -1,5 +1,5 @@
 package StakeholderNeeds {
-    doc /* Stakeholder-facing needs and desired outcomes. Canonical requirements live in 05_requirements; stage packages reference them. */
+    doc /* Stakeholder-facing needs and desired outcomes. Canonical requirements live in 05_requirements; model-area packages reference them. */
 
     private import Elan8Method::Metadata::*;
 

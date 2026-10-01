@@ -4,12 +4,11 @@ Terms as used in the Elan8 Method. Where SysML v2 already defines a word, that m
 
 | Term | Elan8 / SysML meaning | Not to be confused with |
 | --- | --- | --- |
-| **Engineering concern** | One of six continuous method perspectives (purpose, behavior, architecture, evidence, verification, evolution). Tagged with `@EngineeringConcern`. | A SysML `concern` element (stakeholder concern framed by viewpoints). Both may appear in one project. |
-| **SysML `concern`** | First-class model element stating a stakeholder interest, often framed by a viewpoint. | Elan8 engineering concern metadata. |
-| **Engineering increment** | A reviewable, vertical model change (typically one PR) that addresses one engineering question and connects the needed concerns through need → scenario → requirement → architecture → analysis → verification → decision. Scoped in Git/PR and clear naming — **not** SysML process metadata. | An agile sprint (timebox). An increment may span one or more sprints. “Golden thread” may appear as an example scenario name (e.g. `CliffSafeStopGoldenThread`), not as the method term. |
+| **SysML `concern`** | First-class model element stating a stakeholder interest, often framed by a viewpoint. | A mandatory classification of engineering work. |
+| **Engineering increment** | A reviewable, vertical model change (typically one PR) that addresses one engineering question and connects relevant engineering content through need → scenario → requirement → architecture → analysis → verification → decision. Scoped in Git/PR and clear naming — **not** SysML process metadata. | An agile sprint (timebox). An increment may span one or more sprints. “Golden thread” may appear as an example scenario name (e.g. `PassengerJourney`), not as the method term. |
 | **Logical** | Responsibilities expressed mainly as actions (and optionally parts) before or apart from technology choice. | SysML v1 BDD / “logical architecture package” as a mandatory duplicate tree. |
 | **Physical** | Selected implementation baseline (hardware, software, people, mechanics). | “Only CAD” — firmware and software parts count as physical realization. |
-| **Operational / system / logical / physical levels** | Orientation layers; not mandatory waterfall phases. | Arcadia OA/SA/LA/PA as fixed sequential gateways (similar ideas, softer rules here). |
+| **Operational / system / logical / physical levels** | Orientation layers; not mandatory waterfall phases. | A required sequence of model areas. |
 | **Stakeholder need** | Desired outcome in the stakeholder's operating or lifecycle context. | A specified system obligation. |
 | **Customer/stakeholder requirement** | Obligation supplied or agreed by a stakeholder, possibly contractual; preserve its source and scope. | Necessarily an informal or imprecise statement. |
 | **System requirement** | Engineering obligation on the system of interest, with explicit subject, conditions, and acceptance criteria. | A duplicate of every customer requirement. |
@@ -21,6 +20,6 @@ Terms as used in the Elan8 Method. Where SysML v2 already defines a word, that m
 | **Evidence URI** | Reference (`VerificationEvidence.evidenceUri`) to external proof. | Storing full test datasets inside the SysML model. |
 | **View / viewpoint** | Projection of the model for stakeholders; viewpoint states framed concerns. | A separate “diagram file” that is itself the source of truth. |
 | **Definition / usage** | Type vs occurrence in SysML v2. | UML class vs instance only — usages are broader (roles, configurations). |
-| **Stage tailoring** | A per-stage choice to use it separately, mark it not applicable, or merge its content into another stage, recorded with `StageDisposition`. | A project-wide size preset or silently empty folders. |
+| **Area tailoring** | Use content separately, merge it, or omit it with a short explanation in package or project notes. | Mandatory completion or disposition tags. |
 | **Domain library** | Vocabulary for things in the system, supplied locally or through selected domain libraries. | Method libraries (`mbse-methodology`). |
 | **Method library** | How Elan8 expects models to be authored and assured (`Elan8Method` packages). | Product physics or protocol vocabularies. |

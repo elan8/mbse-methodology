@@ -2,7 +2,7 @@
 
 Engineering question: how can two elevators provide predictable passenger journeys across six floors, retain reduced service during a single-car outage, and manage selected door-related conditions?
 
-This is the full-stage Elan8 example. It uses native SysML v2.0, standard quantities and verification verdicts, and the repository method library. Every engineering stage is applicable. The requirements, timings and observations are invented teaching data. The model is an architectural teaching baseline, not a certified elevator design or an executed simulation.
+This is the complete Elan8 example. It uses native SysML v2.0, standard quantities and verification verdicts, and the repository method library. All six model areas contain useful content. The requirements, timings and observations are invented teaching data. The model is an architectural teaching baseline, not a certified elevator design or an executed simulation.
 
 ## Scope and stakeholders
 
@@ -10,15 +10,14 @@ The system includes a journey-request panel, group dispatch controller, and two 
 
 Passengers need predictable journeys and protected boarding/travel. The building owner needs service continuity; maintainers need controlled isolation and recovery. Building structure, power supply, emergency services and the maintenance organization are external. Installation, accessibility, maintenance and recovery inform review, while detailed shaft mechanics, fire-service behavior, evacuation, power-loss rescue and regulatory compliance remain open follow-ups. “Protected” describes an engineering intent; no safety conclusion follows from the supplied cases.
 
-## Reading path through all seven stages
+## Reading path through the six model areas
 
-| Stage / supporting package | Model and engineering purpose |
+| Area / supporting package | Model and engineering purpose |
 | --- | --- |
-| Project | [Project.sysml](model/00_project/Project.sysml) records the scope. All seven stage packages declare `applicable`. |
+| Project | [Project.sysml](model/00_project/Project.sysml) records the scope. All six model areas contain useful content. |
 | Context | [Context.sysml](model/10_context/Context.sysml) identifies the system, passenger, owner, maintainer and three concerns. |
 | Shared requirements | [Needs.sysml](model/05_requirements/Needs.sysml), [StakeholderRequirements.sysml](model/05_requirements/StakeholderRequirements.sysml), and [SystemRequirements.sysml](model/05_requirements/SystemRequirements.sysml) preserve the three roles and explicit derivation. |
 | Use Cases | [UseCases.sysml](model/20_usecases/UseCases.sysml) models travel, door obstruction, and maintenance isolation, with typed scenario flows and sequencing. |
-| Capabilities | [Capabilities.sysml](model/30_capabilities/Capabilities.sysml) groups passenger transport, protected access, and reduced service, including the realizing use cases. |
 | Functions | [Functions.sysml](model/40_functions/Functions.sysml) declares six reusable responsibilities used by scenario steps. |
 | Logical Architecture | [Logical.sysml](model/50_logical/Logical.sysml) separates fleet dispatch, local car control, door management and protective supervision; allocates functions and models assignment/status exchanges. |
 | Physical Architecture | [Physical.sysml](model/60_physical/Physical.sysml) selects an installed two-car service, maps logical responsibilities to components and records design satisfaction claims. |
@@ -104,18 +103,40 @@ Real evidence must identify configuration, procedure, traffic/door/outage condit
 
 ## Change-impact walkthrough
 
-If the owner proposes CUST-001 <=15 s, preserve the source revision and clarify the profile first. Reassess passengerTransport, travel, DEC-001, dispatch assumptions, waitingEstimate and WaitingCheck. The current synthetic mean of 20 s would exceed the proposed limit by 5 s. SYS-001 need not change automatically: it is only one contributor. Investigate dispatch policy, car performance and doors before selecting a revised architecture. Keep previous evidence tied to its baseline and review applicability before reuse. Validate intended passenger outcomes separately.
+If the owner proposes CUST-001 <=15 s, preserve the source revision and clarify the profile first. Reassess the passenger-transport outcome in Context, travel, DEC-001, dispatch assumptions, waitingEstimate and WaitingCheck. The current synthetic mean of 20 s would exceed the proposed limit by 5 s. SYS-001 need not change automatically: it is only one contributor. Investigate dispatch policy, car performance and doors before selecting a revised architecture. Keep previous evidence tied to its baseline and review applicability before reuse. Validate intended passenger outcomes separately.
 
-If a car becomes unavailable, follow reducedService and isolateCar through ExcludeUnavailableCar and dispatch status to OutageCheck. Reassess throughput and stakeholder expectations; do not apply the two-car waiting profile to the degraded mode unchanged.
+If a car becomes unavailable, follow the reduced-service outcome in Context and isolateCar through ExcludeUnavailableCar and dispatch status to OutageCheck. Reassess throughput and stakeholder expectations; do not apply the two-car waiting profile to the degraded mode unchanged.
 
 ## Readiness and limitations
 
-Use [stage readiness](../../docs/stage-readiness.md) to review the scoped claims in each applicable stage. Critical obligations have planned checks and negative controls; selected typed collaboration paths and realization allocations are present. Detailed protective design, full interface coverage, execution evidence, accessible service criteria and lifecycle procedures remain open. All stages contain useful content; none is claimed complete for a real elevator project.
+Use [increment review](../../docs/increment-review.md) to review the connected answer to the current question. Critical obligations have planned checks and negative controls; selected typed collaboration paths and realization allocations are present. Detailed protective design, full interface coverage, execution evidence, accessible service criteria and lifecycle procedures remain open. All areas contain useful content; none is claimed complete for a real elevator project.
 
-Static checks validate parsing, resolution and represented relationships. They do not evaluate all expressions, establish physical feasibility, or substitute for engineering review. The compact [guard-stop example](../guard-stop/README.md) remains useful for learning a smaller tailored increment.
+Static checks validate parsing, resolution and represented relationships. They do not evaluate all expressions, establish physical feasibility, or substitute for engineering review.
 
 ## Baseline check record
 
-The initial example check covered 15 model documents with zero reported errors or warnings. The semantic export contained four use-case inclusions, fourteen allocations with source/target relationships, five satisfaction targets, and six verification targets (including the planned stakeholder review). Published connector endpoints resolved.
+The six-area example check covered 14 model documents with zero reported errors or warnings. The semantic export contained fourteen allocations with source/target relationships, five satisfaction targets, and six verification targets (including the planned stakeholder review). Published connector endpoints resolved.
 
 Independent arithmetic and Boolean review of the eleven supplied fixtures matched their documented expected outcomes. This review did not execute SysML verification cases or simulate elevator behavior. Documentation links and repository library-usage checks also passed. These checks establish the represented baseline within the available validator's coverage; they do not establish exhaustive language conformance or physical performance.
+
+## Optional capability reasoning in Context
+
+The Context documentation describes three operational abilities when that grouping helps review: passenger transport across six floors, protected boarding/travel, and continued transport with one car unavailable. These are outcomes and conditions, not another use-case layer. They connect respectively to travel, obstruction recovery, and isolation plus remaining-car journeys. The two-car waiting target is measurable; the reduced-service target and complete protection criteria remain unresolved. No separate Capabilities package or satisfaction claim is introduced.
+
+## Practical increment: one car unavailable
+
+**Question:** can passenger transport continue after car B is declared unavailable? **Useful answer:** subsequent assignments exclude B and use available car A, while reduced-service performance and maintenance-isolation gaps remain explicit.
+
+| File | Change or review needed in this increment |
+| --- | --- |
+| `10_context/Context.sysml` | State the continuity outcome, maintenance stakeholder and one-car operating condition. |
+| `05_requirements/Needs.sysml` and `SystemRequirements.sysml` | Connect NEED-003 to SYS-003; require exclusion of the unavailable car. Keep CUST-001's two-car traffic condition distinct. |
+| `20_usecases/UseCases.sysml` | Trace `isolateCar` from declaration through exclusion to subsequent dispatch; review continued passenger journeys. |
+| `40_functions/Functions.sysml` | Identify `excludeUnavailableCar` and `assignCar` as responsibilities. |
+| `50_logical/Logical.sysml` | Assign both responsibilities to dispatchManager; review the typed availability/status exchange. |
+| `60_physical/Physical.sysml` and `99_library/Types.sysml` | Follow realization to service.group and both car controllers; review the existing status links. No component change is inherently required. |
+| `80_verification/Verification.sysml` | Plan OutageCheck for the B-unavailable condition, with exclusion and erroneous-assignment fixtures. Separate expected verdicts from executed observations. |
+
+The current baseline contains this connected slice. The table describes its development/review scope; it does not assert that every listed file must change on every increment. Review existing links before adding content. Analysis may be needed to quantify degraded waiting time, but the current scope records that target as unresolved rather than inventing a result.
+
+**Answer supported by the model:** responsibilities, interfaces and planned checks account for exclusion and remaining-car service. **Evidence limit:** synthetic fixtures do not establish implemented dispatch behavior or passenger outcomes. **Next question:** what waiting time and isolation procedure are acceptable in reduced service? Use the single [increment checklist](../../docs/increment-review.md) to review this answer.

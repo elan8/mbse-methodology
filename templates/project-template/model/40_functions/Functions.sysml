@@ -4,7 +4,6 @@ package Functions {
       box, independent of how responsibilities are later allocated to logical or
       physical structure.
     */
-    @StageDisposition { stage = EngineeringStageKind::functions; status = StageStatusKind::applicable; }
 
     private import Elan8Method::MethodCore::*;
 

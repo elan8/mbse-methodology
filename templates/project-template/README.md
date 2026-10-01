@@ -10,7 +10,6 @@ model/
   05_requirements/  stakeholder needs and canonical requirements at all levels
   10_context/       stakeholders, concerns, operational context
   20_usecases/      actor-facing use cases, operational scenarios
-  30_capabilities/  mission-level capabilities realized by use cases
   40_functions/     system-level functional decomposition (black-box)
   50_logical/       logical responsibilities, collaborations, interfaces
   60_physical/      selected implementation baseline, physical allocations
@@ -21,24 +20,15 @@ model/
   Root.sysml        workspace import hub
 ```
 
-The seven stage packages (`10_context` through `60_physical`, plus
-`80_verification`) each carry a
-`StageDisposition` metadata usage (`Elan8Method::MethodCore::StageDisposition`).
-The fixed structure is always present; a project tailors *content*, not the
-folder layout. If a stage genuinely doesn't apply (for example, `capabilities`
-on a straightforward technical module), set `status = notApplicable` (or
-`mergedIntoAnotherStage` with a `mergedInto` target) and give a `rationale` —
-don't just leave the package empty. This keeps the shape consistent across
-projects for review and automated tooling while still letting teams skip a
-stage deliberately.
+The six model areas are navigation locations, not sequential steps. Use each separately, merge useful content into another area, or omit content when it adds no value. Explain intentional merges or omissions in package documentation or project notes; no tailoring metadata is required. The folders can remain as placeholders without duplicating model content.
 
-Requirements (`05_requirements`), analysis (`70_analysis`), views (`90_views`), project information, and local libraries support the stages; they are not additional engineering stages and do not carry `StageDisposition`.
+Requirements, analysis, views, project information and local vocabulary support the areas that need them. See [model areas](../../docs/model-areas.md) and [tailoring](../../docs/tailoring.md).
 
-## Requirements within the stages
+## Requirements within the model areas
 
-Keep all canonical requirements in `05_requirements`. The template starts with `StakeholderNeeds.sysml` and `SystemRequirements.sysml`, and includes an optional `StakeholderRequirements.sysml` placeholder for supplied or agreed obligations. If it is not needed, remove that file and its import from `Root.sysml`. Add `FunctionalRequirements.sysml`, `InterfaceRequirements.sysml`, and `ComponentRequirements.sysml` there when needed, and import their packages in `Root.sysml`. Stage packages reference requirements instead of copying them; requirement subjects identify the constrained elements wherever those elements live.
+Keep all canonical requirements in `05_requirements`. The template starts with `StakeholderNeeds.sysml` and `SystemRequirements.sysml`, and includes an optional `StakeholderRequirements.sysml` placeholder for supplied or agreed obligations. If it is not needed, remove that file and its import from `Root.sysml`. Add `FunctionalRequirements.sysml`, `InterfaceRequirements.sysml`, and `ComponentRequirements.sysml` there when needed, and import their packages in `Root.sysml`. Model-area packages reference requirements instead of copying them; requirement subjects identify the constrained elements wherever those elements live.
 
-The number sets browsing order; Requirements is a supporting package, not an eighth stage. Tailoring stages does not move requirements out of this shared home. See [requirements guidance](../../docs/requirements.md).
+The number sets browsing order; Requirements is a supporting package, not an additional model area. Tailoring areas does not move requirements out of this shared home. See [requirements guidance](../../docs/requirements.md).
 
 ## Library resolution
 
@@ -46,18 +36,13 @@ Load this model together with the repository's `library/` directory and standard
 
 See [library/README.md](../../library/README.md).
 
-## Next steps
+## Work on an increment
 
-1. Edit `00_project/Project.sysml` (name and notes), then choose a disposition for each stage.
-2. Follow the [workflow guidance](../../docs/workflow.md) and [full-stage elevator walkthrough](../../examples/elevator/README.md) or the smaller [guard-stop walkthrough](../../examples/guard-stop/README.md).
-3. Grow use cases, capabilities, functions, logical/physical architecture, and
-   verification as vertical increments. Set `StageDisposition` to
-   `notApplicable` or `mergedIntoAnotherStage` (with rationale) for any stage
-   your project tailors away.
+1. State an engineering question, scope and useful-answer criteria in a PR or working note.
+2. Develop the connected model in the areas needed for the answer; update `00_project/Project.sysml` with the project name and relevant notes.
+3. Evaluate the answer and review the change using the [increment checklist](../../docs/increment-review.md).
 
-## Reviewing an increment
-
-Use the [stage readiness criteria](../../docs/stage-readiness.md) for the content touched by the increment. Keep stakeholder validation plans and evidence alongside verification in `80_verification`; reference canonical needs and scenarios rather than copying them. Review significant scenario paths through allocated functions and interfaces, and revisit their evidence when the baseline changes. See [verification and validation](../../docs/verification.md).
+Follow the [working steps](../../docs/workflow.md) and [elevator example](../../examples/elevator/README.md#practical-increment-one-car-unavailable). Keep verification and stakeholder validation alongside each other in `80_verification`, referencing canonical needs and requirements. Review evidence applicability when the baseline changes.
 
 ## Supplied and derived requirements
 

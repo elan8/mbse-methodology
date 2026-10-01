@@ -8,7 +8,7 @@ For each critical requirement, identify the method (test, analysis, inspection, 
 
 A verification definition describes the method and acceptance expression. A case usage identifies the subject and supplies observations for a configuration and condition. Its verdict is the evaluated outcome; evidence establishes where the observations came from. A static model check does not execute a physical test or establish that a verdict is true.
 
-The [guard-stop verification](../examples/guard-stop/model/80_verification/Verification.sysml) references the canonical requirement and its response-time limit. It uses standard `VerificationCases::PassIf` over supplied observations. Nominal and degraded synthetic inputs have expected passing verdicts; a late response is a negative control. These fixtures are teaching data, not hardware evidence.
+The [elevator verification](../examples/elevator/model/80_verification/Verification.sysml) references the canonical requirement and its response-time limit. It uses standard `VerificationCases::PassIf` over supplied observations. Synthetic registration and obstruction observations include passing and late-response negative controls. These fixtures are teaching data, not hardware evidence.
 
 When validating a verdict expression, consider the exact acceptance boundary, just-over-limit values, incorrect output, and missing or invalid conditions. State when a result should be inconclusive or erroneous rather than forcing every situation into pass/fail.
 
@@ -30,9 +30,9 @@ Verification asks whether the system meets its specified requirements. Stakehold
 
 Plan both questions when framing an increment. For validation, identify the stakeholder need, representative lifecycle scenario, participating people and external systems, outcome measure, conditions, and evidence needed. Review conflicting needs and agree the success criteria with relevant stakeholders. A requirement may be correctly verified while its interpretation of the need remains inadequate.
 
-Keep validation plans, cases, and evidence alongside verification in `80_verification`; use the canonical needs in `05_requirements` and scenarios in `20_usecases`. No additional stage or method-library type is needed. Native cases can express the evaluation; their names and documentation should make the validation purpose clear. Do not claim an executed validation from a planned case or stakeholder review of a model alone.
+Keep validation plans, cases, and evidence alongside verification in `80_verification`; use the canonical needs in `05_requirements` and scenarios in `20_usecases`. No additional model area or method-library type is needed. Native cases can express the evaluation; their names and documentation should make the validation purpose clear. Do not claim an executed validation from a planned case or stakeholder review of a model alone.
 
-Report requirement results and stakeholder outcomes separately, with the evaluated baseline, limitations, and unresolved needs. See the [guard-stop validation gap](../examples/guard-stop/README.md#stakeholder-validation-gap) and [stage readiness](stage-readiness.md).
+Report requirement results and stakeholder outcomes separately, with the evaluated baseline, limitations, and unresolved needs. See the [elevator validation gap](../examples/elevator/README.md#verification-versus-validation) and [increment review](increment-review.md).
 
 ## Requirements from different sources
 

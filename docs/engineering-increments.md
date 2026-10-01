@@ -1,160 +1,34 @@
 # Engineering increments
 
-An **engineering increment** is the primary unit of progress in the Elan8 Method.
+An engineering increment is a reviewable model change that answers one engineering question or reduces a specific uncertainty. It is the everyday unit of work, usually one Git pull request.
 
-It is a **workflow object** (almost always one pull request), not SysML process metadata.
-
-## Definition
-
-> An engineering increment is a reviewable model change that addresses one relevant engineering question and connects the necessary concerns, behavior, architecture, evidence, and verification to create independent engineering value.
-
-An increment does not need every concern. It must make clear:
-
-- which engineering question is being addressed;
-- why the change matters;
-- which assumptions and constraints apply;
-- which architecture or behavior elements are affected;
-- what evidence supports the result;
-- how the outcome will be verified or reviewed.
+Follow three steps: [state the question, develop the connected model, evaluate and review](workflow.md). Touch only the [model areas](model-areas.md) needed for the answer. An increment need not traverse every area or produce a complete product model.
 
 ## What belongs where
 
-| Concern | Lives in |
+| Information | Home |
 | --- | --- |
-| Product meaning (requirements, scenarios, architecture, analysis, verification, decisions, assumptions, risks) | SysML model |
-| Increment identity, objective, approval, ownership | Git branch / PR / CODEOWNERS |
-| Temporary WIP notes | Draft PR description (not permanent `@…` tags) |
+| Needs, requirements, scenarios, architecture, analysis, engineering decisions and assumptions | SysML model |
+| Question, increment scope, review, ownership and acceptance | Git branch / PR / CODEOWNERS |
+| Raw observations, logs and reports | Controlled external artifacts, referenced from relevant model cases |
 
-**Do not** annotate many model elements with process tags such as a former `@EngineeringIncrement`. That duplicates Git history and clutters the model. Prefer a clearly named product spine (for example `CliffSafeStopGoldenThread`) plus a PR that states the question and definition of done.
+Keep canonical requirements in `05_requirements`, with explicit source/derivation or rationale, subjects and acceptance conditions. Follow the question through scenarios, responsibility allocations, selected design and evidence. Use views to expose that content without copying it.
 
-## How to select an increment
+## Practical example
 
-Prefer increments that:
+“Can passenger service continue with one car unavailable?” touches the elevator's continuity need, outage requirement, isolation scenario, dispatch responsibility, availability interface, selected controllers and outage checks. It does not require changing every timing target or creating another architecture layer. Follow the [file-by-file elevator increment](../examples/elevator/README.md#practical-increment-one-car-unavailable).
 
-- answer one concrete engineering question;
-- reduce a real risk or unlock a design decision;
-- can be reviewed without understanding the entire model;
-- leave the model validation green (or document intentional gaps).
+## Pull request
 
-Avoid increments that only rearrange folders, rename without intent, or span unrelated concerns “because we were editing those files anyway.”
+A useful PR description states:
 
-## Entry criteria
+1. The question and why it matters, including boundary and conditions.
+2. The model changes and the answer or decision they support.
+3. The checks and evidence, distinguishing predictions and plans from results.
+4. Remaining assumptions, risks, gaps and the next question.
 
-Before opening the PR (or as its first commit):
+Use the single [increment review checklist](increment-review.md). Draft PRs can retain exploratory work; do not encode temporary approval or work-in-progress status as method metadata. A reviewed negative result can be a completed increment.
 
-- one-sentence engineering question;
-- impacted concerns listed;
-- known assumptions / constraints called out;
-- success criterion for the increment (what “good enough” means).
+## Baselines and change
 
-## Typical scope
-
-Essential content:
-
-- stakeholder need or concern update;
-- one operational scenario (or a focused extension);
-- derived system requirement(s) with subject / constraint where measurable;
-- allocate / satisfy links as needed;
-- verification intent for critical requirements;
-- `@DecisionRecord` / `@Assumption` / `@Risk` only when they affect the decision.
-
-Expand as needed: add analysis case, degraded path, interface contracts, or physical realization for the same question.
-
-## Expected model content
-
-Use the numbered folders as a checklist, not a waterfall:
-
-| Folder | Often touched in an increment |
-| --- | --- |
-| `05_requirements/` | Stakeholder needs and system, functional, interface, or component requirements |
-| `10_context/` | Stakeholders, concerns, operational context |
-| `20_usecases/` | Use cases / operational scenarios |
-| `30_capabilities/` | Capabilities realized by the use cases |
-| `40_functions/` | System functions linked to functional requirements |
-| `50_logical/` | Logical responsibilities and interfaces linked to requirements |
-| `60_physical/` | Physical parts, ports, allocation, satisfaction of component requirements |
-| `70_analysis/` | Claims support (see [evidence-and-claims](evidence-and-claims.md)) |
-| `80_verification/` | Verification cases / evidence refs |
-| `90_views/` | Expose the increment’s spine |
-| `00_project/` | Only if tailoring (`ProjectInfo`) changes |
-
-Requirements are kept together in `05_requirements` and referenced across the stages; see [requirements](requirements.md) for canonical ownership and traceability.
-
-## Working loop (per increment)
-
-Concerns stay non-linear. For each increment, use this default loop:
-
-```text
-Frame → Explore → Architect → Evaluate → Verify → Evolve
-```
-
-| Step | Focus |
-| --- | --- |
-| **Frame** | Question, scope, stakeholders, constraints, success criteria |
-| **Explore** | Scenarios, behavior, candidate requirements |
-| **Architect** | Responsibilities, interfaces, allocations |
-| **Evaluate** | Assumptions, alternatives, analysis, `@DecisionRecord` |
-| **Verify** | Verification cases, evidence URIs, coverage of the question |
-| **Evolve** | PR review, merge, baseline impact, follow-up risks |
-
-Detail for each step: [workflow.md](workflow.md).
-
-## Pull request as the increment container
-
-Suggested PR body:
-
-```markdown
-## Engineering question
-…
-
-## Why it matters
-…
-
-## Concerns touched
-purpose / behavior / architecture / evidence / verification / evolution
-
-## Assumptions & risks
-…
-
-## Evidence & verification
-…
-
-## Definition of done
-- [ ] Question answered in the model
-- [ ] Critical links (derive / satisfy / allocate / verify) present
-- [ ] model validation green (or gaps listed)
-- [ ] Reviewer can follow the spine without tribal knowledge
-```
-
-## Definition of done
-
-An engineering increment is complete when:
-
-- the engineering question is explicit (PR + model `doc` where useful);
-- impacted concerns and model elements are identifiable;
-- relevant architecture or behavior changes are modeled;
-- important assumptions are documented;
-- evidence or rationale is available ([evidence-and-claims](evidence-and-claims.md));
-- verification intent is defined for critical claims;
-- automated checks pass;
-- the change has been reviewed and merged.
-
-## Incomplete or exploratory work
-
-Use draft PRs or clearly labeled WIP branches. Do not leave permanent “in progress” process metadata on released model elements. Prefer OMG `StatusInfo` only for product lifecycle states your project defines—not as a substitute for Git.
-
-## Baselines and releases
-
-Increments accumulate into baselines via Git tags/releases and, when needed, `VerificationEvidence` / evidence records in the model. The increment itself is not a baseline; the merge history is.
-
-## Showcase
-
-[Guard-stop increment](../examples/guard-stop/README.md): self-contained concern-to-verification reading path.
-
-## Related
-
-- [principles.md](principles.md) — Build vertical increments
-- [concerns.md](concerns.md) — Six continuous concerns
-- [roles-and-reviews.md](roles-and-reviews.md) — PR reviews
-- [evidence-and-claims.md](evidence-and-claims.md) — Claim → Evidence → Confidence → Decision
-- [workflow.md](workflow.md) — Frame → … → Evolve detail
+Record accepted baselines through Git history and tags/releases as appropriate. Evidence must identify the configuration and procedure it supports. When a requirement, assumption or implementation changes, trace affected model content and review evidence applicability before reusing it. See [evidence and claims](evidence-and-claims.md) and [roles and reviews](roles-and-reviews.md).

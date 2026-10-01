@@ -76,13 +76,13 @@ Views **expose** existing elements; they must not duplicate handoff tables or re
 
 ## 7. Packages and libraries
 
-- Organize by **engineering concern** folders (`10_context`, `20_usecases`, …), but packages own semantics.
+- Organize by **model-area** folders (`10_context`, `20_usecases`, …), but packages own semantics.
 - Import **method** packages from `mbse-methodology/library`.
 - Keep **domain/technical** vocabulary in the project-local library or explicitly selected external libraries.
 
 ## 8. Where to go next
 
-1. [principles](principles.md) and [concerns](concerns.md)
-2. Project [template](../templates/project-template/)
-3. [Workflow](workflow.md) and [modeling guidance](README.md)
-4. Explore the [guard-stop example](../examples/guard-stop/README.md).
+1. Read the [working steps](workflow.md) and [model areas](model-areas.md).
+2. Copy the project [template](../templates/project-template/).
+3. Use [modeling guidance](README.md) as needed.
+4. Explore the [elevator example](../examples/elevator/README.md).

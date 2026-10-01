@@ -6,7 +6,6 @@ package ElevatorRoot {
     public import ElevatorStakeholderRequirements::*;
     public import ElevatorSystemRequirements::*;
     public import ElevatorUseCases::*;
-    public import ElevatorCapabilities::*;
     public import ElevatorFunctions::*;
     public import ElevatorLogical::*;
     public import ElevatorPhysical::*;

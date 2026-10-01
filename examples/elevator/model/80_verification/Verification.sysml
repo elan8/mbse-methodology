@@ -1,6 +1,6 @@
 package ElevatorVerification {
     private import Elan8Method::MethodCore::*;
-    @StageDisposition { stage = EngineeringStageKind::'verification'; status = StageStatusKind::applicable; rationale = "Distinct content for the two-elevator example."; }
+
     private import ElevatorTypes::*;
     private import VerificationCases::*;
     private import ISQ::TimeValue;

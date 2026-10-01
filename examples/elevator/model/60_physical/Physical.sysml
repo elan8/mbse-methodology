@@ -1,6 +1,6 @@
 package ElevatorPhysical {
     private import Elan8Method::MethodCore::*;
-    @StageDisposition { stage = EngineeringStageKind::physicalArchitecture; status = StageStatusKind::applicable; rationale = "Distinct content for the two-elevator example."; }
+
     private import ElevatorTypes::*;
     part service : InstalledService {
         @DecisionRecord { decisionId = "DEC-001"; title = "Central dispatch with local car control"; rationale = "One fleet view supports two-car assignment; local controllers own motion and door execution. Protection requires further independence analysis."; }

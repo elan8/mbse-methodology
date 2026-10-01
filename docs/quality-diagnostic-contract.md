@@ -71,5 +71,5 @@ requirement removeDriveEnable {
 ## Implementation guidance
 
 - Prefer analyzing the KerML/SysML semantic graph, not regex on source text.
-- Define requirement criticality from the relevant hazards and assurance obligations; omitting a stage does not waive verification of critical requirements.
+- Define requirement criticality from the relevant hazards and assurance obligations; omitting area content does not waive verification of critical requirements.
 - Use executable checks where supported; otherwise make the review checklist explicit.

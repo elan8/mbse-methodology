@@ -1,40 +1,14 @@
 # Roles and reviews
 
-Lightweight accountability for Elan8 Method projects. Process enforcement stays in Git (PR, CODEOWNERS, CI); the model records engineering meaning.
+Review each increment with people who can assess its question, affected design and evidence. One person may cover several responsibilities on a small project; no fixed set of review meetings is required.
 
-## Suggested roles
-
-| Role | Focus |
+| Responsibility | Review focus |
 | --- | --- |
-| Product / stakeholder lead | Purpose, needs, success criteria |
-| Systems engineer | Context, scenarios, requirements, allocation, overall coherence |
-| Domain / architecture owner | Logical/physical structure, interfaces, decisions |
-| Verification lead | Verification cases, coverage, evidence URIs |
-| Model owner | Package conventions, library imports, CI green |
+| Stakeholder / product representative | Needs, source obligations, operating context and useful outcomes |
+| Systems / domain engineer | Scenarios, requirements, architecture, interfaces and decision rationale |
+| Verification / evidence reviewer | Evaluation methods, acceptance criteria, provenance and gaps |
+| Model maintainer | Model conventions, library dependencies and relevant automated checks |
 
-One person may hold several roles on a small project.
+Use the single [increment review checklist](increment-review.md). The PR states the question, changes, answer, evidence and remaining gaps. Git review records acceptance; CODEOWNERS can identify package reviewers. Do not duplicate ownership or approval workflows in SysML metadata.
 
-## Review moments (by concern)
-
-| When | Review question | Typical approver |
-| --- | --- | --- |
-| Purpose increment | Is the boundary and need clear enough to design? | Product + systems |
-| Scenario + requirements | Are requirements testable and derived from needs? | Systems + verification |
-| Architecture / interface | Are responsibilities and boundaries stable enough? | Architecture owner + systems |
-| Verification readiness | Can we demonstrate critical requirements? | Verification + systems |
-| Release baseline | Does CI pass; are assumptions still valid? | Model owner + leads |
-
-## Pull request as the review mechanism
-
-- Every engineering increment lands as a PR with model diffs (and model validation).
-- PR description states: concern(s), increment objective, decisions, residual risks.
-- Use CODEOWNERS for package-path ownership; do not encode owners in SysML metadata.
-- Do not duplicate full approval workflows inside SysML; keep process approval in Git/PR.
-
-## AI-assisted changes
-
-AI may draft model text. Humans remain accountable for requirements, assumptions, decisions, and verification claims before merge.
-
-## Readiness and stakeholder outcomes
-
-Use the [stage readiness criteria](stage-readiness.md) for the stages touched by an increment, including relevant criteria carried by merged stages. Review both requirement conformance and stakeholder validation with the product/stakeholder lead. State which claims are supported, which are only planned, and which remain open; a merged PR records acceptance of the increment, not proof of product fitness.
+Review stakeholder outcomes separately from requirement conformance. A merged PR or a successful model check does not prove product fitness. Humans remain accountable for requirements, assumptions, decisions and claims, including AI-assisted drafts.

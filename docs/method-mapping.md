@@ -1,78 +1,35 @@
 # Method mapping (orientation)
 
-Elan8 Method concerns, activities, and fixed stages compared to familiar MBSE
+Elan8 model areas and engineering practices compared to familiar MBSE
 approaches. This is **orientation**, not a claim of one-to-one equivalence.
 
-## Fixed stages vs familiar phases
+## Model areas vs familiar perspectives
 
-Every project has the same seven stage packages (`10_context` …
+Every project has the same six model-area packages (`10_context` …
 `80_verification`, see [engineering-increments.md](engineering-increments.md)
 and the [project template](../templates/project-template/README.md)). This
 table is the closer, structural comparison for teams coming from a
 phase-based methodology:
 
-| Elan8 stage | Typical activities | SYSMOD (approx.) | OOSEM (approx.) | Arcadia (approx.) | INCOSE process flavor |
+| Elan8 area | Typical activities | SYSMOD (approx.) | OOSEM (approx.) | Arcadia (approx.) | INCOSE process flavor |
 | --- | --- | --- | --- | --- | --- |
 | Context | Problem, boundary, stakeholders, concerns | System idea, stakeholder needs | Stakeholder needs, context | Operational Analysis (need) | Stakeholder needs definition |
 | Use Cases | Actor goals, nominal/degraded scenarios | Use cases / processes | Scenario analysis | Operational Analysis (scenarios) | Use case / scenario definition |
-| Capabilities | Mission outcomes and derived obligations | — (implicit in use cases) | Capability needs | Operational capabilities | Business/mission analysis |
 | Functions | Requirement derivation and functional analysis | Logical behavior | Functional analysis | System Functional Analysis | Functional analysis & allocation |
 | Logical Architecture | Responsibilities and interface contracts | System architecture | Logical architecture | Logical Architecture (LA) | Architecture definition |
 | Physical Architecture | Implementation selection and allocation | System architecture | Physical architecture | Physical Architecture (PA) | Architecture definition |
 | Verification | Verification definition and evidence | Requirements & test | Verification planning | Integration & IVV hooks | Verification & validation |
 
-Elan8 does not have a dedicated Arcadia-style "System Analysis" (SA) stage;
-its scope splits across Capabilities and Functions. Arcadia models operational capabilities and system capabilities across its perspectives; Elan8 gives capability work a separate navigation package. The mapping is approximate, not a claim that Arcadia lacks capabilities.
+Elan8 does not have a dedicated Arcadia-style "System Analysis" (SA) area;
+its scope spans Context, Use Cases, and Functions. Arcadia models operational capabilities and system capabilities across its perspectives; Elan8 captures useful capability reasoning within Context rather than a separate area. The mapping is approximate, not a claim that Arcadia lacks capabilities.
 
-## Continuous concerns vs familiar activities
+## Applying established practices
 
-Independently of the fixed stages, the [six continuous
-concerns](concerns.md) are a cross-cutting lens usable on any element in any
-stage. This table compares concerns, not stages:
-
-| Elan8 concern | Typical activities | SYSMOD (approx.) | OOSEM (approx.) | Arcadia (approx.) | INCOSE process flavor |
-| --- | --- | --- | --- | --- | --- |
-| Purpose | purpose, context, concerns | System idea, stakeholder needs | Stakeholder needs, context | Operational Analysis (need) | Stakeholder needs definition |
-| Behavior | scenario, degraded behavior | Use cases / processes | Scenario analysis, logical behavior | System / Logical functions | System requirements & functional analysis |
-| Architecture | logical architecture, interface, decision | System architecture | Logical → physical architecture | Logical / Physical Architecture | Architecture definition |
-| Evidence | evaluate alternative | Trade-off / analysis | Analysis / trade studies | Early validation | Analysis & decision management |
-| Verification | derive requirements, verification | Requirements & test | Verification planning | Integration & IVV hooks | Verification & validation |
-| Evolution | (Git + quality rules) | Configuration / baselines | Iterative development | Model maintenance | Configuration & information management |
-
-## Deliberate differences
-
-- Elan8 fixes the **stage structure** (seven packages, always present) so
-  projects look alike and tooling can rely on a known shape, but tailors
-  **content** per project: a stage can be `notApplicable` or
-  `mergedIntoAnotherStage` (with a required rationale) via `StageDisposition`
-  — see [abstraction-levels.md](abstraction-levels.md). This is stricter than
-  the old "levels are optional" guidance, and looser than a mandatory
-  waterfall: skipping is explicit and reviewable, not silent.
-- Work is still organized as **continuous concerns** and **vertical
-  engineering increments** (scoped in Git/PR, not SysML process metadata).
-  Concerns and stages are independent axes — an increment typically touches
-  several concerns across one or two stages in a single coherent PR, not a
-  full pass through all seven stages.
-- Logical architecture as a **parallel part tree is optional**; allocation
-  from actions to parts is required. Merge Logical into Physical (or
-  Functions into Logical) with `StageDisposition` when a separate logical
-  model would just duplicate the physical one.
-- Textual SysML v2 + Git are first-class; diagrams are views.
-- Method metadata stays light; process enforcement prefers PRs, CODEOWNERS,
-  and CI.
-
-## If you already use Arcadia or OOSEM
-
-The fixed stage structure now maps closely onto OA/SA/LA/PA-style phases (see
-the table above), so keep your team's mental model and expect the folder
-names to line up more directly than before. Map Elan8 activities onto the
-activities you already run, use `StageDisposition` to merge stages your
-process doesn't distinguish (for example, no separate Capabilities layer),
-and adopt the project template when starting new SysML v2 work.
+Elan8 uses engineering questions and reviewable increments as its working method. The six model areas organize content; they are not equivalent to another method's process phases. Adapt familiar activities to the question and retain useful logical structure only when it clarifies responsibility or a choice. Native SysML constructs, canonical requirements, evidence provenance and reviewable changes support the reasoning.
 
 ## Practices adopted and sources
 
-Elan8 strengthens problem/solution separation, lifecycle stakeholder analysis, scenario continuity, architecture justification, and stakeholder validation within its existing stages. See [stage readiness](stage-readiness.md). These practices do not imply conformance to another methodology or require its library.
+Elan8 strengthens problem/solution separation, lifecycle stakeholder analysis, scenario continuity, architecture justification, and stakeholder validation within its existing model areas. See [increment review](increment-review.md). These practices do not imply conformance to another methodology or require its library.
 
 - [SYSMOD overview](https://mbse4u.com/wp-content/sysmod/sysmodv5-reveal.html): problem, needs, solution, verification and validation as tailorable artifacts.
 - [Arcadia guidance](https://mbse-capella.org/arcadia-qna.html): scenario/function/exchange continuity, capability perspectives, and architecture justification.

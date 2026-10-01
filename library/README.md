@@ -6,7 +6,7 @@ Canonical SysML v2 packages for the Elan8 Method.
 | --- | --- | --- |
 | `Elan8Method::Verification` | `Verification.sysml` | References to external verification evidence |
 | `Elan8Method::Metadata` | `Metadata.sysml` | Requirement role annotations; identifiers use native short names |
-| `Elan8Method::MethodCore` | `Core.sysml` | Concerns, stage disposition, decisions, project info |
+| `Elan8Method::MethodCore` | `Core.sysml` | Decisions, assumptions, risks and project info |
 | `Elan8Method::Viewpoints` | `Viewpoints.sysml` | Five standard viewpoints and view stubs |
 
 These packages are the canonical systems-engineering / method libraries. Domain vocabulary belongs in project-local definitions or explicitly selected external domain libraries.
@@ -18,7 +18,7 @@ This changes consumer imports from `Elan8::Method::…` to `Elan8Method::…`. U
 Import narrowly, for example:
 
 ```sysml
-private import Elan8Method::MethodCore::EngineeringConcern;
+private import Elan8Method::MethodCore::DecisionRecord;
 private import Elan8Method::Metadata::*;
 ```
 

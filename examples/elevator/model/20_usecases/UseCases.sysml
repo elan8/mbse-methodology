@@ -1,6 +1,6 @@
 package ElevatorUseCases {
     private import Elan8Method::MethodCore::*;
-    @StageDisposition { stage = EngineeringStageKind::useCases; status = StageStatusKind::applicable; rationale = "Distinct content for the two-elevator example."; }
+
     private import ElevatorTypes::*;
     private import ElevatorContext::*;
     use case travel {
