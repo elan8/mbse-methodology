@@ -49,7 +49,7 @@ See [library/README.md](../../library/README.md).
 ## Next steps
 
 1. Edit `00_project/Project.sysml` (name and notes), then choose a disposition for each stage.
-2. Follow the [workflow guidance](../../docs/workflow.md) and [guard-stop walkthrough](../../examples/guard-stop/README.md).
+2. Follow the [workflow guidance](../../docs/workflow.md) and [full-stage elevator walkthrough](../../examples/elevator/README.md) or the smaller [guard-stop walkthrough](../../examples/guard-stop/README.md).
 3. Grow use cases, capabilities, functions, logical/physical architecture, and
    verification as vertical increments. Set `StageDisposition` to
    `notApplicable` or `mergedIntoAnotherStage` (with rationale) for any stage

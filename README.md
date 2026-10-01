@@ -127,7 +127,7 @@ mbse-methodology/
 - Project template with seven fixed engineering stages and supporting packages
 - Modeling guidance connected to complete examples
 - Quality-rule checklist and a tool-independent diagnostic contract
-- Self-contained SE pattern fixtures and a populated guard-stop example
+- Self-contained SE pattern fixtures, a full-stage elevator example, and a smaller guard-stop example
 
 Project-specific vocabulary belongs in the project-local library or in explicitly selected external domain libraries. The included examples require only the method library and standard SysML v2 libraries.
 
@@ -152,7 +152,7 @@ See [library-migration.md](docs/library-migration.md) for namespace and package 
 
 Load `library/` alongside the copied template or example model in a SysML v2 environment with the matching standard libraries. No sibling repository is required. Configure library resolution using your environment's supported mechanism.
 
-For a worked reading path, start with [examples/guard-stop](examples/guard-stop/README.md).
+For the full-stage worked example, start with [two-elevator office service](examples/elevator/README.md). Use [guard-stop](examples/guard-stop/README.md) for a smaller tailored increment.
 
 ---
 
