@@ -1,10 +1,10 @@
 package ElevatorPhysical {
-    private import Elan8Method::MethodCore::*;
+    private import ModelingMetadata::Rationale;
 
     private import ElevatorTypes::*;
     part service : InstalledService {
-        @DecisionRecord { decisionId = "DEC-001"; title = "Central dispatch with local car control"; rationale = "One fleet view supports two-car assignment; local controllers own motion and door execution. Protection requires further independence analysis."; }
-        @Risk { riskId = "RISK-001"; description = "Group-controller outage can interrupt new assignments; recovery and local protective behavior need separate analysis."; severity = "Unassessed teaching risk"; }
+        doc /* Decision DEC-001: central dispatch with local car control. Risk RISK-001 (unassessed teaching risk): a group-controller outage can interrupt new assignments; recovery and local protective behavior need separate analysis. */
+        @Rationale { text = "DEC-001: one fleet view supports two-car assignment; local controllers own motion and door execution. Protection requires further independence analysis."; }
     }
     allocate ElevatorLogical::dispatchManager to service.group;
     allocate ElevatorLogical::carControlA to service.carA.controller;

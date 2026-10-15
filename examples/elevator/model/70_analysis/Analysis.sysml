@@ -1,10 +1,9 @@
 package ElevatorAnalysis {
-    private import Elan8Method::MethodCore::*;
     private import ISQ::TimeValue;
     private import SI::*;
     analysis waitingEstimate {
         subject system = ElevatorPhysical::service;
-        @Assumption { assumptionId = "ASM-001"; statement = "Six synthetic call-to-door-open waits for the illustrative light-traffic profile; not a dispatch simulation or hardware measurement."; }
+        doc /* Assumption ASM-001: six synthetic call-to-door-open waits for the illustrative light-traffic profile; not a dispatch simulation or hardware measurement. */
         attribute wait1 : TimeValue = 12 [s];
         attribute wait2 : TimeValue = 18 [s];
         attribute wait3 : TimeValue = 24 [s];
@@ -16,7 +15,7 @@ package ElevatorAnalysis {
     }
     analysis obstructionBudget {
         subject system = ElevatorPhysical::service;
-        @Assumption { assumptionId = "ASM-002"; statement = "Illustrative detection, control and actuation budgets; no force, stopping-distance or worst-case timing evidence."; }
+        doc /* Assumption ASM-002: illustrative detection, control and actuation budgets; no force, stopping-distance or worst-case timing evidence. */
         attribute detection : TimeValue = 0.1 [s];
         attribute control : TimeValue = 0.1 [s];
         attribute actuation : TimeValue = 0.2 [s];

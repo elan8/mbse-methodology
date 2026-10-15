@@ -16,7 +16,7 @@ Keep canonical requirements in `05_requirements` and reference them from the use
 
 ## Review and views
 
-Review the actor goal, boundary, observable outcome, typed exchanges, and relevant failure conditions. Use `ScenarioViewpoint` and `ScenarioView` from the method Viewpoints package when exposing a scenario for stakeholders. `MissionAndContextViewpoint` and `MissionAndContextView` support review of participants and the system boundary.
+Review the actor goal, boundary, observable outcome, typed exchanges, and relevant failure conditions. Expose a scenario for stakeholders with a view of its participants, actions and flows, and review participants and the system boundary with a view of the context.
 
 Follow the [worked example](../examples/elevator/README.md) to see the behavior connected to requirements, allocations, and verification.
 

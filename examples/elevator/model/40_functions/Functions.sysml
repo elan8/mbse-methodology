@@ -1,5 +1,4 @@
 package ElevatorFunctions {
-    private import Elan8Method::MethodCore::*;
 
     private import ElevatorTypes::*;
     action registerCall : RegisterCall;

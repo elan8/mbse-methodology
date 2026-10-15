@@ -2,7 +2,7 @@
 
 Engineering question: how can two elevators provide predictable passenger journeys across six floors, retain reduced service during a single-car outage, and manage selected door-related conditions?
 
-This is the complete Elan8 example. It uses native SysML v2.0, standard quantities and verification verdicts, and the repository method library. All six model areas contain useful content. The requirements, timings and observations are invented teaching data. The model is an architectural teaching baseline, not a certified elevator design or an executed simulation.
+This is the complete Elan8 example. It uses native SysML v2.0, standard quantities, verification verdicts and modeling metadata. All six model areas contain useful content. The requirements, timings and observations are invented teaching data. The model is an architectural teaching baseline, not a certified elevator design or an executed simulation.
 
 ## Scope and stakeholders
 
@@ -26,7 +26,7 @@ Passengers need predictable journeys and protected boarding/travel. The building
 | Views | [Views.sysml](model/90_views/Views.sysml) exposes existing mission, scenarios, architecture, traceability and readiness content. |
 | Local vocabulary | [Types.sysml](model/99_library/Types.sysml) defines typed requests, assignments, status, commands, ports, components and action signatures. |
 
-Load [Root.sysml](model/Root.sysml) with the complete `model/` tree, the repository `library/`, and matching standard SysML v2 libraries. No external domain library or sibling checkout is needed. The baseline uses OMG SysML v2.0; views expose existing content and do not promise a particular graphical layout.
+Load [Root.sysml](model/Root.sysml) with the complete `model/` tree and matching standard SysML v2 libraries. No external domain library or sibling checkout is needed. The baseline uses OMG SysML v2.0; views expose existing content and do not promise a particular graphical layout.
 
 ## Requirements and the traceability argument
 

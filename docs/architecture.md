@@ -14,9 +14,9 @@ Project-local types belong in `99_library` unless an explicitly selected library
 
 ## Alternatives and decisions
 
-State the decision objective and comparison criteria before choosing an architecture. Compare candidate approaches only to the depth needed to assess performance, risk, cost, and feasibility. Record assumptions with `Assumption`, risks with `Risk`, and quantitative evaluation in analysis cases or referenced evidence. Avoid fully developing rejected architectures when a short comparison answers the question.
+State the decision objective and comparison criteria before choosing an architecture. Compare candidate approaches only to the depth needed to assess performance, risk, cost, and feasibility. Record assumptions and risks with stable identifiers (`ASM-001`, `RISK-001`) in the documentation of the element they concern, an assessed risk with the standard `RiskMetadata::Risk`, and quantitative evaluation in analysis cases or referenced evidence. Avoid fully developing rejected architectures when a short comparison answers the question.
 
-Record consequential choices with `DecisionRecord` on the element embodying the choice: stable decision identifier, title, and rationale. Link supporting analysis and assumptions; update satisfaction and allocation relationships to the selected baseline. Keep specialization (what kind of element it is) distinct from implementation selection (what realizes it). Use native variation/variant constructs when a real product-configuration question requires them, rather than introducing variants speculatively.
+Record consequential choices on the element embodying the choice: a stable decision identifier and title in its documentation, and the rationale with the standard `ModelingMetadata::Rationale`. Link supporting analysis and assumptions; update satisfaction and allocation relationships to the selected baseline. Keep specialization (what kind of element it is) distinct from implementation selection (what realizes it). Use native variation/variant constructs when a real product-configuration question requires them, rather than introducing variants speculatively.
 
 Git review and merge record acceptance of the increment. A decision should remain understandable without meeting notes; do not annotate trivial naming choices merely to fill a checklist.
 

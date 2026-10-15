@@ -36,11 +36,7 @@ requirement <'SYS-SAFE-010'> stopOnCliff {
 }
 ```
 
-The native short name (`SYS-SAFE-010` above) is the requirement identifier. Elan8 optionally adds role metadata (see `Elan8Method::Metadata`):
-
-```sysml
-@RequirementRole { role = RequirementRoleKind::safety; }
-```
+The native short name (`SYS-SAFE-010` above) is the requirement identifier.
 
 Use OMG `@StatusInfo` for work status. See [requirements guidance](requirements.md).
 
@@ -72,7 +68,7 @@ view contextOverview : Views::View {
 }
 ```
 
-Views **expose** existing elements; they must not duplicate handoff tables or restate the architecture. Elan8 provides five standard viewpoints in `Elan8Method::Viewpoints`.
+Views **expose** existing elements; they must not duplicate handoff tables or restate the architecture. Define viewpoints in the project when a stakeholder's concerns need one.
 
 ## 7. Packages and libraries
 

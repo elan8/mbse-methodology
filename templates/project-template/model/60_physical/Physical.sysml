@@ -6,7 +6,6 @@ package Physical {
       mandatory duplication of the logical structure.
     */
 
-    private import Elan8Method::MethodCore::*;
 
     // TODO: add physical parts, interfaces, and allocations
 }

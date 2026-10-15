@@ -11,4 +11,4 @@
 | Minimal traceability | [se-patterns/minimal-traceability](se-patterns/minimal-traceability/) | derive → satisfy → verify |
 | Missing verification | [se-patterns/missing-verification](se-patterns/missing-verification/) | intentional verification gap |
 
-These use native SysML requirements and `Elan8Method::Metadata`.
+These use native SysML requirements and relationships.

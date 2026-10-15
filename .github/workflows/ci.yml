@@ -23,11 +23,8 @@ jobs:
       # from breaking every time spec42 changes underneath it.
       #
       # This intentionally does NOT use the elan8/spec42 composite action:
-      # that action bundles a released snapshot of *this repo's own*
-      # library/ as its default "method" KPAR, and doesn't expose
-      # --disable-kpar-library to override it. Validating this repo's
-      # in-progress library sources needs that flag (see scripts/_spec42.py)
-      # -- something only the plain CLI invocation below can do.
+      # it loads managed library archives by default, and these models are
+      # checked against the standard library only (see scripts/_spec42.py).
       - name: Install Spec42 ${{ env.SPEC42_VERSION }}
         run: |
           set -euo pipefail
@@ -39,8 +36,6 @@ jobs:
           chmod +x "$RUNNER_TEMP/spec42/spec42"
           echo "SPEC42_EXE=$RUNNER_TEMP/spec42/spec42" >> "$GITHUB_ENV"
 
-      - name: spec42 check (library, template, examples)
+      - name: spec42 check (template, examples)
         run: python3 scripts/validate_spec42.py
 
-      - name: Library definitions are referenced outside library/
-        run: python3 scripts/check_unused_library_defs.py
