@@ -51,12 +51,11 @@ Use native SysML v2 constructs. Views expose canonical model content. Consequent
 ## Repository and supporting guidance
 
 - [docs/](docs/README.md): working steps, model areas, modeling guidance and supporting principles.
-- [library/](library/README.md): small `Elan8Method` vocabulary for decisions, assumptions, risks, optional requirement roles, evidence references and viewpoints.
 - [templates/project-template/](templates/project-template/README.md): reusable model layout.
 - [examples/](examples/README.md): elevator model and focused SE pattern fixtures.
-- `scripts/`: repository model and library maintenance checks.
+- `scripts/`: repository model checks.
 
-Use the method library alongside matching standard SysML v2 libraries; examples require no external domain library or sibling repository. The method is tool-independent. Automated checks are useful where implemented, but successful parsing does not establish evidence validity or product fitness. See the [rule catalog](docs/quality-rules.md) and [implementation guidance](docs/quality-diagnostic-contract.md) and [library migration](docs/library-migration.md).
+The method needs no library of its own: models use native SysML v2 and the standard SysML v2 libraries, and examples require no external domain library or sibling repository. The method is tool-independent. Automated checks are useful where implemented, but successful parsing does not establish evidence validity or product fitness. See the [rule catalog](docs/quality-rules.md) and [implementation guidance](docs/quality-diagnostic-contract.md).
 
 For background, read [principles](docs/principles.md), [evidence and claims](docs/evidence-and-claims.md), [roles and reviews](docs/roles-and-reviews.md), [method comparisons](docs/method-mapping.md) and the [glossary](docs/glossary.md).
 

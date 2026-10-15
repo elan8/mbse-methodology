@@ -32,9 +32,7 @@ The number sets browsing order; Requirements is a supporting package, not an add
 
 ## Library resolution
 
-Load this model together with the repository's `library/` directory and standard SysML v2 libraries. When copying the template elsewhere, retain an explicit reference to the method-library source or a versioned archive through your modeling environment's configuration. No domain library or sibling checkout is required.
-
-See [library/README.md](../../library/README.md).
+Load this model with the standard SysML v2 libraries. No method library, domain library or sibling checkout is required.
 
 ## Work on an increment
 

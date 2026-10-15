@@ -1,8 +1,7 @@
 package ProjectViews {
-    doc /* Stakeholder views satisfying Elan8 standard viewpoints. */
+    doc /* Stakeholder views that expose model elements for review. */
 
     private import Views::*;
-    private import Elan8Method::Viewpoints::*;
 
-    // TODO: add project-specific views that satisfy Elan8 viewpoints and expose model elements
+    // TODO: add project-specific views that expose model elements
 }

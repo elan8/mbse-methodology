@@ -1,7 +1,6 @@
 package SystemRequirements {
     doc /* System-boundary obligations and constraints. Canonical requirements live in 05_requirements; model-area packages reference them. */
 
-    private import Elan8Method::Metadata::*;
 
     // TODO: add native requirement usages with optional role metadata and native short names as needed.
     // Declare the subject, conditions, and measurable acceptance criteria; link sources or record rationale.

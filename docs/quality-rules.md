@@ -185,7 +185,7 @@ Stable identifiers use `elan8.` followed by the lower-case catalog ID with hyphe
 | Detectable condition or review question | Required baseline, conditions, procedure, observation source or evidence reference fields are absent under the project result contract. |
 | Primary location | Result claim or evidence record. |
 | Suggested correction | Supply applicable provenance or downgrade the claim to planned/unsubstantiated. |
-| Exceptions and limits | The current VerificationEvidence type only stores name/URI. Other fields need a declared artifact adapter or review; do not invent mandatory metadata. A URI does not prove authentic or applicable evidence. |
+| Exceptions and limits | An evidence reference that only stores a name and URI is not enough on its own. Other fields need a declared artifact adapter or review; do not invent mandatory metadata. A URI does not prove authentic or applicable evidence. |
 
 **Example:** Elevator fixtures are explicitly synthetic and make no executed-result claim; a claimed test pass with only a report link needs provenance review.
 

@@ -6,7 +6,6 @@ package Logical {
       parts is a valid tailoring choice (explain the merge in package documentation).
     */
 
-    private import Elan8Method::MethodCore::*;
 
     // TODO: add logical responsibilities, collaborations, and interfaces
 }

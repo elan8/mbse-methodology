@@ -14,7 +14,7 @@ When validating a verdict expression, consider the exact acceptance boundary, ju
 
 ## Evidence provenance
 
-Evidence should identify the configuration/baseline, procedure, applied condition, measurement method, units, observed result, and provenance. Keep raw logs and datasets outside the model. Optionally own a `VerificationEvidence` record in the relevant case and use its URI to reference the external artifact. A report link without relevant observations and baseline information is insufficient.
+Evidence should identify the configuration/baseline, procedure, applied condition, measurement method, units, observed result, and provenance. Keep raw logs and datasets outside the model. Reference the external artifact by name and URI from the relevant case. A report link without relevant observations and baseline information is insufficient.
 
 Analysis may support a verification case when its assumptions and inputs are justified. A budget calculation supports a prediction; it is not automatically a measurement. See [evidence and claims](evidence-and-claims.md).
 

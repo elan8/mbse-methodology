@@ -31,9 +31,12 @@ def find_spec42(explicit: str | None = None) -> str:
 
 
 def library_path_args() -> list[str]:
-    """Load only this repository's sources; exclude optional managed archives."""
+    """Check against the standard library only; exclude optional managed archives.
+
+    `method` is the managed archive this repository used to publish; spec42 releases that still
+    bundle it must not load it into these models.
+    """
     return [
         "--disable-kpar-library", "domain",
         "--disable-kpar-library", "method",
-        "--library-path", str(REPO_ROOT / "library"),
     ]

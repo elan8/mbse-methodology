@@ -19,7 +19,7 @@ The template includes needs and system requirements plus an optional stakeholder
 
 Tailoring or merging areas leaves requirements in this shared home and preserves their traceability to the applicable subjects. Split requirements further within this folder only when it improves review; avoid duplicate usages for the same obligation.
 
-Requirements are not limited to functional behavior: safety, security, performance, interfaces, regulatory constraints, and other qualities can apply at any appropriate level. `RequirementRole` describes the engineering role, not folder ownership; a safety requirement may constrain the whole system or one component.
+Requirements are not limited to functional behavior: safety, security, performance, interfaces, regulatory constraints, and other qualities can apply at any appropriate level. A safety requirement may constrain the whole system or one component.
 
 ## Needs, stakeholder requirements, and system requirements
 
@@ -33,7 +33,7 @@ These are engineering roles, not a ranking of precision or mandatory steps in a 
 
 Customer requirements are stakeholder requirements from a particular source. They may already be precise, or prescribe technology, interfaces, or regulatory constraints. Do not assume they are informal needs or silently replace them with an engineering interpretation. The examples above illustrate distinct scopes; the controller timing obligation alone does not establish compliance with the machine-level obligation.
 
-Use native requirement definitions/usages and short names. File placement and documentation distinguish these roles; no custom requirement class is required. Existing optional `RequirementRole` metadata does not encode contractual status or source ownership: `user` alone cannot distinguish a need from a stakeholder requirement. Do not infer those meanings from that tag.
+Use native requirement definitions/usages and short names. File placement and documentation distinguish these roles; no custom requirement class is required.
 
 ### Handling supplied obligations
 
@@ -66,7 +66,7 @@ Use explicit derivation relationships between source and derived requirements. `
 
 ## Modeling and review
 
-Use native SysML v2 `requirement` definitions/usages. The method library adds optional role metadata; requirement identifiers use native short names; verification evidence vocabulary lives separately in `Elan8Method::Verification`. It does not replace native requirements with custom requirement classes.
+Use native SysML v2 `requirement` definitions/usages; requirement identifiers use native short names. The method adds no custom requirement classes or requirement metadata.
 
 For each requirement in an increment, review:
 

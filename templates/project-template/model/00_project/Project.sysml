@@ -4,18 +4,15 @@ package Project {
       Process ownership and releases stay in Git; engineering meaning lives here.
     */
 
-    private import Elan8Method::MethodCore::*;
-
-    part projectInfo : ProjectInfo {
-        attribute :>> projectName = "NewSystem";
-        attribute :>> notes = "Replace with project-specific tailoring notes.";
-    }
+    doc /*
+      NewSystem: replace with the project name and project-specific tailoring notes.
+    */
 
     doc /*
       Conventions:
       - Definitions: PascalCase
       - Usages: camelCase
       - Prefer ISQ/SI quantities
-      - Import narrowly from Elan8Method and the required domain namespaces
+      - Import narrowly from the required standard and domain namespaces
     */
 }

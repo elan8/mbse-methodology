@@ -5,7 +5,6 @@ package Functions {
       physical structure.
     */
 
-    private import Elan8Method::MethodCore::*;
 
     // TODO: add system functions and their inputs/outputs
 }

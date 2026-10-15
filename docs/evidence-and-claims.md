@@ -44,7 +44,7 @@ Examples:
 - supplier datasheet / calculation note;
 - inspection or review record (when that is the agreed method).
 
-Prefer `Elan8Method::Verification::VerificationEvidence` (name + `evidenceUri`) and analysis elements in `70_analysis/` over embedding large datasets in SysML.
+Reference external evidence by name and URI from the verification case that uses it, in its documentation or a project-local definition, and keep analysis elements in `70_analysis/`, rather than embedding large datasets in SysML.
 
 Evidence should state (in the model or at the URI):
 
@@ -59,7 +59,7 @@ How strongly the evidence supports the claim **for the current decision**.
 Capture confidence lightly:
 
 - in analysis/verification `doc`;
-- via assumptions (`@Assumption`) that bound validity;
+- via assumptions, recorded with stable identifiers, that bound validity;
 - via risks (`@Risk`) when confidence is low;
 - in the PR discussion for the increment.
 
@@ -75,8 +75,8 @@ Examples of confidence language:
 
 What we do with the claim given the evidence and confidence.
 
-Record product decisions with `@DecisionRecord` (`decisionId`, `title`, `rationale`).  
-**Approval** of the decision is the Git/PR merge (no `status` field on the metadata).
+Record product decisions on the element that embodies them: a stable decision identifier and title in its documentation, and the rationale with the standard `ModelingMetadata::Rationale` metadata.  
+**Approval** of the decision is the Git/PR merge, not a status in the model.
 
 A decision may:
 
@@ -101,7 +101,7 @@ For each [engineering increment](engineering-increments.md):
 - [ ] Critical claims for the engineering question are explicit
 - [ ] Each critical claim has evidence or a stated gap
 - [ ] Confidence / assumptions are visible to a reviewer
-- [ ] Resulting decisions use `@DecisionRecord` when they change the product baseline
+- [ ] Resulting decisions are recorded with an identifier and rationale when they change the product baseline
 
 ## Anti-patterns
 
@@ -114,5 +114,5 @@ For each [engineering increment](engineering-increments.md):
 
 - [engineering-increments.md](engineering-increments.md)
 - [quality-rules.md](quality-rules.md)
-- `Elan8Method::Viewpoints::TraceabilityViewpoint` / `TraceabilityView` — expose gaps and orphaned elements across the claim → evidence → decision chain
+- A traceability view that exposes gaps and orphaned elements across the claim → evidence → decision chain
 - Example: [elevator analysis and verification](../examples/elevator/README.md).
