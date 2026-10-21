@@ -1,15 +1,11 @@
-package ElevatorRoot {
-    public import ElevatorProject::*;
-    public import ElevatorTypes::*;
-    public import ElevatorContext::*;
-    public import ElevatorNeeds::*;
-    public import ElevatorStakeholderRequirements::*;
-    public import ElevatorSystemRequirements::*;
-    public import ElevatorUseCases::*;
-    public import ElevatorFunctions::*;
-    public import ElevatorLogical::*;
-    public import ElevatorPhysical::*;
-    public import ElevatorAnalysis::*;
-    public import ElevatorVerification::*;
-    public import ElevatorViews::*;
+package ElevatorNavigation {
+    doc /* Load this model directory independently of the project template and BAK. */
+    private import Elevator::*;
+    private import CallPanel::*;
+    private import CallController::*;
+    private import ElevatorContext;
+    private import ElevatorUseCases;
+    private import ElevatorStakeholderRequirements;
+    private import ElevatorProjectLibrary;
+    private import ElevatorDocuments;
 }

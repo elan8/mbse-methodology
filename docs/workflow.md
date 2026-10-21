@@ -1,19 +1,17 @@
-# Working on an engineering increment
+# Choosing how to model
 
-Start with an engineering question, build the smallest connected model that answers it, and review the answer with its evidence and limitations. Repeat as questions and evidence evolve.
+Elan8 defines how model content fits together, not the sequence in which you must create it. Folder numbers organize navigation; they are not process steps.
 
-## 1. State the question
+Use the workflow that fits the problem:
 
-Write the decision or uncertainty, why it matters, the system boundary, relevant stakeholders, and what would count as a useful answer. Identify operating conditions, assumptions and exclusions. Distinguish stakeholder needs, supplied obligations and engineering interpretations. Consider relevant installation, operation, maintenance and recovery activities without modeling every lifecycle activity.
+- **Top-down:** establish the boundary and contract, then develop the architecture and child systems.
+- **Bottom-up:** start from available components and establish what their combination can promise.
+- **Requirements-first:** organize supplied obligations, then connect them to contracts and designs.
+- **Architecture exploration:** compare candidate structures and revise contracts as feasibility becomes clearer.
+- **Question-driven increments:** choose an engineering question and build enough connected content to answer it.
 
-## 2. Develop the connected model
+These approaches can be mixed. A question is a useful focusing technique, not a mandatory unit of work. An increment record, review meeting or approval gate is not required by this methodology.
 
-Change only the needs, requirements, scenarios, functions, architecture and analysis needed for the question. Follow significant nominal and degraded paths through responsibilities and interfaces. Use canonical requirements and native relationships; record consequential alternatives, assumptions and decisions. Select views that let reviewers follow the reasoning.
+Whichever approach you choose, keep the specification, architecture and selected integration consistent. Make unresolved assumptions visible and distinguish a proposed design from verified results.
 
-The [model areas](model-areas.md) organize this content. They are not sequential steps. A question may touch several areas; a separate logical architecture is useful only when it clarifies responsibilities or a design choice.
-
-## 3. Evaluate and review
-
-Check syntax, resolution and relevant semantic relationships. Compare predictions or observations with acceptance criteria, assess stakeholder outcomes, and distinguish planned checks from executed results. Record the answer, baseline, evidence limitations, residual risks and next question. Review through Git using the [increment checklist](increment-review.md).
-
-When a need, requirement, assumption or observation changes, revisit affected scenarios, decisions, allocations, analyses and cases. Review whether earlier evidence applies to the changed baseline. See the [elevator increment](../examples/elevator/README.md#practical-increment-one-car-unavailable) and [change-impact walkthrough](../examples/elevator/README.md#change-impact-walkthrough).
+The forms under `templates/records/` are optional aids. Use existing project practices instead when they serve the same purpose.

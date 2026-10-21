@@ -1,64 +1,32 @@
-# Elan8 Method
+# Elan8 MBSE methodology
 
-[![License](https://img.shields.io/github/license/elan8/mbse-methodology)](LICENSE)
+**Version 0.3.0 — in development.** A small set of SysML v2 modeling conventions: system-owned packages, recursive specification–architecture–integration, and useful views.
 
-A lightweight, SysML v2-native methodology: **start with an engineering question, build the smallest connected model that answers it, and review the answer with its evidence and limitations.**
+This revision prepares release 0.3.0, following the previously released 0.2.0 methodology.
 
-## Start with one useful question
+Choose your own development workflow. Top-down, bottom-up, requirements-first, architecture exploration and question-driven increments can all use this methodology. There are no prescribed phases, gates, ceremonies or mandatory record forms.
 
-For example: **“Can passenger service continue when one elevator is unavailable?”**
+## The core
 
-In the [two-elevator example](examples/elevator/README.md#practical-increment-one-car-unavailable), follow the continuity need and outage requirement through the isolation scenario, dispatch responsibility, availability interface and outage checks. Record what reduced service guarantees and what evidence is still missing. The question determines the work; filling folders is not the objective.
+- **Specification:** define what the system promises at its boundary.
+- **Architecture:** specialize that specification and design with constituent subsystem contracts.
+- **Integration:** specialize the chosen architecture and select compatible constituent designs through redefinition.
+- Keep systems flat under `60_systems`; model relationships express composition.
+- Use views to present existing content, rather than creating diagram-specific copies.
 
-## Everyday working method
+## Use it
 
-1. **State the question:** decision or uncertainty, scope, stakeholders, conditions and useful-answer criteria.
-2. **Develop the connected model:** only the needs, requirements, scenarios, functions, architecture and analysis needed for that question.
-3. **Evaluate and review:** check the model, assess evidence and stakeholder outcomes, record the answer and gaps, and review the change through Git.
+Copy the [starter](templates/project-template/README.md), follow the [folder conventions](docs/structure.md), and apply the [recursive pattern](docs/recursive-pattern.md). The [four view recipes](docs/views.md) provide reusable GeneralView specializations, exact expose selections and filters.
 
-This reviewable change is an [engineering increment](docs/engineering-increments.md), usually one pull request. Use the [working guidance](docs/workflow.md) and one [increment review checklist](docs/increment-review.md). Repeat as questions and evidence evolve.
+The [elevator example](examples/elevator/README.md) demonstrates the pattern and views with synthetic timing values.
 
-## Six model areas for navigation
+| Reference | Purpose |
+|---|---|
+| [Model checks](docs/quality-and-governance.md) | Short checks for meaningful, connected model content |
+| [Choosing how to model](docs/workflow.md) | Optional starting points, including increments |
+| [Library and tooling](docs/library-and-tooling.md) | Shared definitions, dependencies and validation |
+| [Sources and terms](docs/sources-and-terms.md) | Language baseline and vocabulary |
 
-| Area | Question |
-| --- | --- |
-| Context | Why is the system needed, for whom, and within what boundary? |
-| Use Cases | How do people and external systems interact with it? |
-| Functions | What responsibilities must it perform? |
-| Logical Architecture | How should responsibilities collaborate, when a separate logical structure helps? |
-| Physical Architecture | What implements them? |
-| Verification | How will we evaluate obligations and intended outcomes? |
+The starter and example import `Elan8::SystemsEngineering` from the domain-library source. That addition has not been published as a release. Document generation needs its own library/generator binding.
 
-These are [model areas](docs/model-areas.md), not sequential phases. Use separately, merge, or omit content with a short explanation when needed. Keep canonical needs and requirements together in `05_requirements`; analysis, views and local vocabulary support the areas that need them. Folder numbers provide browsing order. See [tailoring](docs/tailoring.md).
-
-## Get started
-
-1. Read the [elevator walkthrough](examples/elevator/README.md) and its practical increment.
-2. Copy the [project template](templates/project-template/README.md).
-3. State your first question and edit the relevant model content.
-4. Validate relevant language and semantic relationships, then review with the increment checklist.
-
-For notation, start with the [SysML v2 primer](docs/sysml-v2-primer.md). Read [requirements](docs/requirements.md), [behavior](docs/behavior.md), [architecture](docs/architecture.md) and [verification](docs/verification.md) when the question needs them.
-
-## Keep the engineering meaning explicit
-
-Distinguish stakeholder needs, supplied customer obligations and derived system requirements. Preserve source obligations and use adequate supplied requirements directly without duplication. Native short names identify requirements.
-
-Derivation, allocation, satisfaction and verification express different relationships. Satisfaction is a design claim; a verification case is planned coverage; observations, evaluated verdicts and applicable evidence support a result. Validate intended stakeholder outcomes separately from requirement conformance.
-
-Use native SysML v2 constructs. Views expose canonical model content. Consequential decisions, assumptions and risks belong in the model; increment identity, ownership and acceptance belong in Git/PR. Humans remain accountable for AI-assisted work.
-
-## Repository and supporting guidance
-
-- [docs/](docs/README.md): working steps, model areas, modeling guidance and supporting principles.
-- [templates/project-template/](templates/project-template/README.md): reusable model layout.
-- [examples/](examples/README.md): elevator model and focused SE pattern fixtures.
-- `scripts/`: repository model checks.
-
-The method needs no library of its own: models use native SysML v2 and the standard SysML v2 libraries, and examples require no external domain library or sibling repository. The method is tool-independent. Automated checks are useful where implemented, but successful parsing does not establish evidence validity or product fitness. See the [rule catalog](docs/quality-rules.md) and [implementation guidance](docs/quality-diagnostic-contract.md).
-
-For background, read [principles](docs/principles.md), [evidence and claims](docs/evidence-and-claims.md), [roles and reviews](docs/roles-and-reviews.md), [method comparisons](docs/method-mapping.md) and the [glossary](docs/glossary.md).
-
-## License
-
-MIT. See [LICENSE](LICENSE).
+The previous methodology remains in `BAK/`; the [original discussion](docs/design-discussion.md) is historical input.
