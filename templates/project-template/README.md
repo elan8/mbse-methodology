@@ -1,13 +1,19 @@
 # New Elan8 project
 
-Copy this directory and rename `Product` in `model/60_systems/Product/system.sysml`. Load the complete `model/` tree and the shared Elan8 domain-library dependency.
+Create a complete standalone project with the methodology's `scripts/new_project.ps1 -Path /new/project`. This copies the template, frozen dependency, lock and validation helpers. Copying this directory alone copies only the model template.
 
-The numbered folders organize content; use whichever modeling sequence suits the project. Define context, optional scenarios and stakeholder requirements in their areas. Keep each system's specification, architecture, integration, behavior, analysis, verification and views together. Add developed subsystems as siblings under `60_systems`.
+Rename the `Product` package and all its qualified references across `model/` (including Root, Context and Documents), starting at `60_systems/Product/system.sysml`. Load the complete model tree and the frozen Elan8 dependency. The numbered folders organize content; choose your own development sequence.
 
-The [four view recipes](../../docs/views.md) explain the reusable view types, exposes and inherited filters already used here. Add behavior or verification views only when useful. `80_documents` contains separate content-selection seeds; document generation needs a document library/generator binding.
+Keep each system's contract, design, integration, behavior, analysis, verification and views together. Add developed subsystems as siblings under `60_systems`. Put stakeholder obligations in `20_requirements` and project-owned shared definitions in `50_library`.
 
-`project.md` is an optional setup note. The forms in `templates/records` are optional; Elan8 requires no increment records or gates. Empty packages and TODOs are prompts, not completed contracts or evidence.
+Requirements alongside a BB need an explicit BB-local `satisfy` assertion to become inherited obligations. The methodology's requirement-binding recipe and interaction example demonstrate this. The system template contains a reminder instead of inventing product obligations.
 
-Configure the sibling `sysml-domain-libraries/model` source or pass an explicit dependency path. Pin its revision/local changes until an artifact containing the roles/views is released. Do not copy shared definitions into this model.
+Four default view types are supplied by the dependency. Add other views as needed. Document selections need a separate generator binding. Setup notes and record forms are optional.
 
-Run the language checker and inspect the selected relationships/views. `Product::Integration::candidate` is an incomplete draft. Keep generated outputs outside `model/`.
+From a scaffolded project root:
+
+```powershell
+./scripts/validate_models.ps1 -ModelPath ./model -Spec42 /path/to/spec42.exe -StdlibPath /path/to/stdlib/kpar
+```
+
+Validation verifies the frozen tool/library tuple. An explicit domain-library source override is a development choice. `Product::Integration::candidate` remains incomplete until you supply a contract and design; language validity alone does not complete it. Keep generated outputs outside `model/`.

@@ -2,6 +2,8 @@
 
 Use these checks while modeling. They do not prescribe a review procedure.
 
+For implementable structural checks, use the [BB / GB / WB diagnostic rules](tooling-rules.md). These add precise role classification and selection predicates without adding a workflow.
+
 - Is the system boundary clear, with external participants referenced rather than accidentally composed?
 - Does each architecture specialize its actual system specification, and each integration its chosen architecture?
 - Are constituent usages contract-typed, and are selected designs connected through redefinition of those usages?

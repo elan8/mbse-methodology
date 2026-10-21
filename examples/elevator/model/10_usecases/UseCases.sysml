@@ -1,8 +1,10 @@
 package ElevatorUseCases {
     use case acknowledgeCall {
         subject elevator : Elevator::Specification::ElevatorSpecification;
-        doc /* A user submits a valid call. Panel processing and controller registration
-             * are serial under nominal unloaded conditions, with zero queuing or
-             * communication overhead. This is not a complete executable interaction. */
+        actor user : ElevatorContext::User;
+        doc /* Trigger: user sends a valid CallRequest. The panel forwards it,
+             * the controller registers it, and the panel returns a
+             * CallAcknowledgement carrying the same callId. Nominal unloaded
+             * scenario only. See RoutedAcknowledgement for flows and ordering. */
     }
 }

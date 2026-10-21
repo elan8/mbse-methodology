@@ -1,0 +1,90 @@
+{
+  "catalogVersion": "0.3.0",
+  "status": "reference structural definition checker implemented; contextual/root-usage checks not assessed",
+  "semantics": "../docs/tooling-rules.md",
+  "markerNamespace": "Elan8::SystemsEngineering",
+  "markerInheritance": "independent",
+  "rolePrecedence": [
+    "SystemIntegration",
+    "SystemArchitecture",
+    "SystemSpecification"
+  ],
+  "structuralPartQuery": {
+    "includeSubtypesOf": "SysML::PartUsage",
+    "excludeSubtypesOf": [
+      "SysML::ConnectionUsage",
+      "SysML::ViewUsage"
+    ],
+    "membership": "effective direct structural features"
+  },
+  "defaultOptions": {
+    "completeSelection": false,
+    "singlePrincipalBase": false
+  },
+  "rules": [
+    {
+      "id": "E8-BB-001",
+      "target": "BB",
+      "predicate": "noStructuralParts",
+      "severity": "error"
+    },
+    {
+      "id": "E8-GB-001",
+      "target": "GB definition",
+      "predicate": "atLeastOneActualSpecification",
+      "severity": "error"
+    },
+    {
+      "id": "E8-GB-002",
+      "target": "GB constituent",
+      "predicate": "projectSpecificBBTypingOnly",
+      "severity": "error"
+    },
+    {
+      "id": "E8-WB-001",
+      "target": "WB definition",
+      "predicate": "atLeastOneActualArchitecture",
+      "severity": "error"
+    },
+    {
+      "id": "E8-WB-002",
+      "target": "WB constituent",
+      "predicate": "uniqueInheritedChildRedefinition",
+      "severity": "error"
+    },
+    {
+      "id": "E8-WB-003",
+      "target": "explicit WB selection",
+      "predicate": "projectSpecificGBorWBSelection",
+      "severity": "error"
+    },
+    {
+      "id": "E8-WB-004",
+      "target": "WB configuration",
+      "predicate": "allPossibleChildrenHaveDesignSelections",
+      "severity": "warning",
+      "severityWhenCompleteSelection": "error"
+    },
+    {
+      "id": "E8-WB-005",
+      "target": "WB selection",
+      "predicate": "selectedDefinitionConformsToInheritedContracts",
+      "severity": "error"
+    },
+    {
+      "id": "E8-CTX-001",
+      "target": "WB contextual constraints",
+      "predicate": "effectiveContextConstraintsHold",
+      "severityWhenFalse": "error",
+      "severityWhenUnknown": "info",
+      "unknownStatus": "not-assessed"
+    },
+    {
+      "id": "E8-STYLE-001",
+      "target": "GB/WB definition",
+      "predicate": "onePrincipalBase",
+      "severity": "warning",
+      "enabledWhen": "singlePrincipalBase=true"
+    }
+  ]
+}

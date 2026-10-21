@@ -1,26 +1,44 @@
 # Library and tooling
 
-The domain-library source exports `Elan8::SystemsEngineering`:
+The shared package `Elan8::SystemsEngineering` provides independent BB/GB/WB roles and four filtered GeneralView specializations. [View recipes](views.md) and [structural rules](tooling-rules.md) define their use. Native SysML handles requirements, behavior, ports, allocations and verification.
 
-- `SystemSpecification`, `SystemArchitecture`, `SystemIntegration`: abstract modeling roles.
-- `ContextView`, `SpecificationView`, `ArchitectureView`, `IntegrationView`: filtered specializations of `StandardViewDefinitions::GeneralView`.
+## Tested dependency tuple
 
-These are Elan8 library definitions. Requirements, behavior, ports, allocation and verification use native SysML v2 constructs. See the [view recipes](views.md) for the actual definitions and usage examples.
+The [lock file](../dependencies.lock.json) records methodology **0.3.0**, Spec42 **0.56.0**, standard-library distribution **2026-04**, and a frozen **domain-library 0.5.0 release candidate**. The candidate is bundled in `libraries/`; it has not been published. Archive/source SHA-256 digests identify the exact tested content.
 
-The starter and example use the shared definitions without local copies. The additions are in the domain-library working tree, not a published release. Pin the source revision/local changes or a released artifact containing them.
-
-## Validate
-
-From the methodology root:
+Default setup verifies the CLI version, standard-library source digest, domain archive checksum and extracted source digest. A mutable sibling checkout is no longer required. `-DomainLibraryPath` explicitly opts into a development override.
 
 ```powershell
-./scripts/validate_models.ps1 -Spec42 /path/to/spec42.exe
+./scripts/validate_models.ps1 -Spec42 /path/to/spec42.exe -StdlibPath /path/to/stdlib/kpar
 ```
 
-The script defaults to the sibling `sysml-domain-libraries/model` dependency. Use `-DomainLibraryPath` for another source or extracted library root, and `-StdlibPath` when standard-library discovery needs an explicit path. Managed domain/method archives are disabled to prevent duplicate definitions.
+This checks the starter, interaction example and language-valid diagnostic fixtures. The existing custom-view-name warnings in Spec42 0.56.0 remain documented in the [validation notes](../examples/elevator/validation.md).
 
-Check language validity, then inspect the important semantic relationships and prepared views. Layout and engineering correctness need their own inspection. The script does not execute verification cases or enforce a project workflow.
+## Structural checker
 
-Document definitions in `80_documents` need a separate pinned document library/generator before CRS/SRS/SDS generation. Content-selection views are not complete document templates.
+Prepare the frozen library once and export the subject workspace:
 
-See the [validation notes](../examples/elevator/validation.md) for the checked environment and limitations.
+```powershell
+$domain = ./scripts/prepare_dependencies.ps1 -Spec42 /path/to/spec42.exe -StdlibPath /path/to/stdlib/kpar
+spec42 --disable-kpar-library domain --disable-kpar-library method `
+  --stdlib-path /path/to/stdlib/kpar --library-path $domain `
+  model-export ./examples/elevator/model --format json > model.json
+python ./scripts/check_structure.py model.json --complete-selection
+```
+
+The executable must be the same pinned version. The checker accepts a complete native export; it does not parse source text. Exit code 1 means structural errors; 2 means unusable input. Reports distinguish unresolved dependencies and unassessed capabilities.
+
+Run executable expectations (Python 3.10+):
+
+```powershell
+python ./scripts/test_structure.py --spec42 /path/to/spec42.exe `
+  --stdlib-path /path/to/stdlib/kpar --domain-library-path $domain
+```
+
+The intentionally invalid method examples should produce expected findings, not a clean checker verdict. Language validity, structural checks, contextual constraint analysis and verification are separate claims.
+
+## New projects and documents
+
+`scripts/new_project.ps1 -Path /new/project` copies the starter, frozen dependency, lock and validation helpers. Validate the new project with `-ModelPath ./model`. Existing target directories are never overwritten.
+
+Document selections in `80_documents` need a separate document-library/generator binding before CRS/SRS/SDS generation. That optional publishing capability is outside the frozen method-role dependency.

@@ -89,6 +89,7 @@ To narrow a view to parts only:
 view partsOnly : IntegrationView {
     expose Product::Integration::candidate;
     filter @SysML::PartUsage;
+    filter not @SysML::ConnectionUsage;
 }
 ```
 
@@ -97,6 +98,7 @@ This excludes ports and connection elements; it is an optional variation, not a 
 ```sysml
 view def PartsView :> StandardViewDefinitions::GeneralView {
     filter @SysML::PartUsage;
+    filter not @SysML::ConnectionUsage;
     filter not @SysML::ViewUsage;
 }
 ```

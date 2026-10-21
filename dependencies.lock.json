@@ -1,0 +1,17 @@
+{
+  "methodologyVersion": "0.3.0",
+  "spec42": {
+    "version": "0.56.0"
+  },
+  "standardLibrary": {
+    "distribution": "2026-04",
+    "sourceTreeSha256": "929637b12b24c6024a90d34d85530847d0f591ef1dd39ccf2942873fb54e8854"
+  },
+  "domainLibrary": {
+    "sha256": "411bc5b9518085174d5272f71bd00d5c5a6d2c9d7b74596eb845f5bffc033597",
+    "sourceTreeSha256": "b5aee5c5eeb110fbdc4f5614ec9b7a11bfcf756f8a34164b429e086d720cd88c",
+    "version": "0.5.0",
+    "artifact": "libraries/elan8-domain-libraries-0.5.0.kpar",
+    "status": "frozen local release candidate; not published"
+  }
+}

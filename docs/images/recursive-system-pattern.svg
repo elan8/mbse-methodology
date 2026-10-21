@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="920" viewBox="0 0 1320 920" role="img" aria-labelledby="title description">
+<title id="title">Elan8 recursive system specification, architecture and integration</title>
+<desc id="description">Two system levels each have a specification, architecture and integration. Solid open-triangle arrows point left from each project design to its actual specification or architecture. MachineArchitecture types its drive by DriveSpecification; MachineIntegration redefines that drive with DriveArchitecture. Independent library role markers classify the three representations.</desc>
+<defs>
+  <marker id="generalization" markerWidth="13" markerHeight="13" refX="12" refY="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6.5 L1,12 Z" fill="#ffffff" stroke="#52647c" stroke-width="1.7"/></marker>
+  <marker id="reference" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#008b83" stroke-width="1.8"/></marker>
+  <style>
+    text {font-family: 'Segoe UI', Arial, sans-serif;}
+    .mono {font-family: Consolas, 'Courier New', monospace;}
+    .generalization {fill:none;stroke:#52647c;stroke-width:2;marker-end:url(#generalization);}
+    .reference {fill:none;stroke:#008b83;stroke-width:2;stroke-dasharray:7 5;marker-end:url(#reference);}
+  </style>
+</defs>
+<rect width="1320" height="920" rx="18" fill="#f6f8fc"/>
+<text x="40" y="53" font-size="31" font-weight="700" fill="#152942">One system. Three complementary representations.</text>
+<text x="40" y="84" font-size="18" fill="#52647c">Specification / Architecture / Integration — repeat the pattern at each useful system boundary.</text>
+<path d="M1060,108 H1018" class="generalization"/>
+<text x="1072" y="113" font-size="15" fill="#52647c">specializes</text>
+<text x="40" y="125" font-size="14" font-weight="600" letter-spacing="1.2" fill="#52647c">PARENT SYSTEM</text>
+<rect x="40" y="150" width="380" height="270" rx="14" fill="#172b46" stroke="#42536b" stroke-width="1.5"/>
+<text x="62" y="180" font-size="15" fill="#b8d8f4" font-weight="700">SystemSpecification</text>
+<text x="62" y="218" font-size="21" fill="#ffffff" class="mono" font-weight="700">MachineSpecification</text>
+<path d="M60,241 H400" stroke="#42536b"/>
+<text x="62" y="275" font-size="18" fill="#ffffff" >Interfaces and observable behavior</text>
+<text x="62" y="307" font-size="18" fill="#ffffff" >Properties, assumptions, constraints</text>
+<text x="62" y="371" font-size="19" fill="#b8d8f4" font-weight="600">No structural parts</text>
+<rect x="470" y="150" width="380" height="270" rx="14" fill="#e8edf4" stroke="#c4cfdd" stroke-width="1.5"/>
+<text x="492" y="180" font-size="15" fill="#52647c" font-weight="700">SystemArchitecture</text>
+<text x="492" y="218" font-size="21" fill="#172b46" class="mono" font-weight="700">MachineArchitecture</text>
+<path d="M490,241 H830" stroke="#c4cfdd"/>
+<text x="492" y="275" font-size="18" fill="#172b46" >Design using child contracts</text>
+<rect x="490" y="301" width="340" height="84" rx="9" fill="#f8faff" stroke="#c4cfdd"/>
+<text x="506" y="333" font-size="17" fill="#172b46" class="mono">part drive</text>
+<text x="506" y="361" font-size="17" fill="#172b46" class="mono">: DriveSpecification;</text>
+<rect x="900" y="150" width="380" height="270" rx="14" fill="#ffffff" stroke="#8ecfc8" stroke-width="1.5"/>
+<text x="922" y="180" font-size="15" fill="#007f77" font-weight="700">SystemIntegration</text>
+<text x="922" y="218" font-size="21" fill="#172b46" class="mono" font-weight="700">MachineIntegration</text>
+<path d="M920,241 H1260" stroke="#8ecfc8"/>
+<text x="922" y="275" font-size="18" fill="#172b46" >Select and reconcile child designs</text>
+<rect x="920" y="301" width="340" height="84" rx="9" fill="#ecf8f5" stroke="#8ecfc8"/>
+<text x="936" y="333" font-size="17" fill="#172b46" class="mono">part redefines drive</text>
+<text x="936" y="361" font-size="17" fill="#172b46" class="mono">: DriveArchitecture;</text>
+<path d="M470,205 H421" class="generalization"/><path d="M900,205 H851" class="generalization"/>
+<path d="M660,420 V478 H230 V568" class="reference"/>
+<text x="370" y="465" font-size="16" fill="#007f77" font-weight="600">typed by the child contract</text>
+<path d="M1090,420 V510 H660 V568" class="reference"/>
+<text x="760" y="497" font-size="16" fill="#007f77" font-weight="600">selected child architecture</text>
+<text x="40" y="545" font-size="14" fill="#52647c" font-weight="600" letter-spacing="1.2">CHILD SYSTEM</text>
+<rect x="40" y="570" width="380" height="210" rx="14" fill="#172b46" stroke="#42536b" stroke-width="1.5"/>
+<text x="62" y="600" font-size="15" fill="#b8d8f4" font-weight="700">SystemSpecification</text>
+<text x="62" y="638" font-size="21" fill="#ffffff" class="mono" font-weight="700">DriveSpecification</text>
+<path d="M60,661 H400" stroke="#42536b"/>
+<text x="62" y="697" font-size="18" fill="#ffffff" >Drive boundary contract</text>
+<text x="62" y="739" font-size="18" fill="#b8d8f4" >No structural parts</text>
+<rect x="470" y="570" width="380" height="210" rx="14" fill="#e8edf4" stroke="#c4cfdd" stroke-width="1.5"/>
+<text x="492" y="600" font-size="15" fill="#52647c" font-weight="700">SystemArchitecture</text>
+<text x="492" y="638" font-size="21" fill="#172b46" class="mono" font-weight="700">DriveArchitecture</text>
+<path d="M490,661 H830" stroke="#c4cfdd"/>
+<text x="492" y="697" font-size="17" fill="#172b46" class="mono">part motor</text>
+<text x="492" y="728" font-size="17" fill="#172b46" class="mono">: MotorSpecification;</text>
+<rect x="900" y="570" width="380" height="210" rx="14" fill="#ffffff" stroke="#8ecfc8" stroke-width="1.5"/>
+<text x="922" y="600" font-size="15" fill="#007f77" font-weight="700">SystemIntegration</text>
+<text x="922" y="638" font-size="21" fill="#172b46" class="mono" font-weight="700">DriveIntegration</text>
+<path d="M920,661 H1260" stroke="#8ecfc8"/>
+<text x="922" y="697" font-size="17" fill="#172b46" class="mono">part redefines motor</text>
+<text x="922" y="728" font-size="17" fill="#172b46" class="mono">: MotorArchitecture;</text>
+<path d="M470,625 H421" class="generalization"/><path d="M900,625 H851" class="generalization"/>
+<rect x="40" y="810" width="1240" height="77" rx="11" fill="#e9eef7"/>
+<text x="60" y="840" font-size="17" fill="#172b46" font-weight="600">Library roles are independent; solid arrows show project-specific specialization.</text>
+<text x="60" y="868" font-size="16" fill="#52647c" >Check selected designs against both their child contract and parent-local obligations. Type compatibility is not verification.</text>
+</svg>

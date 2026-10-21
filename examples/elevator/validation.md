@@ -1,38 +1,37 @@
 # Validation notes
 
-Checked on 21 October 2026 with Spec42 0.56.0, the installed 2026-04 standard-library distribution (Kernel 1.0.0 / SysML 2.0.0), and the sibling domain-library source. Managed domain/method archives were disabled. Language reference: SysML v2.0 Part 1, formal/2026-03-02.
+The tested tuple is methodology 0.3.0, Spec42 0.56.0, standard-library distribution 2026-04 (Kernel 1.0.0 / SysML 2.0.0), and a frozen domain-library 0.5.0 candidate. Exact archive/source hashes are in `../../dependencies.lock.json`. The library candidate is not published.
 
-From the methodology root:
+Run from the methodology root:
 
 ```powershell
-./scripts/validate_models.ps1 `
-  -Spec42 C:/Git/elan8/spec42/target/debug/spec42.exe `
-  -StdlibPath C:/Users/jeroe/AppData/Local/Elan8/spec42/data/standard-library/versions/2026-04/kpar
+./scripts/validate_models.ps1 -Spec42 /path/to/spec42.exe -StdlibPath /path/to/stdlib/kpar
 ```
 
-Supply local paths as needed. `-DomainLibraryPath` defaults to the sibling library's `model/` root. The shared definitions are working-tree additions, not a published release.
+Default setup verifies versions/content and consumes the frozen KPAR. An explicit `-DomainLibraryPath` bypasses the frozen domain artifact for development; the standard-library/tool checks remain.
 
-## Language checks
+## Checked results
 
-| Workspace | Documents | Errors | Warnings |
-|---|---:|---:|---:|
-| Shared domain library | 36 | 0 | 0 |
-| Starter | 7 | 0 | 4 |
-| Elevator example | 9 | 0 | 4 |
+- Starter: 7 model documents, zero errors and four known custom-view-name warnings.
+- Connected elevator example: 9 model documents, zero errors and the same four warnings.
+- Tooling fixture: 1 model document, zero errors/warnings.
+- Shared library: 36 model documents, zero errors/warnings.
+- Reference checker: no structural definition findings for the elevator, including complete-selection mode.
+- Executable rule tests: eight test methods pass against the frozen artifact, exercising 21 named cases in default, completeness and optional-style modes plus input/export, view-filter and interaction-semantics regressions.
+- Standalone scaffold: copied model, frozen artifact, lock and validation helpers successfully validate without the source checkout.
 
-The four consumer warnings are `view_type_non_standard`, one per Elan8 view type. SysML §7.26.2 permits specialized view definitions and inherited filters. Spec42 discovers them as general views and applies their filters; its warning classifier still flags their custom names.
+Spec42 0.56.0 warns `view_type_non_standard` on the four Elan8 view names despite discovering/preparing their GeneralView specializations. No warning suppression is applied.
 
-## Prepared default views
+## Semantic inspection and limits
 
-| Example view | Nodes | Edges | Checked content |
-|---|---:|---:|---|
-| `ElevatorContext::context` | 2 | 0 | Referenced user/system; no view selecting itself |
-| `Elevator::Views::specification` | 11 | 11 | Boundary definition, properties, behavior and requirement |
-| `Elevator::Views::architecture` | 6 | 5 | Architecture definition, two contract-typed children, two ports and connection |
-| `Elevator::Views::integration` | 6 | 5 | Selected usage, two design-typed children, two ports and connection |
+The native export resolves the BB-local satisfaction assertion to the authoritative timing requirement and records its owning specification. Implicit-self binding is defined by SysML §7.21.4; the export does not materialize a separate authored `satisfyTarget` edge for that implicit target. The assertion is inherited through the actual project specialization chain.
 
-The integration's panel is typed by `FastPanelArchitecture`. The structural filters exclude attribute/expression nodes. These counts describe the prepared projection, not physical product counts. Rendered layout has not been visually checked.
+The GB action redefines the BB behavior. Three allocations connect forward/present to the panel and register to the controller. Port/action bindings, boundary delegation, request/response flows and ordered subactions are modeled explicitly. The WB retains inherited identities while selecting the fast panel and controller.
 
-Earlier semantic checks confirmed the actual contract/architecture specialization chain, child redefinitions, resolved connection endpoints, satisfaction claim and verification objective. Local KPAR packaging was checked; the temporary archive was removed and no release published.
+View counts and source identities change as the connected example develops; inspect semantic contents rather than treating historical counts as acceptance criteria. Prepared projections are checked for resolved endpoints and selected types. Rendered diagram layout is not certified by these checks.
 
-The timing arithmetic uses synthetic values: 40 + 120 = 160 ms. No physical test, verification execution or operational validation was performed. Explanatory timing/evidence tables are manually authored, not generated coverage reports.
+Current prepared defaults: context 7 nodes / 4 edges; specification 61 / 63; architecture 23 / 22; integration 23 / 22, with zero unresolved node typings. Integration selects FastPanelArchitecture and ControllerArchitecture. The semantic model contains three allocations, sixteen bindings, six flows and two successions. These are model/projection counts, not test results or physical component counts.
+
+The checker assesses structural definitions and nested selections. Root usage-local overrides, contextual constraint evaluation, behavior/port compatibility and evidence are not assessed by that checker. Its coverage report states these limits.
+
+The 160 ms result is synthetic arithmetic under explicit assumptions. No physical timing test, verification execution or operational validation has been performed.

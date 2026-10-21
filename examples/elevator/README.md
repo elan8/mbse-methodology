@@ -1,51 +1,41 @@
-# Elevator call acknowledgement — recursive timing slice
+# Elevator call acknowledgement — one complete interaction
 
-This example asks: **which panel design fits a 50 ms contextual panel allocation within a 200 ms system response limit?** All numbers are synthetic. The subject is call acknowledgement, not elevator movement, passenger safety or a full product specification.
+This example follows one valid request from the user to registration and back as an acknowledgement. It demonstrates BB/GB/WB structure, inherited requirements, boundary delegation, behavior realization and contextual timing. All timing values are synthetic; movement and safety control are outside its scope.
 
-Load only `model/` in this directory. Entry/navigation is `model/Root.sysml`; the assessed usage is `Elevator::Integration::releaseA`. The example uses the numbered model folders and imports `Elan8::SystemsEngineering` from the shared domain library. All three systems are siblings under `60_systems`; composition is defined by part usages.
+Load this directory's `model/` with the frozen dependency from the methodology lock. The selected usage is `Elevator::Integration::releaseA`. All three systems are siblings under `60_systems`.
 
-## Engineering inputs
+## Follow the interaction
 
-- Scenario: a user submits a valid call; the panel processes it and the controller registers it under nominal unloaded operation.
-- Source obligation `ACK-NEED-01`: provide timely acknowledgement; this teaching scenario proposes a 200 ms limit as `ELEV-SYS-001`.
-- Timing assumption: two serial contributions, with zero communication/queuing overhead for this narrow calculation. Real system acceptance would have to justify these exclusions or budget them explicitly.
+1. The referenced user sends `CallRequest` through a conjugated `CallServicePort`. The elevator's boundary port accepts it and returns a `CallAcknowledgement`.
+2. In the BB, `AcknowledgeCall` binds its input/output to that port and constrains acknowledgement `callId` to match the request.
+3. The GB binds its boundary port to the panel's operator port, connects the panel's registration port to the controller, and models request/response flows on that connection.
+4. `RoutedAcknowledgement` specializes the boundary action with forward → register → present actions. These occurrences are bound to child-performed actions and explicitly allocated to the panel/controller.
+5. The WB redefines the panel/controller usages with their selected designs, preserving the interfaces and inherited behavior/requirements.
 
-## Selection and timing
+The shared `CallServicePort`, request/acknowledgement items and reusable child actions are in `50_library`.
 
-| Parent role | Reusable contract | Parent-local obligation | Candidate latency | Disposition |
-|---|---|---|---|---|
-| panel | PanelSpecification: ≤80 ms | ≤50 ms | StandardPanelArchitecture: 60 ms | Rejected for this context despite meeting the reusable contract |
-| panel | PanelSpecification: ≤80 ms | ≤50 ms | FastPanelArchitecture: 40 ms | Selected for ReleaseA; numerical timing allocation met |
-| controller | ControllerSpecification: ≤150 ms | ≤150 ms | ControllerArchitecture: 120 ms | Selected; numerical timing allocation met |
+## Contract binding
 
-Allocated limits: 50 + 150 = 200 ms, with no reserved allocation margin. Selected contributions: 40 + 120 = 160 ms; residual system margin is 40 ms under the stated abstraction. The rejected combination totals 180 ms and meets the top-level limit, yet still violates the agreed local panel obligation. Both levels must be checked.
+`AcknowledgementRequirement` owns the timing criterion. The named usage `ELEV-SYS-001` provides its stable identity. Crucially, `ElevatorSpecification` contains `satisfy acknowledgement;`: its satisfying subject is implicit self under SysML §7.21.4.
 
-The model preserves `panel` through redefinition and inherits its parent-local 50 ms limit in the integration. The selected latency is 40 ms; the table above explicitly reconciles it with that limit. The reusable panel has a default 80 ms limit and a constraint preventing relaxation beyond 80 ms. The standard panel alternative remains available independently. Leaf architectures have no child selections and no separate integration definitions in this tailored slice.
+That assertion is inherited by each architecture/integration. Package proximity alone would not bind the requirement. The verification objective references the authoritative requirement, and `releaseAAnalysis` identifies the selected subject. It is a planned case with no execution verdict.
 
-## Requirements and evidence
+## Timing selection
 
-| Obligation | Subject/design claim | Planned case | Execution evidence | Status |
-|---|---|---|---|---|
-| ELEV-SYS-001 | Elevator specification; satisfaction claim by releaseA | releaseAAnalysis / AcknowledgementAnalysis | None | Planned; not verified |
-| ACK-NEED-01 | Stakeholder obligation; source of the proposed system criterion | Operational validation outside this slice | None | Preliminary; acceptance outstanding |
-| Local panel allocation | ElevatorArchitecture.panel, 50 ms | Contextual comparison during selection review | Synthetic arithmetic above only | Numerical illustration, product evidence outstanding |
+| Constituent | Independent limit | Parent-local limit | Design contribution | Selection |
+|---|---:|---:|---:|---|
+| Panel, standard design | 80 ms | 50 ms | 60 ms | Rejected here |
+| Panel, fast design | 80 ms | 50 ms | 40 ms | Selected |
+| Controller | 150 ms | 150 ms | 120 ms | Selected |
 
-The verification case identifies its objective and configured subject. Language checking does not execute that case or establish a pass verdict. Child timing assertions are model constraints, not measured supplier guarantees.
+The serial total is 40 + 120 = **160 ms**, against a **200 ms** system limit. The panel contribution includes forwarding and presentation together. No queue, communication overhead or concurrency is modeled. The selected residual margin is 40 ms; allocated limits themselves reserve no extra margin.
 
-## Explore the model
+The rejected 60 ms panel would yield a passing 180 ms system total but violate its local 50 ms allocation. Both contract levels matter.
 
-1. Locate the actual specification → architecture → integration specialization chain.
-2. Confirm child usages in architecture are contract-typed, and integration redefines their inherited identities.
-3. Explain why the standard panel cannot be selected, even though its combined system timing passes.
-4. Inspect the `CallPort` item direction, conjugated receiver and connection. This internal request topology is not a complete boundary interaction model.
-5. Check the requirement subject, satisfaction claim and verification objective. Identify missing operational validation and execution evidence.
+## Views and checks
 
-The [four view recipes](../../docs/views.md) are implemented: `ElevatorContext::context`, `Elevator::Views::specification`, `Elevator::Views::architecture` and `Elevator::Views::integration`. Shared GeneralView specializations supply the filters. The integration exposes `releaseA`, rather than the entire integration package. The tables above are explanatory notes, not generated reports. Context/scenario/requirement areas identify the slice and its source; they remain preliminary. This slice intentionally omits complete acknowledgement event behavior, responsibility allocations, formal child requirements, broader interface compatibility and product evidence. It illustrates the recursive mechanism and is not a complete or verified elevator design.
+The four defaults are `ElevatorContext::context`, `Elevator::Views::specification`, `Elevator::Views::architecture` and `Elevator::Views::integration`. Structural views omit detailed action/data expressions; the behavior remains authoritative in the model. A standard ActionFlowView can expose `RoutedAcknowledgement` when needed, without adding another mandatory view.
 
-Run from the methodology root:
+From the methodology root, use [validation and checker commands](../../docs/library-and-tooling.md). The reference structural checker reports no definition-structure findings for this example, including complete-selection mode.
 
-```powershell
-./scripts/validate_models.ps1 -Spec42 /absolute/path/to/spec42.exe
-```
-
-See [validation record](validation.md) for the actual local result and its limits.
+This is a connected modeling example, not a physical elevator design or an executed simulation. Native language checks, structural diagnostics and prepared view inspection do not establish measured timing or operational validation. See [validation notes](validation.md).

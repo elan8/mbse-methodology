@@ -61,7 +61,7 @@ This provides a `Product::Behavior` access path without duplicating authoritativ
 
 `50_library` owns project-specific reusable definitions such as coordinate frames, common interface/item types and components shared by systems. A developed subsystem remains in `60_systems` even when several parents use it. Reuse does not require moving it into a generic library.
 
-Released domain libraries are external pinned dependencies, not editable copies in `50_library`. Method roles come from `Elan8::SystemsEngineering` in `sysml-domain-libraries`. During development the validation script can load the sibling library source; identify its source revision and local changes until an artifact containing these roles is released.
+Domain libraries are pinned dependencies, not editable copies in `50_library`. Method roles come from `Elan8::SystemsEngineering`; the frozen 0.5.0 candidate and hashes are provided in `libraries/` and `dependencies.lock.json`. Default validation consumes that snapshot. An explicit source override is available for development. See [tooling](library-and-tooling.md).
 
 Reusable supplier/product libraries may remain separate projects. Use controlled references/adapters instead of copying editable definitions into several consumers.
 

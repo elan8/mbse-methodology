@@ -4,7 +4,7 @@
 - Relevant contacts:
 - Model configuration/usage: `Product::Integration::candidate` (draft)
 - Language, tool and standard-library versions:
-- Elan8 dependency: `Elan8::SystemsEngineering`; source revision/local changes or artifact version:
+- Elan8 dependency: frozen 0.5.0 candidate; exact hashes and tested tool/stdlib in `dependencies.lock.json`:
 - Other dependencies and document generator, if used:
 - Validation/rendering commands:
 - Assumptions and unresolved choices:

@@ -1,7 +1,9 @@
 package Product {
     package Specification {
         part def ProductSpecification :> Elan8::SystemsEngineering::SystemSpecification {
-            doc /* TODO: observable behavior, ports, properties, conditions and constraints. */
+            doc /* TODO: observable behavior, ports, properties, conditions and constraints.
+                 * Explicitly assert applicable requirements here with `satisfy <requirement>;`
+                 * so the owner/self binding and assertion are inherited by designs. */
         }
         package Requirements {
             doc /* TODO: stable IDs, explicit subjects/criteria and verification intent. */

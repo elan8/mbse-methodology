@@ -1,0 +1,252 @@
+{
+  "status": "Expected findings exercised by scripts/test_structure.py against a live Spec42 semantic export",
+  "catalogVersion": "0.3.0",
+  "workspace": "model",
+  "defaultOptions": {
+    "completeSelection": false,
+    "singlePrincipalBase": false
+  },
+  "cases": [
+    {
+      "element": "ToolingRuleExamples::ValidBB",
+      "expected": []
+    },
+    {
+      "element": "ToolingRuleExamples::InvalidBBWithPart",
+      "expected": [
+        {
+          "id": "E8-BB-001",
+          "severity": "error",
+          "feature": "internal"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::InvalidBBWithReference",
+      "expected": [
+        {
+          "id": "E8-BB-001",
+          "severity": "error",
+          "feature": "external"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::ValidGB",
+      "expected": []
+    },
+    {
+      "element": "ToolingRuleExamples::MissingContractGB",
+      "expected": [
+        {
+          "id": "E8-GB-001",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::CompetingContractsGB",
+      "expected": [],
+      "withSinglePrincipalBase": [
+        {
+          "id": "E8-STYLE-001",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::DesignTypedChildGB",
+      "expected": [
+        {
+          "id": "E8-GB-002",
+          "severity": "error",
+          "feature": "child"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::MarkerTypedChildGB",
+      "expected": [
+        {
+          "id": "E8-GB-002",
+          "severity": "error",
+          "feature": "child"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::ValidWB",
+      "expected": []
+    },
+    {
+      "element": "ToolingRuleExamples::PartialWB",
+      "expected": [
+        {
+          "id": "E8-WB-004",
+          "severity": "warning",
+          "feature": "child"
+        }
+      ],
+      "withCompleteSelection": [
+        {
+          "id": "E8-WB-004",
+          "severity": "error",
+          "feature": "child"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::MissingArchitectureWB",
+      "expected": [
+        {
+          "id": "E8-WB-001",
+          "severity": "error"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::SpecificationSelectedWB",
+      "expected": [
+        {
+          "id": "E8-WB-003",
+          "severity": "error",
+          "feature": "child"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::ExtraPartWB",
+      "expected": [
+        {
+          "id": "E8-WB-002",
+          "severity": "error",
+          "feature": "extra"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::PartialBranchIntegration",
+      "expected": [
+        {
+          "id": "E8-WB-004",
+          "severity": "warning",
+          "feature": "leaf"
+        }
+      ],
+      "withCompleteSelection": [
+        {
+          "id": "E8-WB-004",
+          "severity": "error",
+          "feature": "leaf"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::OuterWithGreyChild",
+      "expected": [
+        {
+          "id": "E8-WB-004",
+          "severity": "warning",
+          "feature": "branch.leaf"
+        }
+      ],
+      "withCompleteSelection": [
+        {
+          "id": "E8-WB-004",
+          "severity": "error",
+          "feature": "branch.leaf"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::OuterWithPartialWhiteChild",
+      "expected": [
+        {
+          "id": "E8-WB-004",
+          "severity": "warning",
+          "feature": "branch.leaf"
+        }
+      ],
+      "withCompleteSelection": [
+        {
+          "id": "E8-WB-004",
+          "severity": "error",
+          "feature": "branch.leaf"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::OuterComplete",
+      "expected": []
+    },
+    {
+      "element": "ToolingRuleExamples::OptionalPartialWB",
+      "expected": [
+        {
+          "id": "E8-WB-004",
+          "severity": "warning",
+          "feature": "child"
+        }
+      ],
+      "withCompleteSelection": [
+        {
+          "id": "E8-WB-004",
+          "severity": "error",
+          "feature": "child"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::AbsentChildWB",
+      "expected": []
+    },
+    {
+      "element": "ToolingRuleExamples::MultipleArchitecturesWB",
+      "expected": [],
+      "withSinglePrincipalBase": [
+        {
+          "id": "E8-STYLE-001",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "element": "ToolingRuleExamples::RecursiveIntegration",
+      "expected": [
+        {
+          "id": "E8-WB-004",
+          "severity": "warning",
+          "feature": "next"
+        }
+      ],
+      "withCompleteSelection": [
+        {
+          "id": "E8-WB-004",
+          "severity": "error",
+          "feature": "next"
+        }
+      ]
+    }
+  ],
+  "additionalCases": [
+    {
+      "id": "unrelatedDesign",
+      "rule": "E8-WB-005",
+      "description": "Select a design whose own type ancestry does not conform to the inherited child contract. Native language validation may reject the redefinition first; report that native error without cascading method claims."
+    },
+    {
+      "id": "contextualTiming",
+      "rule": "E8-CTX-001",
+      "description": "A panel with latency 60 ms, independent limit 80 ms, and parent-local limit 50 ms violates the local condition. The elevator example selects 40 ms instead."
+    },
+    {
+      "id": "unknownConstraint",
+      "rule": "E8-CTX-001",
+      "description": "If the selected value, constraint evaluator or required evidence is unavailable, report info/not-assessed, never passed."
+    },
+    {
+      "id": "roleOnlyMarkers",
+      "description": "The three framework marker definitions are excluded as exact semantic identities. Abstract project definitions are not excluded."
+    }
+  ]
+}

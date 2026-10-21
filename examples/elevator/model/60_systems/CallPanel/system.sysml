@@ -1,13 +1,17 @@
 package CallPanel {
     private import ISQ::TimeValue;
     private import SI::*;
-
-    item def CallRequest;
-    port def CallPort { out item request : CallRequest; }
-
+    private import ElevatorProjectLibrary::*;
     package Specification {
         part def PanelSpecification :> Elan8::SystemsEngineering::SystemSpecification {
-            port calls : CallPort;
+            port operator : CallServicePort;
+            port registration : ~CallServicePort;
+            perform action forward : ForwardCall;
+            perform action present : PresentAcknowledgement;
+            bind forward.request = operator.request;
+            bind forward.forwarded = registration.request;
+            bind present.confirmation = registration.acknowledgement;
+            bind present.displayed = operator.acknowledgement;
             attribute latency : TimeValue;
             attribute limit : TimeValue default = 0.08 [s];
             assert constraint contractLimit { limit <= 0.08 [s] }
