@@ -1,8 +1,6 @@
 # Elan8 MBSE methodology
 
-**Version 0.3.0 — in development.** A small set of SysML v2 modeling conventions: system-owned packages, recursive specification–architecture–integration, and useful views.
-
-This revision prepares release 0.3.0, following the previously released 0.2.0 methodology.
+A small set of SysML v2 modeling conventions: system-owned packages, recursive specification–architecture–integration, and useful views.
 
 Choose your own development workflow. Top-down, bottom-up, requirements-first, architecture exploration and question-driven increments can all use this methodology. There are no prescribed phases, gates, ceremonies or mandatory record forms.
 
@@ -44,5 +42,3 @@ The [elevator example](examples/elevator/README.md) demonstrates the pattern and
 | [Sources and terms](docs/sources-and-terms.md) | Language baseline and vocabulary |
 
 The starter and example use a frozen domain-library 0.5.0 candidate, pinned with Spec42 0.56.0 and the tested standard library in [dependencies.lock.json](dependencies.lock.json). No library release has been published. A reference checker and executable rule cases are included; contextual constraints and verification evidence remain separate checks. Document generation needs its own library/generator binding.
-
-The previous methodology remains in `BAK/`; the [original discussion](docs/design-discussion.md) is historical input.
