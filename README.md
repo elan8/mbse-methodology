@@ -9,7 +9,7 @@ Choose your own development workflow. Top-down, bottom-up, requirements-first, a
 - **Specification:** define what the system promises at its boundary.
 - **Architecture:** specialize that specification and design with constituent subsystem contracts.
 - **Integration:** specialize the chosen architecture and select compatible constituent designs through redefinition.
-- Keep systems flat under `60_systems`; model relationships express composition.
+- Keep systems flat under `60_systems`, with the selected root in `00_<SystemName>`; model relationships express composition.
 - Own role definitions directly in each system package by default. Role subpackages are optional; a leaf need not have an integration definition.
 - Use domain types directly for ordinary leaf components. Add product-specific definitions for actual engineering content, not empty method-role adapter pairs.
 - Use views to present existing content, rather than creating diagram-specific copies.

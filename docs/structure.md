@@ -19,7 +19,7 @@ project/
     50_library/
       Library.sysml                # project-owned shared types, frames, interfaces, parts
     60_systems/
-      MainSystem/
+      00_MainSystem/               # selected root system
         system.sysml
       SubsystemA/
         system.sysml
@@ -34,6 +34,8 @@ project/
 ```
 
 The [starter](../templates/project-template/README.md) contains the model folders/files. Records and evidence folders are optional supporting areas. Remove `10_usecases` when explicit use cases add no value, recording the operational understanding elsewhere. Number gaps allow future model areas without renaming existing ones.
+
+The selected root system uses `60_systems/00_<SystemName>/system.sysml` so it sorts first. Other systems keep unprefixed sibling folders. The `00_` prefix belongs only to the folder name; the SysML package keeps its normal name. `Root.sysml` explicitly aliases the selected root occurrence as `systemOfInterest`, without creating another instance. For a different selected system boundary, update both the folder designation and alias. Composition remains defined by part usages.
 
 ## System-owned content
 
@@ -93,7 +95,9 @@ System-specific views live with each system. Project-level context and requireme
 
 | Item | Convention |
 |---|---|
-| System source | `60_systems/<SystemName>/system.sysml` |
+| Selected root source | `60_systems/00_<SystemName>/system.sysml` |
+| Other system source | `60_systems/<SystemName>/system.sysml` |
+| Selected root occurrence | `Root.sysml` aliases it as `systemOfInterest` |
 | Definitions | `LiftSpecification`, `LiftDistributedArchitecture`, `LiftReleaseAIntegration` |
 | Usage | Lower camel case role in context: `callPanel` |
 | Requirement ID | Stable prefix/sequence such as `LIFT-SYS-001`; never reuse retired IDs |

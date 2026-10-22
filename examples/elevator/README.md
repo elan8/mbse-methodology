@@ -2,7 +2,7 @@
 
 This example follows one valid request from the user to registration and back as an acknowledgement. It demonstrates BB/GB/WB structure, inherited requirements, boundary delegation, behavior realization and contextual timing. All timing values are synthetic; movement and safety control are outside its scope.
 
-Load this directory's `model/` with the frozen dependency from the methodology lock. The selected usage is `Elevator::releaseA`. All three systems are siblings under `60_systems`.
+Load this directory's `model/` with the frozen dependency from the methodology lock. The selected usage is `Elevator::releaseA`. All three systems are siblings under `60_systems`; `00_Elevator` identifies the root folder. `Root.sysml` aliases `Elevator::releaseA` as `systemOfInterest`.
 
 Contract, architecture and integration definitions are directly owned by their
 system packages. The leaf panel and controller need architectures but no empty

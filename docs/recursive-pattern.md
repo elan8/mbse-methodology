@@ -26,7 +26,7 @@ An architecture specializes its **actual contract** as well as the method role. 
 
 Keep these definitions directly in the owning system package by default. `Specification`, `Architecture` and `Integration` subpackages are optional organizational choices, not roles or conformance requirements. Useful `Requirements`, `Analysis`, `Verification` or `Views` packages can remain. A leaf with no deeper selections can end at its architecture; an empty integration adds no selection information.
 
-Definitions describe reusable types/designs; usages identify roles or configurations in context. Repeat the pattern at useful engineering boundaries. A leaf can select an architecture directly when it has no deeper selections. The [elevator example](../examples/elevator/model/60_systems/Elevator/system.sysml) shows a quantitative selection.
+Definitions describe reusable types/designs; usages identify roles or configurations in context. Repeat the pattern at useful engineering boundaries. A leaf can select an architecture directly when it has no deeper selections. The [elevator example](../examples/elevator/model/60_systems/00_Elevator/system.sysml) shows a quantitative selection.
 
 ## Specification
 

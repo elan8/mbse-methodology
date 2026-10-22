@@ -2,7 +2,7 @@
 
 Create a complete standalone project with the methodology's `scripts/new_project.ps1 -Path /new/project`. This copies the template, frozen dependency, lock and validation helpers. Copying this directory alone copies only the model template.
 
-Rename the `Product` package and all its qualified references across `model/` (including Root, Context and Documents), starting at `60_systems/Product/system.sysml`. Load the complete model tree and the frozen Elan8 dependency. The numbered folders organize content; choose your own development sequence.
+Rename the `Product` package and all its qualified references across `model/` (including Root, Context and Documents), starting at `60_systems/00_Product/system.sysml`. Rename the root folder to `00_<YourSystemName>` as well; keep the `00_` prefix out of the package name. `Root.sysml` aliases the selected occurrence as `systemOfInterest`. Load the complete model tree and the frozen Elan8 dependency. The numbered folders organize content; choose your own development sequence.
 
 Keep each system's contract, design, integration, behavior, analysis, verification and views together. Add developed subsystems as siblings under `60_systems`. Put stakeholder obligations in `20_requirements` and project-owned shared definitions in `50_library`.
 

@@ -1,5 +1,7 @@
 package ElevatorNavigation {
     doc /* Load this model directory independently of the project template and BAK. */
+    alias systemOfInterest for Elevator::releaseA;
+
     private import Elevator::*;
     private import CallPanel::*;
     private import CallController::*;
