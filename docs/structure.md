@@ -53,6 +53,12 @@ A leaf architecture can be selected directly. Add an integration definition when
 
 Systems are flat by default even when recursively composed. A parent architecture refers to a child's specification; its integration selects a child design through redefinition. Several parent usages may reference the same independently owned child. Optional domain grouping folders are organizational only.
 
+This recursive pattern is for developed subsystem boundaries. Use domain types
+directly for ordinary leaf components and plain product specializations for their
+actual ports, values or supplier selections. Do not create empty contract/design
+adapter pairs for every motor, wheel or connector. A component with structural
+children is not an ordinary leaf; keep its composition explicit in the system model.
+
 Local context, scenarios or stakeholder obligations can be added inside a system package when they provide information beyond the project-level context or parent handoff.
 
 ## Splitting a system across files

@@ -34,7 +34,7 @@ Describe observable behavior, typed boundary interfaces, measurable properties, 
 
 Internal constituent systems belong in architecture. Structured items, ports and action parameters can still be part of a boundary contract. Reference external participants from context.
 
-A BB has no structural `part` or `ref part` features. GB constituents must have the most specific role BB, not merely inherit the specification marker through an existing design. WB selects GB/WB definitions by redefining those inherited constituents. The tooling rules define these scopes precisely, including inherited features and partial selections.
+A BB has no structural `part` or `ref part` features. Developed subsystem constituents in a GB have the most specific role BB, not merely an inherited specification marker through an existing design. WB selects GB/WB definitions by redefining those inherited constituents. Ordinary typed leaf components can use native domain definitions directly, without specification/architecture adapters; plain project specializations hold real product data when needed. Unmarked composites and usage-local composition cannot use this leaf exception. The tooling rules define these scopes precisely, including inherited features and partial selections.
 
 ## Binding requirements to the BB
 
@@ -61,7 +61,7 @@ A verification objective references the authoritative requirement, while the cas
 
 ## Architecture
 
-Type constituent usages by child specifications. Describe their interactions, behavior and responsibilities as needed. Use connections for topology, flows for transfer, bindings for identity/equality and allocations for responsibility mapping.
+Type developed constituent systems by child specifications. Ordinary leaf parts use native domain types or plain product specializations directly. Describe their interactions, behavior and responsibilities as needed. Use connections for topology, flows for transfer, bindings for identity/equality and allocations for responsibility mapping.
 
 Quantitative budgets need units, an aggregation rule and operating assumptions. Account for overhead and margin where relevant.
 

@@ -4,7 +4,7 @@ The shared package `Elan8::SystemsEngineering` provides independent BB/GB/WB rol
 
 ## Tested dependency tuple
 
-The [lock file](../dependencies.lock.json) records methodology **0.4.0**, Spec42 **0.56.0**, standard-library distribution **2026-04**, and a frozen **domain-library 0.5.0 release candidate**. The candidate is bundled in `libraries/`; it has not been published. Archive/source SHA-256 digests identify the exact tested content.
+The [lock file](../dependencies.lock.json) records methodology **0.5.0**, Spec42 **0.56.0**, standard-library distribution **2026-04**, and a frozen **domain-library 0.5.0 release candidate**. The candidate is bundled in `libraries/`; it has not been published. Archive/source SHA-256 digests identify the exact tested content.
 
 Default setup verifies the CLI version, standard-library source digest, domain archive checksum and extracted source digest. A mutable sibling checkout is no longer required. `-DomainLibraryPath` explicitly opts into a development override.
 
@@ -44,10 +44,11 @@ python ./scripts/test_structure.py --spec42 /path/to/spec42.exe `
 
 The intentionally invalid method examples should produce expected findings, not a clean checker verdict. Language validity, structural checks, contextual constraint analysis and verification are separate claims.
 
-Methodology 0.4.0 makes direct system ownership the default. The structural rule
-catalog stays at 0.3.0: its semantic predicates are unchanged. Executable tests
-cover direct ownership and optional arbitrary grouping packages with the same
-roles and selections, plus specification views that exclude designs.
+Methodology 0.5.0 keeps direct ownership and permits ordinary typed leaf parts
+without system-role adapters. Structural catalog 0.4.0 distinguishes those leaves
+from developed subsystem contracts; untyped parts, bare markers and unmarked
+composites remain invalid. Tests cover direct/grouped ownership, ordinary leaf
+inheritance and refinement, nested selection, hidden composition and view scope.
 
 ## New projects and documents
 

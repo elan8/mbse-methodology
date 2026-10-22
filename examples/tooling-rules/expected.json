@@ -1,6 +1,6 @@
 {
   "status": "Expected findings exercised by scripts/test_structure.py against a live Spec42 semantic export",
-  "catalogVersion": "0.3.0",
+  "catalogVersion": "0.4.0",
   "workspace": "model",
   "defaultOptions": {
     "completeSelection": false,

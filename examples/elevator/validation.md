@@ -1,6 +1,6 @@
 # Validation notes
 
-The tested tuple is methodology 0.4.0, Spec42 0.56.0, standard-library distribution 2026-04 (Kernel 1.0.0 / SysML 2.0.0), and a frozen domain-library 0.5.0 candidate. Exact archive/source hashes are in `../../dependencies.lock.json`. The library candidate is not published.
+The tested tuple is methodology 0.5.0, Spec42 0.56.0, standard-library distribution 2026-04 (Kernel 1.0.0 / SysML 2.0.0), and a frozen domain-library 0.5.0 candidate. Exact archive/source hashes are in `../../dependencies.lock.json`. The library candidate is not published.
 
 Run from the methodology root:
 
@@ -17,14 +17,14 @@ Default setup verifies versions/content and consumes the frozen KPAR. An explici
 - Tooling fixture: 1 model document, zero errors/warnings.
 - Shared library: 36 model documents, zero errors/warnings.
 - Reference checker: no structural definition findings for the elevator, including complete-selection mode.
-- Executable rule tests: ten test methods pass against the frozen artifact, exercising 21 named cases in default, completeness and optional-style modes plus input/export, view-filter, interaction-semantics and namespace-layout regressions.
+- Executable rule tests: eleven test methods pass against the frozen artifact, exercising 21 named cases in default, completeness and optional-style modes plus input/export, view-filter, interaction-semantics and namespace-layout regressions.
 - Standalone scaffold: copied model, frozen artifact, lock and validation helpers successfully validate without the source checkout.
 
 Released Spec42 0.56.0 reports `view_type_non_standard` on the four Elan8 view names. No warning suppression is applied. Diagram preparation and the view-dependent tests use the separate rendering source revision in the lock file; it includes inherited-view discovery and Boolean filters missing from the released binary.
 
 ## Semantic inspection and limits
 
-The native export resolves the BB-local satisfaction assertion to the authoritative timing requirement and records its owning specification. Implicit-self binding is defined by SysML §7.21.4; the export does not materialize a separate authored `satisfyTarget` edge for that implicit target. The assertion is inherited through the actual project specialization chain.
+The native export resolves the BB-local satisfaction assertion to the authoritative timing requirement and records its owning specification. Implicit-self binding is defined by SysML Â§7.21.4; the export does not materialize a separate authored `satisfyTarget` edge for that implicit target. The assertion is inherited through the actual project specialization chain.
 
 The GB action redefines the BB behavior. Three allocations connect forward/present to the panel and register to the controller. Port/action bindings, boundary delegation, request/response flows and ordered subactions are modeled explicitly. The WB retains inherited identities while selecting the fast panel and controller.
 

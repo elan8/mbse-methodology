@@ -186,6 +186,57 @@ package Grouped {
             names = {node["name"] for node in product["projection"]["nodes"]}
             self.assertTrue(names.isdisjoint({"ElevatorArchitecture", "ElevatorReleaseAIntegration", "releaseA"}))
 
+        def test_native_leaf_parts_need_no_system_role_adapters(self):
+            source = """
+package LeafCases {
+    private import Elan8::SystemsEngineering::*;
+    part def Leaf;
+    part def SelectedLeaf :> Leaf;
+    part def Contract :> SystemSpecification;
+    part def Design :> Contract, SystemArchitecture {
+        part supplied : Leaf;
+    }
+    part def Inherited :> Design, SystemIntegration;
+    part def Selected :> Design, SystemIntegration {
+        part supplied : SelectedLeaf :>> supplied;
+    }
+    part def OuterContract :> SystemSpecification;
+    part def OuterDesign :> OuterContract, SystemArchitecture {
+        part child : Contract;
+    }
+    part def OuterSelected :> OuterDesign, SystemIntegration {
+        part child : Selected :>> child;
+    }
+    part def HiddenComposite {
+        part child : Contract;
+    }
+    part def InvalidHidden :> Contract, SystemArchitecture {
+        part hidden : HiddenComposite;
+    }
+    part def InvalidLocal :> Contract, SystemArchitecture {
+        part hidden : Leaf { part child : Contract; }
+    }
+    part def InvalidSelected :> Design, SystemIntegration {
+        part supplied : Leaf :>> supplied { part child : Contract; }
+    }
+}
+"""
+            cache = ROOT / ".cache"
+            cache.mkdir(exist_ok=True)
+            with tempfile.TemporaryDirectory(prefix="native-leaves-", dir=cache) as directory:
+                path = Path(directory) / "Leaves.sysml"
+                path.write_text(source, encoding="utf-8")
+                native = json.loads(subprocess.run(
+                    [*common, "model-export", str(path), "--format", "json"],
+                    check=True, capture_output=True, text=True, encoding="utf-8").stdout)
+            self.assertEqual(0, native["summary"]["error_count"])
+            for complete in (False, True):
+                report = StructureChecker([native], complete=complete).run()
+                findings = {(x["element"], x["id"]) for x in report["diagnostics"]}
+                self.assertEqual({("LeafCases::InvalidHidden", "E8-GB-002"),
+                                  ("LeafCases::InvalidLocal", "E8-GB-002"),
+                                  ("LeafCases::InvalidSelected", "E8-WB-003")}, findings)
+
     result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(ContractTests))
     return 0 if result.wasSuccessful() else 1
 

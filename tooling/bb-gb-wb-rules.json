@@ -1,5 +1,5 @@
 {
-  "catalogVersion": "0.3.0",
+  "catalogVersion": "0.4.0",
   "status": "reference structural definition checker implemented; contextual/root-usage checks not assessed",
   "semantics": "../docs/tooling-rules.md",
   "markerNamespace": "Elan8::SystemsEngineering",
@@ -37,7 +37,7 @@
     {
       "id": "E8-GB-002",
       "target": "GB constituent",
-      "predicate": "projectSpecificBBTypingOnly",
+      "predicate": "projectSpecificBBOrOrdinaryTypedLeaf",
       "severity": "error"
     },
     {
@@ -55,13 +55,13 @@
     {
       "id": "E8-WB-003",
       "target": "explicit WB selection",
-      "predicate": "projectSpecificGBorWBSelection",
+      "predicate": "developedDesignOrOrdinaryLeafSelection",
       "severity": "error"
     },
     {
       "id": "E8-WB-004",
       "target": "WB configuration",
-      "predicate": "allPossibleChildrenHaveDesignSelections",
+      "predicate": "allDevelopedChildrenHaveDesignSelections",
       "severity": "warning",
       "severityWhenCompleteSelection": "error"
     },
@@ -86,5 +86,12 @@
       "severity": "warning",
       "enabledWhen": "singlePrincipalBase=true"
     }
-  ]
+  ],
+  "ordinaryLeafParts": {
+    "mostSpecificRole": "NONE",
+    "typed": true,
+    "definitionStructuralParts": "none",
+    "usageLocalStructuralParts": "none",
+    "policy": "native typing and compatible redefinition; no role adapters required"
+  }
 }

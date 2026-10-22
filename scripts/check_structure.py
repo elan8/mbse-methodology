@@ -114,6 +114,17 @@ class StructureChecker:
         multiplicity = self.nodes[feature].get("multiplicity")
         return bool(multiplicity and multiplicity.get("upper") in (0, "0"))
 
+    def terminal(self, feature):
+        """An ordinary typed leaf needs no artificial system-role adapter.
+
+        Reject unmarked composites and usage-local composition: they must not
+        conceal subsystem contracts or bypass recursive selection checks.
+        """
+        types = self.types(feature)
+        local = {feature, *self.ancestors(feature, "redefinition")}
+        return bool(types) and not any(self.parts_owned(x) for x in local) and all(
+            self.role(t) == "NONE" and not self.parts(t) for t in types)
+
     def unresolved(self, key):
         # References to the exact role objects are sufficient; unknown imported
         # project definitions need a dependency export rather than guessing.
@@ -161,10 +172,10 @@ class StructureChecker:
                 if any(self.unresolved(t) for t in types):
                     self.emit("E8-EXPORT-001", key, child, self.feature_name(child),
                               severity="info", message="Child type ancestry is unavailable.")
-                elif (not any(self.role(t) == "BB" and not self.marker(t) for t in types)
+                elif not self.terminal(child) and (not any(self.role(t) == "BB" and not self.marker(t) for t in types)
                       or any(self.role(t) in ("GB", "WB") for t in types)):
                     self.emit("E8-GB-002", key, child, self.feature_name(child),
-                              message="GB child must be typed by a project BB contract.")
+                              message="GB child must be typed by a project BB contract or an ordinary typed leaf.")
             return
         inherited = list(dict.fromkeys(x for base in required for x in self.parts(base)))
         effective = self.parts(key)
@@ -188,6 +199,9 @@ class StructureChecker:
             path = self.feature_name(child)
             types = self.types(child)
             designs = [t for t in types if self.role(t) in ("GB", "WB") and not self.marker(t)]
+            ordinary = self.terminal(original) and self.terminal(child)
+            if ordinary:
+                designs = types
             if not designs:
                 code = "E8-WB-004" if child == original else "E8-WB-003"
                 self.emit(code, key, child, path,
@@ -202,7 +216,8 @@ class StructureChecker:
                            for design in designs) for contract in self.types(original)):
                 self.emit("E8-WB-005", key, child, path,
                           message="Selected design does not specialize the inherited contract.")
-            self.check_nested(key, child, designs, path, (key,))
+            if not ordinary:
+                self.check_nested(key, child, designs, path, (key,))
 
     def check_nested(self, root, selected, designs, path, active):
         for design in designs:
@@ -221,6 +236,8 @@ class StructureChecker:
                     self.emit("E8-EXPORT-001", root, child, child_path, severity="info",
                               message="Nested child ancestry is unavailable.")
                     continue
+                if self.terminal(child):
+                    continue
                 next_designs = [t for t in types
                                 if self.role(t) in ("GB", "WB") and not self.marker(t)]
                 if not next_designs:
@@ -233,7 +250,7 @@ class StructureChecker:
     def run(self):
         for key in sorted(self.targets, key=lambda x: self.names[x]):
             self.check_definition(key)
-        return {"checker": "elan8-structural-reference", "catalogVersion": "0.3.0",
+        return {"checker": "elan8-structural-reference", "catalogVersion": "0.4.0",
                 "coverage": {"definitionStructure": "partially-assessed" if any(
                     x["id"] == "E8-EXPORT-001" for x in self.diagnostics) else "checked",
                              "usageLocalRootOverrides": "not-assessed",

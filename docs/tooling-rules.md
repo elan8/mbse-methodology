@@ -24,6 +24,14 @@ part def MachineIntegration :> MachineArchitecture, SystemIntegration;
 
 BB permits observable properties, assumptions, requirements and constraints as well as interfaces and behavior. “Only behavior and interfaces” would exclude useful contract content. It has no structural part usages, including `ref part`; external participants belong in context.
 
+Recursive roles apply to developed subsystem boundaries. Ordinary leaf components,
+such as a wheel, battery, connector, task or queue, can use native domain types or
+plain project specializations without role adapters. An ordinary leaf is typed,
+has most-specific role NONE, and has no structural parts in its type or local
+usage body. An unmarked composite does not qualify: it must not conceal child
+contracts or bypass recursive selection checks. Native typing and compatible
+redefinition still apply to ordinary leaves.
+
 ## Shared queries
 
 Resolve the marker identities through `Elan8::SystemsEngineering`. Imported aliases denote the same objects. Exclude only those three framework definitions from rule targets; abstract project definitions are still checked.
@@ -55,11 +63,11 @@ For role-bearing usages, include their usage-local refinements. Check definition
 |---|---|---|---|
 | E8-BB-001 | BB | `parts(T)` is nonempty. **Error.** | Move implementation constituents to architecture, or external participants to context. Preserve boundary behavior/interfaces. |
 | E8-GB-001 | GB definition | `principalBases(T, BB)` contains no actual contract. **Error.** | Add the intended specification specialization. A marker alone is insufficient. |
-| E8-GB-002 | GB child | A constituent is untyped, typed only by a bare method marker, or has resolved most specific role GB/WB/NONE. **Error.** Unresolved type references defer this check to language diagnostics. | Type the architecture constituent by a child specification. Select the child design in integration. Use an adapter contract for an opaque supplied component. |
+| E8-GB-002 | GB child | A constituent is neither typed by a project BB contract nor an ordinary typed leaf. Bare markers, direct GB/WB typing, untyped parts and unmarked composites are errors. Unresolved ancestry defers the check. | Use a contract for a developed subsystem; use the native type directly for an ordinary leaf. |
 | E8-WB-001 | WB definition | `principalBases(T, GB)` contains no actual architecture. **Error.** | Specialize the intended architecture. Neither a marker nor a BB alone identifies it. |
 | E8-WB-002 | WB child | A new constituent has no redefinition chain to a child of the selected GB base set, or several effective replacements compete for that child. **Error.** | Redefine the inherited child identity; put new composition in a revised architecture. Name similarity and subsetting are insufficient. |
-| E8-WB-003 | Explicit WB selection | The selected child type is not a project GB or WB. **Error.** | Select a child architecture/integration, not a BB or bare method marker. |
-| E8-WB-004 | WB configuration | A possible constituent remains an inherited BB with no design selection. **Warning** normally; **error** with `completeSelection=true`. | Mark the configuration partial or select a design. A child whose resolved upper multiplicity is zero is excluded. Unknown multiplicity is not assumed absent. |
+| E8-WB-003 | Explicit WB selection | A developed child contract has no selected GB/WB, or an ordinary leaf is replaced by a BB, bare marker or unmarked composite. **Error.** | Select a developed child design or retain/configure a compatible ordinary leaf type. |
+| E8-WB-004 | WB configuration | A possible developed constituent remains an inherited BB with no design selection. **Warning** normally; **error** with `completeSelection=true`. | Mark the configuration partial or select a design. Ordinary typed leaves do not need artificial design wrappers. A child whose resolved upper multiplicity is zero is excluded. Unknown multiplicity is not assumed absent. |
 | E8-WB-005 | WB selection | The selected design definition does not conform to every contract type required by the inherited GB child. **Error.** | Choose a compatible design or deliberately revise the contract/architecture. Reuse native type/multiplicity/feature compatibility diagnostics. |
 | E8-CTX-001 | WB contextual constraints | A constraint on the effective selected child is demonstrably false. **Error.** If undecidable/unavailable, report **info: not assessed**. | Show the parent-local condition and selected value/assumption. Do not mark an unresolved check passed. |
 
@@ -71,8 +79,8 @@ Leaf architectures may contain no child parts. A WB need not have parts if its s
 
 1. Validate language/imports first. Block only dependent method checks when types or redefinitions are unresolved; continue independent checks.
 2. Classify roles and resolve the actual GB base set of each WB. Enumerate their combined effective child identities.
-3. Map each WB child to an inherited GB child through **redefinition**, retaining transitive redefinition identity across configuration variants. Report additions/competing replacements before checking their types.
-4. If there is no selection, emit WB-004. If there is an explicit BB/non-design selection, emit WB-003 instead; avoid both findings for the same cause.
+3. Map each WB child to an inherited GB child through **redefinition**, retaining transitive redefinition identity across configuration variants. Report additions/competing replacements before checking their types. Ordinary inherited leaves may remain unchanged; explicit leaf refinements still require type conformance.
+4. For developed child contracts, if there is no selection, emit WB-004. If there is an explicit BB/non-design selection, emit WB-003 instead; avoid both findings for the same cause. A typed ordinary leaf terminates the recursive selection check only if it has no inherited or usage-local composition.
 5. For a real selection, check the selected definition's own type ancestry against the inherited required contract types. Do not use the merged usage's inherited type list as proof: that would make the check circular. Evaluate multiple declared types as a conjunction using native type-conformance semantics.
 6. Evaluate selected values and constraints **in the parent context**, preserving local refinements, inherited assumptions, units and multiplicity. Native equality/redefinition constraints still apply. A default value is not itself a maximum/minimum requirement. Where analysis or evidence is needed, return not-assessed instead of synthesizing a pass.
 7. Recurse through selected child integrations to check deeper selections. A selected child architecture with unresolved constituent contracts makes the overall configuration partial. Track active selected definition identities on each traversal branch; report recursive expansion as unresolved completeness rather than unrolling forever. Memoization may also cache finite contexts; a leaf architecture is resolved without an extra WB wrapper.
