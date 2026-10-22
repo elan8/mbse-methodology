@@ -28,6 +28,8 @@ BB permits observable properties, assumptions, requirements and constraints as w
 
 Resolve the marker identities through `Elan8::SystemsEngineering`. Imported aliases denote the same objects. Exclude only those three framework definitions from rule targets; abstract project definitions are still checked.
 
+Definition ownership is independent of these rules. Directly system-owned definitions are the default; optional nested packages, arbitrary grouping names and definition names without role suffixes must produce the same role/selection checks. Do not require `Specification`, `Architecture` or `Integration` package paths.
+
 ```text
 role(T):
   if T conforms to SystemIntegration: return WB

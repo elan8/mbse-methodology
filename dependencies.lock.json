@@ -1,7 +1,12 @@
 {
-  "methodologyVersion": "0.3.0",
+  "methodologyVersion": "0.4.0",
   "spec42": {
     "version": "0.56.0"
+  },
+  "diagramRenderer": {
+    "repository": "https://github.com/elan8/spec42",
+    "sourceCommit": "dc2bc2790fda6114d61b5860e4632cf96379774e",
+    "reason": "Post-release inherited view discovery and Boolean metaclass filters"
   },
   "standardLibrary": {
     "distribution": "2026-04",

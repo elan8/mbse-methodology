@@ -6,6 +6,12 @@ Rename the `Product` package and all its qualified references across `model/` (i
 
 Keep each system's contract, design, integration, behavior, analysis, verification and views together. Add developed subsystems as siblings under `60_systems`. Put stakeholder obligations in `20_requirements` and project-owned shared definitions in `50_library`.
 
+Role definitions belong directly to the system package by default. The starter's
+`Requirements`, `Analysis`, `Verification` and `Views` packages are optional aids:
+remove them when they add no useful content. Role subpackages are optional for
+larger systems or several alternatives. Remove `ProductIntegration` and select
+`ProductArchitecture` directly if the system remains a leaf with no selections.
+
 Requirements alongside a BB need an explicit BB-local `satisfy` assertion to become inherited obligations. The methodology's requirement-binding recipe and interaction example demonstrate this. The system template contains a reminder instead of inventing product obligations.
 
 Four default view types are supplied by the dependency. Add other views as needed. Document selections need a separate generator binding. Setup notes and record forms are optional.
@@ -16,4 +22,4 @@ From a scaffolded project root:
 ./scripts/validate_models.ps1 -ModelPath ./model -Spec42 /path/to/spec42.exe -StdlibPath /path/to/stdlib/kpar
 ```
 
-Validation verifies the frozen tool/library tuple. An explicit domain-library source override is a development choice. `Product::Integration::candidate` remains incomplete until you supply a contract and design; language validity alone does not complete it. Keep generated outputs outside `model/`.
+Validation verifies the frozen tool/library tuple. An explicit domain-library source override is a development choice. `Product::candidate` remains incomplete until you supply a contract and design; language validity alone does not complete it. Keep generated outputs outside `model/`.

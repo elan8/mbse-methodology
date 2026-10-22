@@ -6,10 +6,12 @@ package ProjectDocuments {
         expose ProjectContext::**;
     }
     view systemRequirementsContent : StandardViewDefinitions::GeneralView {
-        expose Product::Specification::**;
+        expose Product::ProductSpecification;
+        expose Product::Requirements::**;
     }
     view systemDesignContent : StandardViewDefinitions::GeneralView {
-        expose Product::Architecture::**;
-        expose Product::Integration::**;
+        expose Product::ProductArchitecture;
+        expose Product::ProductIntegration;
+        expose Product::candidate;
     }
 }

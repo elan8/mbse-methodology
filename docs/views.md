@@ -5,7 +5,7 @@ Use these defaults when they help. There is no required view checklist. Behavior
 | View type | Show | Expose |
 |---|---|---|
 | `ContextView` | System boundary and external participant usages, ports and connections | Context package members |
-| `SpecificationView` | Boundary contract, behavior, properties, requirements and constraints | Specification package members |
+| `SpecificationView` | Boundary contract, behavior, properties, requirements and constraints | Contract definition and named requirement/behavior content |
 | `ArchitectureView` | Architecture with child contract usages, ports and topology | Chosen architecture definition |
 | `IntegrationView` | Selected configuration with effective child designs, ports and topology | Selected integration usage |
 
@@ -71,15 +71,18 @@ System views, inside `Product::Views`:
 private import Elan8::SystemsEngineering::*;
 
 view specification : SpecificationView {
-    expose Product::Specification::**;
+    expose Product::ProductSpecification;
+    expose Product::Requirements::**;
 }
 view architecture : ArchitectureView {
-    expose Product::Architecture::ProductArchitecture;
+    expose Product::ProductArchitecture;
 }
 view integration : IntegrationView {
-    expose Product::Integration::candidate;
+    expose Product::candidate;
 }
 ```
+
+With direct system ownership, select the contract and its authoritative requirements explicitly. Avoid `expose Product::**` in a specification view: that would also select architectures and integrations. If a project chooses optional role packages, package-wide selections remain useful.
 
 `expose X;` selects a named root. `X::*` selects direct members; `X::**` recursively selects members. Structure renderers expand the selected root's effective features to a chosen depth. The architecture definition shows contract-typed children; the integration usage shows selected designs in context. Do not expose every alternative when displaying one configuration.
 
@@ -87,7 +90,7 @@ To narrow a view to parts only:
 
 ```sysml
 view partsOnly : IntegrationView {
-    expose Product::Integration::candidate;
+    expose Product::candidate;
     filter @SysML::PartUsage;
     filter not @SysML::ConnectionUsage;
 }
@@ -114,4 +117,4 @@ spec42 diagram ./model --view Product::Views::integration --depth 1 -o integrati
 
 Use the same library arguments as validation; see [tooling](library-and-tooling.md). A general view is not a coverage/evidence matrix or a compatibility proof. Document content selections in `80_documents` are separate publishing inputs.
 
-Language reference: SysML v2.0 Part 1 §7.26.2 specifies view-definition filters and their inheritance; `StandardViewDefinitions::GeneralView` supplies the standard general view type. Spec42 0.56.0 prepares these specialized views, but emits `view_type_non_standard` warnings for their Elan8 type names. This diagnostic limitation does not make specialization invalid; no model rewrite or warning suppression is required.
+Language reference: SysML v2.0 Part 1 §7.26.2 specifies view-definition filters and their inheritance; `StandardViewDefinitions::GeneralView` supplies the standard general view type. Released Spec42 0.56.0 emits `view_type_non_standard` warnings and cannot discover derived GeneralView types or prepare Boolean filters. Use the separate rendering source revision in [the lock file](../dependencies.lock.json) for prepared diagrams. These tool limitations do not make specialization invalid; no model rewrite or warning suppression is required.

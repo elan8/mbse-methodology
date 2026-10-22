@@ -1,6 +1,6 @@
 # Folder and package structure
 
-The standard adopts the [agreed proposal](../folder-structure.md): numbered model areas, a flat systems directory and one `system.sysml` per system by default. Semantic part usages define recursive composition; folder nesting does not.
+The standard uses numbered model areas, a flat systems directory and one `system.sysml` per system by default. Semantic part usages define recursive composition; folder nesting does not.
 
 ## Standard layout
 
@@ -37,7 +37,19 @@ The [starter](../templates/project-template/README.md) contains the model folder
 
 ## System-owned content
 
-Each uniquely named system package contains `Specification`, `Architecture`, `Integration`, `Analysis`, `Verification` and `Views` as applicable. Keep these in one file until size or team ownership warrants splitting. Ports, items, behavior and constraints live with the contract/design they describe. The specification owns system requirements; `20_requirements` owns stakeholder/customer obligations.
+Declare the system's specification, architecture and integration definitions directly in its uniquely named system package by default. The roles are expressed by specialization, typing and redefinition; they do not require matching subpackages. Keep the definitions in one file until size or team ownership warrants splitting. Ports, items, behavior and constraints live with the contract/design they describe. Authoritative system requirements live alongside the contract, and the contract explicitly asserts them; `20_requirements` owns stakeholder/customer obligations.
+
+```sysml
+package DriveTrainSystem {
+    part def DriveTrainSpecification :> Elan8::SystemsEngineering::SystemSpecification;
+    part def DriveTrainArchitecture
+        :> DriveTrainSpecification, Elan8::SystemsEngineering::SystemArchitecture;
+}
+```
+
+A leaf architecture can be selected directly. Add an integration definition when it selects child designs or represents a useful selected configuration. Do not add an empty integration or empty package merely to fill a three-role template.
+
+`Specification`, `Architecture` and `Integration` subpackages remain optional for substantial content, multiple alternatives or distinct ownership. Packages such as `Requirements`, `Analysis`, `Verification` and `Views` are also optional organizational aids. Keep them when they make navigation clearer. The semantic checker accepts either ownership layout and does not infer a role from package names or depth.
 
 Systems are flat by default even when recursively composed. A parent architecture refers to a child's specification; its integration selects a child design through redefinition. Several parent usages may reference the same independently owned child. Optional domain grouping folders are organizational only.
 

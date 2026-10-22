@@ -2,7 +2,7 @@
 
 - System, boundary and intended use:
 - Relevant contacts:
-- Model configuration/usage: `Product::Integration::candidate` (draft)
+- Model configuration/usage: `Product::candidate` (draft)
 - Language, tool and standard-library versions:
 - Elan8 dependency: frozen 0.5.0 candidate; exact hashes and tested tool/stdlib in `dependencies.lock.json`:
 - Other dependencies and document generator, if used:

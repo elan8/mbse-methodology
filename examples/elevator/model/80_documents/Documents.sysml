@@ -5,10 +5,15 @@ package ElevatorDocuments {
         expose ElevatorContext::**;
     }
     view systemRequirementsContent : StandardViewDefinitions::GeneralView {
-        expose Elevator::Specification::**;
+        expose Elevator::ElevatorSpecification;
+        expose Elevator::AcknowledgeCall;
+        expose Elevator::AcknowledgementRequirement;
+        expose Elevator::acknowledgement;
     }
     view systemDesignContent : StandardViewDefinitions::GeneralView {
-        expose Elevator::Architecture::**;
-        expose Elevator::Integration::**;
+        expose Elevator::ElevatorArchitecture;
+        expose Elevator::RoutedAcknowledgement;
+        expose Elevator::ElevatorReleaseAIntegration;
+        expose Elevator::releaseA;
     }
 }

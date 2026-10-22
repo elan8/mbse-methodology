@@ -5,6 +5,7 @@ import copy
 import json
 from pathlib import Path
 import subprocess
+import tempfile
 import unittest
 
 from check_structure import StructureChecker
@@ -89,15 +90,15 @@ def main():
             self.assertEqual(0, export["summary"]["error_count"])
             nodes = export["projection"]["elements"]
             by_name = {x["qualified_name"]: x for x in nodes if x["name"]}
-            specification = by_name["Elevator::Specification::ElevatorSpecification"]
+            specification = by_name["Elevator::ElevatorSpecification"]
             assertions = [x for x in nodes if x["kind"] == "SatisfyRequirementUsage"
                           and x["owner"] == specification["token"]]
             self.assertTrue(any(edge["kind"] == "satisfySource" and
-                                edge["peer"]["qualified_name"] == "Elevator::Specification::acknowledgement"
+                                edge["peer"]["qualified_name"] == "Elevator::acknowledgement"
                                 for node in assertions for edge in node["relationships"]["outgoing"]))
-            behavior = by_name["Elevator::Architecture::ElevatorArchitecture::acknowledge"]
+            behavior = by_name["Elevator::ElevatorArchitecture::acknowledge"]
             self.assertEqual("PerformActionUsage", behavior["kind"])
-            self.assertEqual(["Elevator::Specification::ElevatorSpecification::acknowledge"],
+            self.assertEqual(["Elevator::ElevatorSpecification::acknowledge"],
                              [x["qualified_name"] for x in behavior["relationships"]["redefinition"]["targets"]])
             allocations = [x for x in nodes if x["kind"] == "AllocationUsage"]
             pairs = set()
@@ -120,6 +121,70 @@ def main():
             report = StructureChecker([self.elevator_export()], complete=True).run()
             self.assertEqual([], report["diagnostics"])
             self.assertEqual("not-assessed", report["coverage"]["contextualConstraints"])
+
+        def test_roles_and_selections_are_independent_of_package_layout(self):
+            # Arbitrary type/group names deliberately avoid role suffixes and
+            # the Specification/Architecture/Integration package convention.
+            source = """
+package Shared {
+    part def A :> Elan8::SystemsEngineering::SystemSpecification;
+    part def B :> A, Elan8::SystemsEngineering::SystemArchitecture;
+}
+package Flat {
+    part def A :> Elan8::SystemsEngineering::SystemSpecification;
+    part def B :> A, Elan8::SystemsEngineering::SystemArchitecture {
+        part child : Shared::A;
+    }
+    part def C :> B, Elan8::SystemsEngineering::SystemIntegration {
+        part child : Shared::B :>> child;
+    }
+}
+package Grouped {
+    package Contracts {
+        part def A :> Elan8::SystemsEngineering::SystemSpecification;
+    }
+    package Designs {
+        part def B :> Contracts::A, Elan8::SystemsEngineering::SystemArchitecture {
+            part child : Shared::A;
+        }
+    }
+    package Baselines {
+        part def C :> Designs::B, Elan8::SystemsEngineering::SystemIntegration {
+            part child : Shared::B :>> child;
+        }
+    }
+}
+"""
+            cache = ROOT / ".cache"
+            cache.mkdir(exist_ok=True)
+            with tempfile.TemporaryDirectory(prefix="namespace-layout-", dir=cache) as directory:
+                path = Path(directory) / "Layout.sysml"
+                path.write_text(source, encoding="utf-8")
+                native = json.loads(subprocess.run(
+                    [*common, "model-export", str(path), "--format", "json"],
+                    check=True, capture_output=True, text=True, encoding="utf-8").stdout)
+            self.assertEqual(0, native["summary"]["error_count"])
+            self.assertEqual(0, native["summary"]["warning_count"])
+            checker = StructureChecker([native], complete=True)
+            self.assertEqual([], checker.run()["diagnostics"])
+            for name, role in {"Flat::A": "BB", "Flat::B": "GB", "Flat::C": "WB",
+                               "Grouped::Contracts::A": "BB", "Grouped::Designs::B": "GB",
+                               "Grouped::Baselines::C": "WB"}.items():
+                key = next(key for key, value in checker.names.items() if value == name)
+                self.assertEqual(role, checker.role(key), name)
+
+        def test_flat_specification_view_does_not_select_designs(self):
+            product = json.loads(subprocess.run(
+                [*common, "diagram", str(ROOT / "examples/elevator/model"),
+                 "--view", "Elevator::Views::specification", "--format", "json"],
+                check=True, capture_output=True, text=True, encoding="utf-8").stdout)
+            self.assertEqual("complete", product["completeness"]["status"])
+            roots = {product["references"][product["projection"]["nodes"][key]["reference"]]["qualifiedName"]
+                     for key in product["projection"]["exposedRoots"]}
+            self.assertEqual({"Elevator::ElevatorSpecification", "Elevator::AcknowledgeCall",
+                              "Elevator::AcknowledgementRequirement", "Elevator::acknowledgement"}, roots)
+            names = {node["name"] for node in product["projection"]["nodes"]}
+            self.assertTrue(names.isdisjoint({"ElevatorArchitecture", "ElevatorReleaseAIntegration", "releaseA"}))
 
     result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(ContractTests))
     return 0 if result.wasSuccessful() else 1

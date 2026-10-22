@@ -4,7 +4,7 @@ The shared package `Elan8::SystemsEngineering` provides independent BB/GB/WB rol
 
 ## Tested dependency tuple
 
-The [lock file](../dependencies.lock.json) records methodology **0.3.0**, Spec42 **0.56.0**, standard-library distribution **2026-04**, and a frozen **domain-library 0.5.0 release candidate**. The candidate is bundled in `libraries/`; it has not been published. Archive/source SHA-256 digests identify the exact tested content.
+The [lock file](../dependencies.lock.json) records methodology **0.4.0**, Spec42 **0.56.0**, standard-library distribution **2026-04**, and a frozen **domain-library 0.5.0 release candidate**. The candidate is bundled in `libraries/`; it has not been published. Archive/source SHA-256 digests identify the exact tested content.
 
 Default setup verifies the CLI version, standard-library source digest, domain archive checksum and extracted source digest. A mutable sibling checkout is no longer required. `-DomainLibraryPath` explicitly opts into a development override.
 
@@ -13,6 +13,13 @@ Default setup verifies the CLI version, standard-library source digest, domain a
 ```
 
 This checks the starter, interaction example and language-valid diagnostic fixtures. The existing custom-view-name warnings in Spec42 0.56.0 remain documented in the [validation notes](../examples/elevator/validation.md).
+
+For diagram preparation and the view-dependent executable tests, use the separate
+`diagramRenderer.sourceCommit` in the lock file. Build that Spec42 source revision
+with `cargo build -p server --bin spec42`. The development build also reports
+0.56.0, but includes inherited-view discovery and Boolean filters missing from
+the released binary. Language validation above uses the released tool. No library
+archive or standard-library content changes for this namespace simplification.
 
 ## Structural checker
 
@@ -36,6 +43,11 @@ python ./scripts/test_structure.py --spec42 /path/to/spec42.exe `
 ```
 
 The intentionally invalid method examples should produce expected findings, not a clean checker verdict. Language validity, structural checks, contextual constraint analysis and verification are separate claims.
+
+Methodology 0.4.0 makes direct system ownership the default. The structural rule
+catalog stays at 0.3.0: its semantic predicates are unchanged. Executable tests
+cover direct ownership and optional arbitrary grouping packages with the same
+roles and selections, plus specification views that exclude designs.
 
 ## New projects and documents
 
